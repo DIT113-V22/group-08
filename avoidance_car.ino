@@ -22,7 +22,8 @@ void setup()
 }
 
 void handleInput(){
-    if(Serial.available()){
+    if(Serial.available())
+    {
         char input = Serial.read(); 
                                     
         switch (input)
@@ -73,11 +74,7 @@ void loop()
            car.setSpeed(fSpeed);
            
      }
-   
-    
-     
-      
-
     
      handleInput();
+      delay(1);
 }
