@@ -56,8 +56,8 @@ void loop()
    
     Serial.println(front.getDistance());
     delay(100);
-    
-    if(front.getDistance() <= 100 && front.getDistance()>0){
+    const auto distance = front.getDistance();
+    if(distance <= 100 && distance > 0){
           car.setSpeed(0);
        // the car go back   
           car.setSpeed(bSpeed);
