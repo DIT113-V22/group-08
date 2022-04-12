@@ -1,4 +1,5 @@
 # group-08
+![Arduino Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/arduino-build.yml/badge.svg)
 # What is GRace?
 It is an Android App that grants the user to drive a car in the SMCE client using a virtual controller on a phone. GRace allows a user to compete versus oneself and other users. The best scores are going to be saved in a leaderboard where the scores are going to be measured by time and best average speed. 
 
