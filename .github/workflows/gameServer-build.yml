@@ -17,4 +17,4 @@ jobs:
           distribution: 'temurin'
       - name: Build Program
         run: |
-          javac compile GameServer/*.java
+          javac compile GameServer/src/main/java/main.java
