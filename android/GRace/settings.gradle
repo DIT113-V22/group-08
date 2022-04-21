@@ -10,7 +10,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+           url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
+        }
     }
+
 }
-rootProject.name = "GraceApp"
+
+rootProject.name = "Grace"
 include ':app'

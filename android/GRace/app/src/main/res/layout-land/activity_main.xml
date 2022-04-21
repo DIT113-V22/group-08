@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/dynamic_list"
-    android:id="@+id/mainLayout">
+    android:background="@drawable/dynamic_list">
 
     <EditText
         android:id="@+id/playerName"
@@ -15,34 +15,37 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="50sp"
         android:layout_marginEnd="50sp"
-        android:hint="Enter players name"
-        android:minHeight="48dp"
+        android:autofillHints="Player Name"
+        android:hint="Enter Name"
+        android:inputType="text"
         android:textAlignment="center"
+        android:minHeight="48sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:textColorHighlight="#2CDDCF"
         android:textColorHint="@color/white"
-        android:textColorLink="#08BCD8"
+        android:textColorLink="#08BCD8" />
+
+
+    <Button
+        android:id="@+id/button_enterRace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playerName"
+        android:layout_centerInParent="true"
+        android:text="  Enter Race  "
         android:textSize="20sp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="  Enter Race  "
-        android:layout_below="@id/playerName"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:id="@+id/button_enterRace"/>
-
-    <Button
         android:id="@+id/button_Leaderboard"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LeaderBoard "
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:textSize="30sp" />
+        android:textSize="20sp"
+        />
+
 
 
 </RelativeLayout>
