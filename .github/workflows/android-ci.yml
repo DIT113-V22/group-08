@@ -13,9 +13,9 @@ jobs:
           java-version: '11'
       - name: Clone Repo
         uses: actions/checkout@v2
-      - name: Build GRaceController
+      - name: Build GRace
         run: |
-          cd android/GRaceController
+          cd android/GRace
   
           ./gradlew build --stacktrace
 
@@ -29,9 +29,9 @@ jobs:
           java-version: '11'
       - name: Clone Repo
         uses: actions/checkout@v2
-      - name: Run unit tests for GRaceController
+      - name: Run unit tests for GRace
         run: |
-          cd android/GRaceController
+          cd android/GRace
   
           ./gradlew test --info
 
@@ -45,8 +45,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-      - name: Run instrumented tests for GRaceController
+      - name: Run instrumented tests for GRace
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: cd android/GRaceController && ./gradlew connectedAndroidTest
+          script: cd android/GRace && ./gradlew connectedAndroidTest
