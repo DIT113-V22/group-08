@@ -12,3 +12,4 @@ The App will be created in Android studios which uses XML for the UI and Kotlin 
 The car-behavior will be writted in C++ using Arduino and the smartCar API.
 We will use the SMCE emulator to visualize the racing track.
 Github will be used for document management and updating the code.
++
