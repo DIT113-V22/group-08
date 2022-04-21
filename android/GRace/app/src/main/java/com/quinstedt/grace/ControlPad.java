@@ -145,6 +145,9 @@ public class ControlPad extends AppCompatActivity {
         mMqttClient.publish(THROTTLE_CONTROL, Integer.toString(throttleSpeed), QOS, null);
         mMqttClient.publish(STEERING_CONTROL, Integer.toString(steeringAngle), QOS, null);
     }
+    public void moveBackward(View view) {
+        drive(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Moving backward");
+    }
 
     public void moveForward(View view) {
         drive(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Moving forward");
@@ -160,10 +163,6 @@ public class ControlPad extends AppCompatActivity {
 
     public void moveForwardRight(View view) {
         drive(MOVEMENT_SPEED, STEERING_ANGLE, "Moving forward left");
-    }
-
-    public void moveBackward(View view) {
-        drive(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Moving backward");
     }
 
 }
