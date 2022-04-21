@@ -13,6 +13,10 @@ jobs:
           java-version: '11'
       - name: Clone Repo
         uses: actions/checkout@v2
+      - name: Change Gradle Permission
+        run: |
+          cd android/GRace
+          chmod +x gradlew
       - name: Build GRace
         run: |
           cd android/GRace
