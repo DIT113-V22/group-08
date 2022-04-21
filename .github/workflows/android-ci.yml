@@ -1,0 +1,21 @@
+name: Android CI
+
+on: [push, pull_request]
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clode Repositorie
+        uses: actions/checkout@v3.0.1
+      - name: Setup JDK
+        uses: actions/setup-java@v3.1.1
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - name: Gradle Wrapper Validation
+  # You may pin to the exact commit or the version.
+  # uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+        uses: gradle/wrapper-validation-action@v1.0.4
+
+ 
