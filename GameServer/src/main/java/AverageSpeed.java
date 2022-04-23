@@ -1,3 +1,5 @@
+package GameServer.main.java;
+
 import static java.lang.Double.compare;
 
 public class AverageSpeed implements Comparable<AverageSpeed> {
