@@ -1,4 +1,5 @@
 ![Arduino Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/arduino-build.yml/badge.svg)
+![Android CI status](https://github.com/DIT113-V22/group-08/actions/workflows/android-ci.yml/badge.svg)
 # group-08
 
 # What is GRace?
