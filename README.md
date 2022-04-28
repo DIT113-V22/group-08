@@ -1,4 +1,6 @@
 ![Arduino Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/arduino-build.yml/badge.svg)
+![Arduino Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/gameServer-build.yml/badge.svg)
+
 # group-08
 
 # What is GRace?
