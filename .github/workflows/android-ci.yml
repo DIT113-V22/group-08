@@ -18,7 +18,5 @@ jobs:
         
     - name: Build with Gradle
       run: |
-          cd android/GRace
+          cd Android/islandRush
           ./gradlew build 
-
- 
