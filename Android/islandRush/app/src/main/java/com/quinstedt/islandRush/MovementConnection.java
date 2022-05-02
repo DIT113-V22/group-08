@@ -26,17 +26,16 @@ public class MovementConnection extends AppCompatActivity {
      MqttClient mMqttClient;
 
     // MQTT TOPICS
-    static final String MAIN_TOPIC = "/islandRush";
+    static final String MAIN_TOPIC = "/IslandRush";
 
     static final String CAMERA = MAIN_TOPIC + "/camera";
     //Sensor topics
-    static final String ULTRASOUND = MAIN_TOPIC +  "/ultrasound/front";
-    static final String ODOMETER_LEFT_DISTANCE = MAIN_TOPIC + "/Odometer/LeftDistance";
-    static final String ODOMETER_RIGHT_DISTANCE = MAIN_TOPIC + "/Odometer/RightDistance";
-    static final String ODOMETER_LEFT_SPEED = MAIN_TOPIC + "/Odometer/LeftSpeed";
-    static final String ODOMETER_RIGHT_SPEED = MAIN_TOPIC + "/Odometer/RightSpeed";
+   // static final String ULTRASOUND = MAIN_TOPIC +  "/ultrasound/front";
+    static final String ODOMETER_DISTANCE = MAIN_TOPIC + "/Odometer/LeftDistance";
+    static final String ODOMETER_SPEED = MAIN_TOPIC + "/Odometer/RightSpeed";
     //Controller topics
-    static final String CONTROLLER = MAIN_TOPIC + "/control/direction";
+    static final String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
+    static final String SPEED = MAIN_TOPIC + "/Control/Speed";
 
     // CAMERA
      static final int IMAGE_WIDTH = 320;
@@ -86,12 +85,11 @@ public class MovementConnection extends AppCompatActivity {
                     final String successfulConnection = "Connected to MQTT broker";
                     Log.i(TAG, successfulConnection);
                     Toast.makeText(getApplicationContext(), successfulConnection, Toast.LENGTH_SHORT).show();
-                    mMqttClient.subscribe(ULTRASOUND, QOS, null);
-                    mMqttClient.subscribe(ODOMETER_LEFT_DISTANCE, QOS, null);
-                    mMqttClient.subscribe(ODOMETER_RIGHT_DISTANCE, QOS, null);
-                    mMqttClient.subscribe(ODOMETER_LEFT_SPEED, QOS, null);
-                    mMqttClient.subscribe(ODOMETER_RIGHT_SPEED, QOS, null);
+                  //  mMqttClient.subscribe(ULTRASOUND, QOS, null);
+                    mMqttClient.subscribe(ODOMETER_SPEED, QOS, null);
+                    mMqttClient.subscribe(ODOMETER_DISTANCE, QOS, null);
                     mMqttClient.subscribe(CAMERA, QOS, null);
+
                 }
 
                 @Override
