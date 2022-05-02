@@ -22,11 +22,15 @@ public class ControlPad extends MovementConnection {
     public void moveForward(View view) {
         drive(Direction.FORWARD.toString(), "Moving forward");
     }
-    public void moveForwardLeft(View view) { drive(Direction.LEFT.toString(), "Moving to the left"); }
+    public void moveForwardLeft(View view) {
+        drive(Direction.LEFT.toString(), "Moving to the left");
+    }
     public void stop(View view) {
         drive(Direction.STOP.toString(),"Stopping");
     }
-    public void moveForwardRight(View view) { drive(Direction.RIGHT.toString(), "Moving right"); }
+    public void moveForwardRight(View view) {
+        drive(Direction.RIGHT.toString(), "Moving right");
+    }
     public void moveBackward(View view) {
         drive(Direction.REVERSE.toString(), "Moving in reverse");
     }

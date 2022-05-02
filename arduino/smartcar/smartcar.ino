@@ -29,7 +29,7 @@ const auto mqttBrokerUrl = "192.168.0.40";
 const auto maxDistance = 400;
 
 // car movements
-int carSpeedB;
+
 const auto carSpeed = 50;
 const auto degreeLeft = -50; 
 const auto degreeRight = 50;
@@ -37,6 +37,19 @@ const auto diagonalFirst = 80;
 const auto diagonalRight = 20;
 const auto diagonalLeft = -20;
 const auto diagonalDelay = 1000;
+
+//topics
+
+const String MAIN_TOPIC ="/IslandRush";
+const char CAMERA[] ="/IslandRush/camera";
+
+// new topics to test
+const String ODOMETOR_DISTANCE  = MAIN_TOPIC + "/Odometer/Distance";
+const String ODOMETOR_SPEED  = MAIN_TOPIC + "/Odometer/Speed";
+
+//Controller topics;
+const String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
+const String SPEED = MAIN_TOPIC + "/Control/Speed";
 
 ArduinoRuntime arduinoRuntime;
 // Motors
@@ -53,13 +66,7 @@ DirectionlessOdometer leftOdometer{ arduinoRuntime, smartcarlib::pins::v2::leftO
 DirectionlessOdometer rightOdometer{ arduinoRuntime, smartcarlib::pins::v2::rightOdometerPin,
   []() { rightOdometer.update(); }, pulsesPerMeter };
 
-const auto distanceR = String(leftOdometer.getDistance());
-const auto distanceL = String(rightOdometer.getDistance());
-const auto speedR = String(rightOdometer.getSpeed());
-const auto speedL = String(leftOdometer.getSpeed());
-
-
-SimpleCar car(control);
+DistanceCar car(arduinoRuntime, control, leftOdometer, rightOdometer);
 
 
 void setup() {
@@ -88,10 +95,10 @@ void setup() {
     delay(1000);
   }
 
-  mqtt.subscribe("/islandRush/control/#", 1);
+  mqtt.subscribe("/IslandRush/Control/#", 1);
   mqtt.onMessage([](String topic, String message)
   {
-    if(topic == "/islandRush/control/controller") {
+    if(topic == CONTROLLER ) {
           auto input = message.toInt();
             switch (input){
         case 1: // up 
@@ -109,17 +116,17 @@ void setup() {
             car.setAngle(degreeRight);
             break;
         case 4: // down-right 
-          car.setSpeed(carSpeed);
+          car.setSpeed(-carSpeed);
             car.setAngle(-diagonalFirst);
             delay(diagonalDelay);
             car.setAngle(diagonalRight);
             break;
         case 5: // down
-            car.setSpeed(carSpeed);
+            car.setSpeed(-carSpeed);
             car.setAngle(0);
             break;
         case 6: //   downleft
-            car.setSpeed(carSpeed);
+            car.setSpeed(-carSpeed);
             car.setAngle(-diagonalFirst);
             delay(diagonalDelay);
             car.setAngle(diagonalLeft);
@@ -138,10 +145,10 @@ void setup() {
             car.setSpeed(0);
             car.setAngle(0);
         }
-    } else if(topic == "/islandRush/control/speed") {
+    } else if(topic == SPEED) {
        // This is going to be use for the introduction of the speed buttons 
-        carSpeedB= message.toInt();
-        car.setSpeed(message.toInt());
+      // the speed is set between 0-100, increasing or decrising by 10 everytime
+      //  car.setSpeed(message.toInt());
     }else {
       Serial.println(topic + " " + message);
     }
@@ -157,19 +164,18 @@ void loop() {
     if (currentTime - previousFrame >= 65) {
       previousFrame = currentTime;
       Camera.readFrame(frameBuffer.data());
-      mqtt.publish("/IslandRush/camera", frameBuffer.data(), frameBuffer.size(),
+      mqtt.publish(CAMERA, frameBuffer.data(), frameBuffer.size(),
                  false, 0);
     }
 #endif
     static auto previousTransmission = 0UL;
     if (currentTime - previousTransmission >= oneSecond) {
       previousTransmission = currentTime;
-      const auto distance = String(front.getDistance());
-      mqtt.publish("/IslandRush/ultrasound/front", distance);
-      mqtt.publish("/IslandRush/Odometer/LeftDistance", "Left odometer distance: " + distanceL);
-      mqtt.publish("/IslandRush/odometer/RightDistance", "Right odometer distance: " + distanceR);
-      mqtt.publish("/IslandRush/odometer/RightSpeed", "Right odometer speed: " + speedR);
-      mqtt.publish("/IslandRush/odometer/LeftSpeed", "Left odometer speed: " + speedL);
+     
+    // average speed of the car via both Odometers ( meters per second)
+     mqtt.publish(ODOMETOR_SPEED, String(car.getSpeed()));
+  // average distance from both Odometers (in centimeters)   
+     mqtt.publish(ODOMETOR_DISTANCE, String(car.getDistance()));
     }
   }
 #ifdef __SMCE__
