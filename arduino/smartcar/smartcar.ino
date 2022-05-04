@@ -1,47 +1,65 @@
-//#include <vector>
-
+#include <vector>
 #include <MQTT.h>
 #include <WiFi.h>
+#ifdef __SMCE__
+#include <OV767X.h>
+#endif
 
 #include <Smartcar.h>
 
-//#ifdef __SMCE__
-//#include <OV767X.h>
-//#endif
+MQTTClient mqtt;
+WiFiClient net;
+
+const char ssid[] = "***";
+const char pass[] = "****";
+const auto oneSecond = 1000UL;
+
+//Camera 
+std::vector<char> frameBuffer;
 
 #ifdef __SMCE__
-WiFiClient net;
+const auto triggerPin = 6;
+const auto echoPin = 7;
+const auto mqttBrokerUrl = "127.0.0.1";
+#else
+const auto triggerPin = 33;
+const auto echoPin = 32;
+const auto mqttBrokerUrl = "192.168.0.40";
 #endif
+const auto maxDistance = 400;
 
-MQTTClient mqtt;
+// car movements
 
-//camera
-const auto oneSecond = 1000UL;
-//std::vector<char> frameBuffer;
+const auto carSpeed = 50;
+const auto degreeLeft = -50; 
+const auto degreeRight = 50;
+const auto diagonalFirst = 80;
+const auto diagonalRight = 20;
+const auto diagonalLeft = -20;
+const auto diagonalDelay = 1000;
 
-//directions
-const int forwardSpeed = 80;
-const int backSpeed = -50;
-const int acceleration = 100;
-const int forwardLeft = -80;
-const int forwardRight = 80;
-const int backRight = 80;
-const int backLeft = -80;
-const int forwardDiagonalRight = 20;
-const int forwardDiagonalLeft = -20;
-const int backDiagonalRight = 20;
-const int backDiagonalLeft = -20;
+//topics
+
+const String MAIN_TOPIC ="/IslandRush";
+const char CAMERA[] ="/IslandRush/camera";
+
+// new topics to test
+const String ODOMETOR_DISTANCE  = MAIN_TOPIC + "/Odometer/Distance";
+const String ODOMETOR_SPEED  = MAIN_TOPIC + "/Odometer/Speed";
+
+//Controller topics;
+const String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
+const String SPEED = MAIN_TOPIC + "/Control/Speed";
 
 ArduinoRuntime arduinoRuntime;
-
-//Motors
+// Motors
 BrushedMotor leftMotor(arduinoRuntime, smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(arduinoRuntime, smartcarlib::pins::v2::rightMotorPins);
-
-//Steering
+// Steering
 DifferentialControl control(leftMotor, rightMotor);
-
-//Odometers
+// Ultrasonic sensor
+SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
+// Odometer
 const auto pulsesPerMeter = 600;
 DirectionlessOdometer leftOdometer{ arduinoRuntime, smartcarlib::pins::v2::leftOdometerPin,
   []() { leftOdometer.update(); }, pulsesPerMeter };
@@ -50,102 +68,118 @@ DirectionlessOdometer rightOdometer{ arduinoRuntime, smartcarlib::pins::v2::righ
 
 DistanceCar car(arduinoRuntime, control, leftOdometer, rightOdometer);
 
-void setup()
-{
-  // put your setup code here, to run once:
-  Serial.begin(9600);
 
+void setup() {
+  Serial.begin(9600);
 #ifdef __SMCE__
-  // mqtt.begin(WiFi);
-  mqtt.begin(net);
+  Camera.begin(QVGA, RGB888, 15);
+  frameBuffer.resize(Camera.width() * Camera.height() * Camera.bytesPerPixel());
 #endif
 
-  if (mqtt.connect("arduino", "public", "public")) {
-    mqtt.subscribe("/smartcar/control/#", 1);
-    mqtt.onMessage([](String topic, String message) {
-      if (topic == "/smartcar/control/handleInput") {
-        handleInput(message);
-        Serial.println("Command " + message + " received");
-      }
-      else  {
-        Serial.println(topic + " " + message);
-      }
-    });
+  WiFi.begin(ssid, pass);
+  mqtt.begin(mqttBrokerUrl, 1883, net);
+
+  Serial.println("Connecting to WiFi...");
+  auto wifiStatus = WiFi.status();
+  while (wifiStatus != WL_CONNECTED && wifiStatus != WL_NO_SHIELD) {
+    Serial.println(wifiStatus);
+    Serial.print(".");
+    delay(1000);
+    wifiStatus = WiFi.status();
   }
+
+
+  Serial.println("Connecting to MQTT broker");
+  while (!mqtt.connect("arduino", "public", "public")) {
+    Serial.print(".");
+    delay(1000);
+  }
+
+  mqtt.subscribe("/IslandRush/Control/#", 1);
+  mqtt.onMessage([](String topic, String message)
+  {
+    if(topic == CONTROLLER ) {
+          auto input = message.toInt();
+            switch (input){
+        case 1: // up 
+            car.setSpeed(carSpeed);
+            car.setAngle(0);
+            break;
+        case 2: // up-right  
+            car.setSpeed(carSpeed);
+            car.setAngle(diagonalFirst);
+            delay(diagonalDelay);
+            car.setAngle(diagonalRight);
+            break;
+        case 3: //right 
+            car.setSpeed(carSpeed);
+            car.setAngle(degreeRight);
+            break;
+        case 4: // down-right 
+          car.setSpeed(-carSpeed);
+            car.setAngle(-diagonalFirst);
+            delay(diagonalDelay);
+            car.setAngle(diagonalRight);
+            break;
+        case 5: // down
+            car.setSpeed(-carSpeed);
+            car.setAngle(0);
+            break;
+        case 6: //   downleft
+            car.setSpeed(-carSpeed);
+            car.setAngle(-diagonalFirst);
+            delay(diagonalDelay);
+            car.setAngle(diagonalLeft);
+            break;
+        case 7: //left
+            car.setSpeed(carSpeed);
+            car.setAngle(degreeLeft);
+            break;
+        case 8: // up left 
+            car.setSpeed(carSpeed);
+            car.setAngle(diagonalFirst);
+            delay(diagonalDelay);
+            car.setAngle(diagonalLeft);
+            break;
+        default: 
+            car.setSpeed(0);
+            car.setAngle(0);
+        }
+    } else if(topic == SPEED) {
+       // This is going to be use for the introduction of the speed buttons 
+      // the speed is set between 0-100, increasing or decrising by 10 everytime
+      //  car.setSpeed(message.toInt());
+    }else {
+      Serial.println(topic + " " + message);
+    }
+  });
 }
 
-void loop()
-{
-  //Serial.println("Distance: " + String(leftOdometer.getDistance()));
-  //Serial.println("Speed: " + String(leftOdometer.getSpeed()));
-  //delay(100);
-
+void loop() {
   if (mqtt.connected()) {
     mqtt.loop();
     const auto currentTime = millis();
+#ifdef __SMCE__
+    static auto previousFrame = 0UL;
+    if (currentTime - previousFrame >= 65) {
+      previousFrame = currentTime;
+      Camera.readFrame(frameBuffer.data());
+      mqtt.publish(CAMERA, frameBuffer.data(), frameBuffer.size(),
+                 false, 0);
+    }
+#endif
     static auto previousTransmission = 0UL;
     if (currentTime - previousTransmission >= oneSecond) {
       previousTransmission = currentTime;
-      const auto distanceR = String(leftOdometer.getDistance());
-      const auto distanceL = String(rightOdometer.getDistance());
-      const auto speedR = String(rightOdometer.getSpeed());
-      const auto speedL = String(leftOdometer.getSpeed());
-
-      mqtt.publish("/smartcar/odometer/leftOdometer", "Left odometer distance: " + distanceL);
-      mqtt.publish("/smartcar/odometer/rightOdometer", "Right odometer distance: " + distanceR);
-      mqtt.publish("/smartcar/odometer/rightOdometer", "Right odometer speed: " + speedR);
-      mqtt.publish("/smartcar/odometer/leftOdometer", "Left odometer speed: " + speedL);
+     
+    // average speed of the car via both Odometers ( meters per second)
+     mqtt.publish(ODOMETOR_SPEED, String(car.getSpeed()));
+  // average distance from both Odometers (in centimeters)   
+     mqtt.publish(ODOMETOR_DISTANCE, String(car.getDistance()));
     }
   }
-}
-
-void handleInput(String mqttMessage)
-{
-  //if (Serial.available()) {
-  //char input = Serial.read();
-
-  int input = mqttMessage.substring(0).toInt();
-
-  switch (input)
-  {
-    case 4: //left
-      car.setSpeed(forwardSpeed);
-      car.setAngle(forwardLeft);
-      break;
-    case 6: // right
-      car.setSpeed(forwardSpeed);
-      car.setAngle(forwardRight);
-      break;
-    case 8: // ahead
-      car.setSpeed(forwardSpeed);
-      car.setAngle(0);
-      break;
-    case 2: // back
-      car.setSpeed(backSpeed);
-      car.setAngle(0);
-      break;
-    case 7: // diagonally to the left
-      car.setSpeed(forwardSpeed);
-      car.setAngle(forwardDiagonalLeft);
-      break;
-    case 9: // diagonally to the right
-      car.setSpeed(forwardSpeed);
-      car.setAngle(forwardDiagonalRight);
-      break;
-    case 1: // diagonally back to the left
-      car.setSpeed(backSpeed);
-      car.setAngle(backDiagonalLeft);
-      break;
-    case 3: // diagonally back to the right
-      car.setSpeed(backSpeed);
-      car.setAngle(forwardDiagonalRight);
-      break;
-    case 5:
-      car.setSpeed(acceleration);
-      break;
-
-    default: // just stop
-      car.setSpeed(0);
-      car.setAngle(0);
-  }
+#ifdef __SMCE__
+  // Avoid over-using the CPU if we are running in the emulator
+  delay(1);
+#endif
 }
