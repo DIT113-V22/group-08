@@ -3,35 +3,38 @@ package com.quinstedt.islandRush;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    ImageView animation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Dynamic background
-        RelativeLayout layout = findViewById(R.id.mainLayout);
-        AnimationDrawable animationBackground = (AnimationDrawable) layout.getBackground();
-        animationBackground.setEnterFadeDuration(2500);
-        animationBackground.setExitFadeDuration(5000);
-        animationBackground.start();
+        animation =(ImageView) findViewById(R.id.carImage);
+        Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.car_start_animation);
+        this.animation.setAnimation(animation);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-        // On Click goes to Controller choice
-        button = findViewById(R.id.button_enterRace);
-        button.setOnClickListener(view -> openControlChoice());
+            }
 
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                finish();
+                startActivity(new Intent(getApplicationContext(),MainPage.class));
+            }
 
-    }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
 
-    public void openControlChoice() {
-        Intent raceIntent = new Intent(this, Control_choice.class);
-        startActivity(raceIntent);
+            }
+        });
     }
 }

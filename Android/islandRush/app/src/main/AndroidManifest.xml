@@ -15,16 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grace">
         <activity
-            android:name="com.quinstedt.islandRush.ControlPad"
+            android:name=".MainPage"
             android:exported="false" />
         <activity
-            android:name="com.quinstedt.islandRush.Control_choice"
+            android:name=".ControlPad"
             android:exported="false" />
         <activity
-            android:name="com.quinstedt.islandRush.Joystick"
+            android:name=".Control_choice"
             android:exported="false" />
         <activity
-            android:name="com.quinstedt.islandRush.MainActivity"
+            android:name=".Joystick"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
