@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button button, leaderboard1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +27,14 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button_enterRace);
         button.setOnClickListener(view -> openControlChoice());
 
-
+        leaderboard1 = findViewById(R.id.button_Leaderboard);
+        leaderboard1.setOnClickListener(view -> openLeaderboard1());
     }
-
-    public void openControlChoice() {
+    public void openLeaderboard1() {
+            Intent leaderboard1Intent = new Intent(this, Leaderboard1.class);
+            startActivity(leaderboard1Intent);
+        }
+        public void openControlChoice() {
         Intent raceIntent = new Intent(this, Control_choice.class);
         startActivity(raceIntent);
     }
