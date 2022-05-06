@@ -15,8 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grace">
         <activity
-            android:name=".MainPage"
-            android:exported="false" />
+            android:name=".IntroSplashAnimation"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ControlPad"
             android:exported="false" />
@@ -28,13 +34,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>

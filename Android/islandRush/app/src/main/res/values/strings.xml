@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">islandRush</string>
-    <string name="islandrush">IslandRush</string>
-    <string name="palm_image">palm image</string>
-    <string name="car_image">car image</string>
 </resources>
