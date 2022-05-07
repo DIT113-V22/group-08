@@ -7,17 +7,33 @@ import android.os.Bundle;
 import android.widget.Button;
 
 public class Leaderboard1 extends AppCompatActivity {
-    private Button leaderboard2;
+    private Button lead2,goBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard1);
-        leaderboard2 = findViewById(R.id.leaderboard2);
-        leaderboard2.setOnClickListener(view -> openLeaderboard1());
+
+
+        lead2 = findViewById(R.id.leaderboard_2);
+        lead2.setOnClickListener(view -> openLeaderboard2());
+
+        goBack = findViewById(R.id.go_back);
+        goBack.setOnClickListener(view -> openMainActivity());
+
     }
-    public void openLeaderboard1() {
-        Intent leaderboard2Intent = new Intent(this, Leaderboard2.class);
-        startActivity(leaderboard2Intent);
+
+    public void openLeaderboard2() {
+        Intent lead2Intent = new Intent(this, Leaderboard2.class);
+        startActivity(lead2Intent);
+
+}
+
+    public void openMainActivity() {
+        Intent lead2Intent = new Intent(this, MainActivity.class);
+        startActivity(lead2Intent);
     }
+
+
+
 }

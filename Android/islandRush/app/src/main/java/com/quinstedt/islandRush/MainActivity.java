@@ -1,6 +1,7 @@
 package com.quinstedt.islandRush;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 public class MainActivity extends AppCompatActivity {
 
     private Button button, leaderboard1;
+    //ViewPager2 viewPager2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         animationBackground.setEnterFadeDuration(2500);
         animationBackground.setExitFadeDuration(5000);
         animationBackground.start();
+       // viewPager2.findViewById(R.id.leaderboard1);
 
         // On Click goes to Controller choice
         button = findViewById(R.id.button_enterRace);
@@ -30,11 +33,15 @@ public class MainActivity extends AppCompatActivity {
         leaderboard1 = findViewById(R.id.button_Leaderboard);
         leaderboard1.setOnClickListener(view -> openLeaderboard1());
     }
+
     public void openLeaderboard1() {
-            Intent leaderboard1Intent = new Intent(this, Leaderboard1.class);
-            startActivity(leaderboard1Intent);
-        }
-        public void openControlChoice() {
+        Intent leadIntent = new Intent(this, Leaderboard1.class);
+
+        startActivity(leadIntent);
+    }
+
+
+    public void openControlChoice() {
         Intent raceIntent = new Intent(this, Control_choice.class);
         startActivity(raceIntent);
     }
