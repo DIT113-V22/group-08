@@ -26,6 +26,7 @@
         android:id="@+id/controlBackground"
         android:layout_width="209dp"
         android:layout_height="190dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"

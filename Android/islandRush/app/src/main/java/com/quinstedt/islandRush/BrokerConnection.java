@@ -144,7 +144,10 @@ public class BrokerConnection extends AppCompatActivity {
                         setActualSpeedFromString(actualSpeed, messageMQTT);
                         Log.i(TAG, "Car speed: " + messageMQTT);
                   /** TO TEST THE GODOT AND APP CONNECTION UNCOMMENT THE CODE BELOW
-                   * WHEN LISTENING TO THE TOPIC IT WILL CREATE A FINISH TEXT IN TOP OF THE CAMERA */
+                   * WHEN LISTENING TO THE TOPIC IT WILL CREATE A FINISH TEXT IN TOP OF THE CAMERA
+                   *
+                   * ONLY IN CONTROL PAD PORTRAIT MODE
+                   * */
                         /*
                     }else if(topic.equals(FINISH)){
                         TextView finish = findViewById(R.id.finish_controlPad);

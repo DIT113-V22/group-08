@@ -46,8 +46,8 @@
 
     <com.example.joystickjhr.JoystickJhr
         android:id="@+id/joystick"
-        android:layout_width="288dp"
-        android:layout_height="252dp"
+        android:layout_width="254dp"
+        android:layout_height="224dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="88dp"
         app:alphaCircleFirst="100"
