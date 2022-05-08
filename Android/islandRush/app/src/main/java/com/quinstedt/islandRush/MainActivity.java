@@ -40,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         leaderboard = findViewById(R.id.button_Leaderboard);
     }
+
+    /**
+     * Shows a Toast message in the mainActivy after entering a the playerName
+     */
     private final TextView.OnEditorActionListener editorActionListener = (textView, actionId, keyEvent) -> {
         if(actionId == EditorInfo.IME_ACTION_SEND){
             String toastMessage = "Saved";
