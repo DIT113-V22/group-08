@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroSplashAnimation"
-    android:id="@+id/IntroSplash">
+    tools:context=".IntroSplashAnimation">
+
     <ImageView
         android:id="@+id/palmBackground"
         android:layout_width="match_parent"
@@ -83,4 +83,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="805dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
