@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/controlPad_camera"
-        android:layout_width="378dp"
-        android:layout_height="386dp"
+        android:layout_width="387dp"
+        android:layout_height="301dp"
         android:layout_marginStart="2sp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="2sp"
@@ -19,6 +19,22 @@
         android:contentDescription="cameraView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/finish_controlPad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/text"
+        android:textColor="@color/black"
+        android:textSize="100sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.829"
+        app:layout_constraintVertical_bias="0.835"
         app:srcCompat="@drawable/pad_image" />
 
     <Button
@@ -95,13 +111,13 @@
         android:id="@+id/actualSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="352dp"
+        android:layout_marginTop="276dp"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:drawableLeftCompat="@drawable/ic_baseline_speed_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.808"
+        app:layout_constraintHorizontal_bias="0.801"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

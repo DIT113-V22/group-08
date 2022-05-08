@@ -17,34 +17,19 @@ public class ControlPad extends BrokerConnection {
 
         connectToMqttBroker();
 
+        // start timer
         escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
     }
-
-    /**
-     * Setting the escapeHash to go back to the ControlChoice activitty
-     */
     private void goBack() {
         Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }
-
-    /**
-     @Overrides drive method in BrokerConnection
-      * This is use to publish a message to the specific topic
-      * @param direction - the message sended to the broker
-     * @param actionDescription - the action describtion that will be printed
-     */
     @Override
     public void drive(String direction, String actionDescription) {
         super.drive(direction,actionDescription);
         mMqttClient.publish(CONTROLLER, direction,QOS, null);
     }
-
-    /**
-     * This methods are set on the activity using onClick inside the button xml structure
-     * @param view - is the activity that calls this methods using onClick
-     */
     public void moveForward(View view) {
         drive(Direction.FORWARD.toString(), "Moving forward");
     }
