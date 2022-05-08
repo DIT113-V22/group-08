@@ -15,3 +15,12 @@ The App will be created in Android studios which uses XML for the UI and Kotlin 
 The car-behavior will be writted in C++ using Arduino and the smartCar API.
 We will use the SMCE emulator to visualize the racing track.
 Github will be used for document management and updating the code.
+
+# System Overview
+## MQTT Communication to control the Car
+![image](https://user-images.githubusercontent.com/91395562/167301922-1f88ef16-09fb-4330-87c5-134b6ddffba8.png)
+***
+## MQTT Communication to view the Leaderboard
+![image](https://user-images.githubusercontent.com/91395562/167301857-1396b062-6cbf-4637-824f-2c654bcfb0cb.png)
+
+For more detail,please visit our Wiki page on [System Overview](https://github.com/DIT113-V22/group-08/wiki/System-Overview).
