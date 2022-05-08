@@ -1,18 +1,29 @@
 package com.quinstedt.islandRush;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
-public class ControlPad extends MovementConnection {
-
+public class ControlPad extends BrokerConnection {
+    ImageButton escapeHash;
     @Override
     public void onCreate(Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_pad);
         mMqttClient = new MqttClient(getApplicationContext(), MQTT_SERVER, TAG);
+        actualSpeed = findViewById(R.id.actualSpeed);
         mCameraView = findViewById(R.id.controlPad_camera);
 
         connectToMqttBroker();
+
+        // start timer
+        escapeHash = findViewById(R.id.controlPad_escapeHash);
+        escapeHash.setOnClickListener(view -> goBack());
+    }
+    private void goBack() {
+        Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
+        startActivity(controlChoiceActivity);
     }
     @Override
     public void drive(String direction, String actionDescription) {

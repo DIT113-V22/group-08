@@ -9,15 +9,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class IntroSplashAnimation extends AppCompatActivity {
-    ImageView animation;
+    ImageView animationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_splash_animation);
 
-        animation =(ImageView) findViewById(R.id.carImage);
+        animationView =(ImageView) findViewById(R.id.carImage);
         Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.car_start_animation);
-        this.animation.setAnimation(animation);
+        animationView.setAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

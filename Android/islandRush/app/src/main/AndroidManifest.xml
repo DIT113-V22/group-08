@@ -27,7 +27,7 @@
             android:name=".ControlPad"
             android:exported="false" />
         <activity
-            android:name=".Control_choice"
+            android:name=".ControlChoice"
             android:exported="false" />
         <activity
             android:name=".Joystick"
@@ -35,6 +35,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"/>
+
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
