@@ -3,8 +3,8 @@
 ![GameServer Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/gameServer-build.yml/badge.svg)
 # group-08
 
-# What is GRace?
-It is an Android App that grants the user to drive a car in the SMCE client using a virtual controller on a phone. GRace allows a user to compete versus oneself and other users. The best scores are going to be saved in a leaderboard where the scores are going to be measured by time and best average speed. 
+# What is IslandRush?
+It is an Android App that grants the user to drive a car in the SMCE client using a virtual controller on a phone. IslandRush allows a user to compete versus oneself and other users. The best scores are going to be saved in a leaderboard where the scores are going to be measured by time and best average speed. 
 
 # Why will you make it?
 Gaming is mind-workout disguised as fun. [Studies](https://www.sciencealert.com/gamers-have-more-grey-matter-and-better-brain-connectivity-study-suggests) have shown that playing video games regularly may increase gray matter in our brains. Grey matter are associated with the central nervous system that enables humans to control movement, memory, and emotions. Past [research](https://www.independent.co.uk/games/video-games-children-learning-intelligence-social-skills-study-a6920961.html) involving children have shown that games may improve the childrens social and intellectual skills.
