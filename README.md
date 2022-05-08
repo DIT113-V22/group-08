@@ -23,4 +23,4 @@ Github will be used for document management and updating the code.
 ## MQTT Communication to view the Leaderboard
 ![image](https://user-images.githubusercontent.com/91395562/167301857-1396b062-6cbf-4637-824f-2c654bcfb0cb.png)
 
-For more detail,please visit our Wiki page on [System Overview](https://github.com/DIT113-V22/group-08/wiki/System-Overview).
+For more details and clarity,please visit our Wiki page on [System Overview](https://github.com/DIT113-V22/group-08/wiki/System-Overview).
