@@ -8,7 +8,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class Control_choice extends AppCompatActivity {
+public class ControlChoice extends AppCompatActivity {
    Button controlPad, joystick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

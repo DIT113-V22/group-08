@@ -1,7 +1,6 @@
 package com.quinstedt.islandRush;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openControlChoice() {
-        Intent raceIntent = new Intent(this, Control_choice.class);
+        Intent raceIntent = new Intent(this, ControlChoice.class);
         startActivity(raceIntent);
     }
 }
