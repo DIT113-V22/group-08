@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/vehicles/stupid_car/car_parts/SMCE-wheel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/vehicles/stupid_car/car_parts/SMCE-hull.glb" type="PackedScene" id=2]
+[ext_resource path="res://src/vehicles/template_car/TemplateCar.tscn" type="PackedScene" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 0.126152, 1.21924 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.65013, 0.215063, 0.835885 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.90874, 0.215063, 0.486514 )
+
+[node name="TemplateCar" instance=ExtResource( 3 )]
+cosmetic_wheels = [ NodePath("LeftBack/wheel"), NodePath("LeftFront/wheel"), NodePath("RightBack/wheel"), NodePath("RightFront/wheel") ]
+
+[node name="Hull" parent="." index="0" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140775, 0 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.480199, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0801109, 1.70623 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0801109, -1.75447 )
+shape = SubResource( 3 )
+
+[node name="wheel" type="Spatial" parent="LeftBack" index="0"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.7, 0 )
+
+[node name="wheel" parent="LeftBack/wheel" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.502, 0 )
+
+[node name="wheel" type="Spatial" parent="LeftFront" index="0"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.7, 0 )
+
+[node name="wheel" parent="LeftFront/wheel" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.502, 0 )
+
+[node name="wheel" type="Spatial" parent="RightBack" index="0"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.7, 0 )
+
+[node name="wheel" parent="RightBack/wheel" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.502, 0 )
+
+[node name="wheel" type="Spatial" parent="RightFront" index="0"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.7, 0 )
+
+[node name="wheel" parent="RightFront/wheel" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.502, 0 )
