@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Control_choice"
+    tools:context=".ControlChoice"
     android:background="@drawable/dynamic_list"
-    android:id="@+id/control_choice">
+    android:id="@+id/controlChoice">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Control type"
+        android:text="@string/control_type"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -22,9 +22,10 @@
 
     <Button
         android:id="@+id/button_joystick"
+        android:background="@drawable/main_buttons"
         android:layout_width="169dp"
         android:layout_height="55dp"
-        android:text="Joystick"
+        android:text="@string/joystick"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -36,9 +37,10 @@
 
     <Button
         android:id="@+id/button_control"
-        android:layout_width="162dp"
+        android:background="@drawable/main_buttons"
+        android:layout_width="wrap_content"
         android:layout_height="58dp"
-        android:text="Button"
+        android:text="@string/button_pad"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -48,5 +50,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.601" />
+    <ImageButton
+        android:id="@+id/controlChoice_escapeHash"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:contentDescription="@string/escapehash" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
