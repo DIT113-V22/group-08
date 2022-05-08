@@ -18,9 +18,9 @@ Github will be used for document management and updating the code.
 
 # System Overview
 ## MQTT Communication to control the Car
-![image](https://user-images.githubusercontent.com/91395562/167301922-1f88ef16-09fb-4330-87c5-134b6ddffba8.png)
+![image](https://user-images.githubusercontent.com/91395562/167311828-bf5789e0-951e-41b3-9360-149113d86994.png)
 ***
 ## MQTT Communication to view the Leaderboard
-![image](https://user-images.githubusercontent.com/91395562/167301857-1396b062-6cbf-4637-824f-2c654bcfb0cb.png)
+![image](https://user-images.githubusercontent.com/91395562/167311864-0b696be4-a3d2-433b-bf86-25d144db9ecb.png)
 
 For more details and clarity,please visit our Wiki page on [System Overview](https://github.com/DIT113-V22/group-08/wiki/System-Overview).
