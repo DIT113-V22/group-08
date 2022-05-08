@@ -18,9 +18,6 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MovementConnection extends AppCompatActivity {
-    /**
-     * Create setters and getter for the the ones with public and see if a composition can be done
-     */
     public static final String TAG = "IslandRushApp";
     private static final String EXTERNAL_MQTT_BROKER = "aerostun.dev";
     private static final String LOCALHOST = "10.0.2.2";
@@ -92,10 +89,10 @@ public class MovementConnection extends AppCompatActivity {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
                     isConnected = true;
-
                     final String successfulConnection = "Connected to MQTT broker";
                     Log.i(TAG, successfulConnection);
                     Toast.makeText(getApplicationContext(), successfulConnection, Toast.LENGTH_SHORT).show();
+                    /** Add here the topics that we want to subscribe from the broker */
                     mMqttClient.subscribe(ODOMETER_SPEED, QOS, null);
                     mMqttClient.subscribe(ODOMETER_DISTANCE, QOS, null);
                     mMqttClient.subscribe(CAMERA, QOS, null);
@@ -119,6 +116,11 @@ public class MovementConnection extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), connectionLost, Toast.LENGTH_SHORT).show();
                 }
 
+                /**
+                 * This method retreives the message from the topics that the app subscribes
+                 * @param topic
+                 * @param message
+                 */
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
                     if (topic.equals(CAMERA)) {
@@ -154,7 +156,12 @@ public class MovementConnection extends AppCompatActivity {
         }
     }
 
-    public void drive(String direction, String actionDescription) {
+    /**
+     * Method use to publish messages
+     * @param message - the message that is been send to the broker
+     * @param actionDescription - the action describtion that will be printed
+     */
+    public void drive(String message, String actionDescription) {
         if (!isConnected) {
             final String notConnected = "Not connected (yet)";
             Log.e(TAG, notConnected);
@@ -164,6 +171,11 @@ public class MovementConnection extends AppCompatActivity {
         Log.i(TAG, actionDescription);
     }
 
+    /**
+     * Setting the textview for the car speed
+     * @param actualSpeed - The textview that shows the speed
+     * @param speed - The speed that is retreive from the message
+     */
     public void setActualSpeedFromString(TextView actualSpeed, String speed ) {
         @SuppressLint("DefaultLocale") String roundedSpeed = String.format("%.2f",Double.parseDouble(speed));
         actualSpeed.setText(" : " + roundedSpeed + " m/s");

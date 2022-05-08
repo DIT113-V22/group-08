@@ -34,6 +34,12 @@ public class Joystick extends MovementConnection {
 
         JoystickJhr joystick = findViewById(R.id.joystick);
 
+        /**
+         * The joystick backend
+         * Direction is use so that if the joystick stays in an specific angle
+         * we dont send redudanded messages to the broker and it is only when
+         * the joystick is in a new angle that the new message will be send
+         */
         joystick.setOnTouchListener((View view, MotionEvent motionEvent) -> {
 
             joystick.move(motionEvent);
@@ -72,12 +78,20 @@ public class Joystick extends MovementConnection {
 
     }
 
+    /**
+     * Sets the escapeHash button to go back to ControlChoice activity
+     */
     private void goBack() {
         Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }
 
-
+    /**
+     * @Overrides drive method in BrokerConnection
+     * This is use to publish a message to the specific topic
+     * @param direction - the message sended to the broker
+     * @param actionDescription - the action describtion that will be printed
+     */
     @Override
     public void drive(String direction, String actionDescription) {
         super.drive(direction,actionDescription);
