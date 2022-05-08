@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class ControlPad extends MovementConnection {
+public class ControlPad extends BrokerConnection {
     ImageButton escapeHash;
     @Override
     public void onCreate(Bundle savedInstanceState ) {

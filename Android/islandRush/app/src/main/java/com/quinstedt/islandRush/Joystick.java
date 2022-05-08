@@ -8,11 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.joystickjhr.JoystickJhr;
 
-public class Joystick extends MovementConnection {
+public class Joystick extends BrokerConnection {
     int lastDirection = 0;
     ImageButton escapeHash;
     private Button stop;
