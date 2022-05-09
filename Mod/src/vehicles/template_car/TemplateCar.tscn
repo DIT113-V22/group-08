@@ -1,0 +1,130 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/ExternClass.gd" type="Script" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://src/ExternClass.gd\"
+
+export(Array, NodePath) var cosmetic_wheels
+export(Array, NodePath) var right_wheels
+export(Array, NodePath) var left_wheels
+
+export(NodePath) onready var left_motor
+export(NodePath) onready var right_motor
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends \"res://src/ExternClass.gd\"
+
+export(int, 100) var forward_pin = 0
+export(int, 100) var backward_pin = 0
+export(int, 100) var enable_pin = 0
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends \"res://src/ExternClass.gd\"
+
+export(NodePath) var node = \"\"
+export(int, 256) var pin = 205;
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends \"res://src/ExternClass.gd\"
+
+export(NodePath) var _forward_reference
+export(bool) var provides_direction = true
+export(int, 100) var distance_pin = 99
+export(int, 100) var direction_pin = 99
+"
+
+[node name="TemplateCar" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72607, 0 )
+script = SubResource( 1 )
+extern_class = "RayCar"
+right_wheels = [ NodePath("RightBack"), NodePath("RightFront") ]
+left_wheels = [ NodePath("LeftBack"), NodePath("LeftFront") ]
+left_motor = NodePath("BuiltinAttachments/Left BrushedMotor")
+right_motor = NodePath("BuiltinAttachments/Right BrushedMotor")
+
+[node name="LeftBack" type="RayCast" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.934, 0, 0.675 )
+enabled = true
+cast_to = Vector3( 0, -1.2, 0 )
+script = ExtResource( 1 )
+extern_class = "RayWheel"
+
+[node name="LeftFront" type="RayCast" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.934, 0, -0.669 )
+enabled = true
+cast_to = Vector3( 0, -1.2, 0 )
+script = ExtResource( 1 )
+extern_class = "RayWheel"
+
+[node name="RightBack" type="RayCast" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.934, 0, 0.675 )
+enabled = true
+cast_to = Vector3( 0, -1.2, 0 )
+script = ExtResource( 1 )
+extern_class = "RayWheel"
+
+[node name="RightFront" type="RayCast" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.934, 0, -0.669 )
+enabled = true
+cast_to = Vector3( 0, -1.2, 0 )
+script = ExtResource( 1 )
+extern_class = "RayWheel"
+
+[node name="AttachmentSlots" type="Spatial" parent="."]
+
+[node name="Front" type="Position3D" parent="AttachmentSlots"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -1.8 )
+
+[node name="Front2" type="Position3D" parent="AttachmentSlots"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735, -2.3 )
+
+[node name="FrontTop" type="Position3D" parent="AttachmentSlots"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776, -1.141 )
+
+[node name="Left" type="Position3D" parent="AttachmentSlots"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.974, 0.4, 0 )
+
+[node name="Right" type="Position3D" parent="AttachmentSlots"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.974, 0.4, 0 )
+
+[node name="Back" type="Position3D" parent="AttachmentSlots"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.4, 1.8 )
+
+[node name="BuiltinAttachments" type="Spatial" parent="."]
+
+[node name="Left BrushedMotor" type="Node" parent="BuiltinAttachments"]
+script = SubResource( 2 )
+extern_class = "BrusedMotor"
+forward_pin = 12
+backward_pin = 14
+enable_pin = 13
+
+[node name="Right BrushedMotor" type="Node" parent="BuiltinAttachments"]
+script = SubResource( 2 )
+extern_class = "BrusedMotor"
+forward_pin = 25
+backward_pin = 26
+enable_pin = 27
+
+[node name="Gyroscope" type="Node" parent="BuiltinAttachments"]
+script = SubResource( 3 )
+extern_class = "Gyroscope"
+node = NodePath("../..")
+
+[node name="Left Odometer" type="Spatial" parent="BuiltinAttachments"]
+script = SubResource( 4 )
+extern_class = "Odometer"
+_forward_reference = NodePath("../..")
+distance_pin = 35
+direction_pin = 34
+
+[node name="Right Odometer" type="Spatial" parent="BuiltinAttachments"]
+script = SubResource( 4 )
+extern_class = "Odometer"
+_forward_reference = NodePath("../..")
+distance_pin = 36
+direction_pin = 39

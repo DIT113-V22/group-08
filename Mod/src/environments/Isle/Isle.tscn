@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://objects/FinishLine1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Fire.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gd/mqtt.gd" type="Script" id=3]
+[ext_resource path="res://gd/Playground.gd" type="Script" id=4]
+[ext_resource path="res://gd/FinishLine.gd" type="Script" id=5]
+[ext_resource path="res://island.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Materials/depth_buffer/depth_buffer_material.tres" type="Material" id=7]
+
+[sub_resource type="ProceduralSky" id=10]
+sky_top_color = Color( 0.443137, 0.6, 0.960784, 1 )
+sky_horizon_color = Color( 0.690196, 0.813113, 0.921569, 1 )
+sky_energy = 2.47
+ground_bottom_color = Color( 0.690196, 0.760784, 0.921569, 1 )
+ground_horizon_color = Color( 0.690196, 0.760784, 0.921569, 1 )
+sun_latitude = 50.0
+sun_longitude = -20.0
+sun_angle_max = 30.0
+sun_energy = 27.13
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 10 )
+ambient_light_color = Color( 0.5, 0.5, 0.5, 1 )
+ambient_light_energy = 2.8
+ambient_light_sky_contribution = 0.2
+
+[sub_resource type="PlaneMesh" id=11]
+size = Vector2( 10000, 10000 )
+subdivide_width = 1000
+subdivide_depth = 1000
+center_offset = Vector3( 500, 20, 500 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 1, 0.230752, 0.287918 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( 0.974885, -0.0731331, -0.210357, 0.119979, -0.623294, 0.772729, -0.187627, -0.77856, -0.598866, 0, 79.7674, 0 )
+light_color = Color( 0.964706, 0.843137, 0.698039, 1 )
+light_energy = 2.148
+light_indirect_energy = 0.0
+light_specular = 2.496
+shadow_bias = -7.79
+
+[node name="Water" type="MeshInstance" parent="."]
+transform = Transform( 0.908792, 0, 0.417249, 0, 1, 0, -0.417249, 0, 0.908792, 58.874, -39, -345.902 )
+mesh = SubResource( 11 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 7 )
+
+[node name="DebugVehicleSpawn" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 9, 5 )
+far = 8000.0
+
+[node name="VehicleSpawn" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 9, 5 )
+far = 8000.0
+
+[node name="island" parent="." instance=ExtResource( 6 )]
+transform = Transform( -95.6305, 0, -29.2372, 0, 100, 0, 29.2372, 0, -95.6305, 380, -19, -230 )
+
+[node name="CamPosition" type="Camera" parent="."]
+transform = Transform( 1, 4.44089e-16, 1.49012e-08, 0, 1, -2.98023e-08, -1.49012e-08, 2.98023e-08, 1, -2, 8, 5 )
+far = 8000.0
+
+[node name="mqtt" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="FinishLine" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.599107, -0.0251036, -0.0209629, 0.0260461, 0.598818, 0.0272932, 0.0197792, -0.0281628, 0.599011, -112.802, -79.73, -12.3816 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="FinishLine"]
+transform = Transform( 20, 1.58325e-08, 8.19564e-07, 3.91714e-06, 5.99998, 4.99189e-07, -8.34465e-06, -1.54972e-06, 2, 180.058, 130.928, -3.67904 )
+shape = SubResource( 12 )
+
+[node name="Fire" parent="FinishLine" instance=ExtResource( 2 )]
+transform = Transform( 5.9935, 0.279396, 1.2666e-06, -0.278848, 5.98172, -0.375563, -0.0174908, 0.375157, 5.98823, 158.241, 148, -1.48138 )
+
+[node name="Fire2" parent="FinishLine" instance=ExtResource( 2 )]
+transform = Transform( 5.9935, 0.279396, 1.2666e-06, -0.278848, 5.98172, -0.375563, -0.0174908, 0.375157, 5.98823, 202.495, 148, -2.62963 )
+
+[connection signal="CrossedFinishLine" from="FinishLine" to="." method="_on_FinishLine_CrossedFinishLine"]
+[connection signal="body_entered" from="FinishLine" to="FinishLine" method="_on_FinishLine_body_entered"]
