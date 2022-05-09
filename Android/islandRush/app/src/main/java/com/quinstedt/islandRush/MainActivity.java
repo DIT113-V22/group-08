@@ -39,20 +39,30 @@ public class MainActivity extends AppCompatActivity {
         editText.setOnEditorActionListener(editorActionListener);
 
         leaderboard = findViewById(R.id.button_Leaderboard);
-    }
-    private final TextView.OnEditorActionListener editorActionListener = (textView, actionId, keyEvent) -> {
-        if(actionId == EditorInfo.IME_ACTION_SEND){
-            String toastMessage = "Saved";
-            Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_SHORT).show();
 
+
+    }
+
+    /**
+     * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
+     * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
+     */
+    private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+            if(actionId == EditorInfo.IME_ACTION_SEND){
+                String toastMessage = "Saved";
+                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_SHORT).show();
+
+            }
+           return false;
         }
-        return false;
     };
 
+    /**
+     * Opens ControlChoice when the EnterRace button has been pressed
+     */
     public void openControlChoice() {
-        // if the player name is empty
-        //message
-        // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         Intent raceIntent = new Intent(this, ControlChoice.class);
         startActivity(raceIntent);
     }

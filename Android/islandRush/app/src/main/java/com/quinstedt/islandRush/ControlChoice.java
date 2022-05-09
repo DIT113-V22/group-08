@@ -6,12 +6,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 public class ControlChoice extends AppCompatActivity {
-    Button controlPad, joystick;
-    ImageButton escapeHash;
+   Button controlPad, joystick;
+   ImageButton escapeHash;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,16 +35,24 @@ public class ControlChoice extends AppCompatActivity {
         controlPad.setOnClickListener(view -> openButtonControl());
     }
 
+    /**
+     * Method for the escape Hash that launches MainActivity
+     */
     private void goBack() {
         Intent goToMain = new Intent(this, MainActivity.class);
         startActivity(goToMain);
     }
 
+    /**
+     * Launches ControlPad when ButtonPad button is click
+     */
     public void openButtonControl() {
         Intent buttonControlIntent = new Intent(this, ControlPad.class);
         startActivity(buttonControlIntent);
     }
-
+    /**
+     * Launches Joystick Activity when joystick button is click
+     */
     public void openJoystick() {
         Intent joystickIntent = new Intent(this, Joystick.class);
         startActivity(joystickIntent);

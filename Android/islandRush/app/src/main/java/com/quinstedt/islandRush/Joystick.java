@@ -10,10 +10,13 @@ import android.widget.ImageButton;
 
 import com.example.joystickjhr.JoystickJhr;
 
-public class Joystick extends BrokerConnection {
+public class Joystick extends ControlPad {
+
     int lastDirection = 0;
     ImageButton escapeHash;
+
     private Button stop;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -23,7 +26,7 @@ public class Joystick extends BrokerConnection {
         mMqttClient = new MqttClient(getApplicationContext(), MQTT_SERVER, TAG);
         mCameraView = findViewById(R.id.joystick_camera);
         actualSpeed = findViewById(R.id.actualSpeedJoystick);
-        // Start
+
         escapeHash = findViewById(R.id.joystick_escapeHash);
         escapeHash.setOnClickListener((View view) -> goBack());
         stop = findViewById(R.id.stopJoystick);
@@ -31,7 +34,11 @@ public class Joystick extends BrokerConnection {
 
 
         JoystickJhr joystick = findViewById(R.id.joystick);
-
+        /**
+         * TO avoid sending the same direction multiple times when the joystick
+         * is the same angle range the variable lastDirection makes sure that
+         * when the joystick is in a new angle range a message is publish to the broker
+         */
         joystick.setOnTouchListener((View view, MotionEvent motionEvent) -> {
 
             joystick.move(motionEvent);
@@ -44,46 +51,71 @@ public class Joystick extends BrokerConnection {
 
             if (lastDirection != direction) {
                 lastDirection = direction;
-
-                if (direction == JoystickJhr.STICK_UP) {
-                    drive(Direction.FORWARD.toString(), "Moving forward");
-                } else if (direction == JoystickJhr.STICK_UPRIGHT) {
-                    drive(Direction.UPRIGHT.toString(), "Moving forward to diagonal right");
-                } else if (direction == JoystickJhr.STICK_RIGHT) {
-                    drive(Direction.RIGHT.toString(), "Moving right");
-                } else if (direction == JoystickJhr.STICK_DOWNRIGHT) {
-                    drive(Direction.BACKRIGHT.toString(), "Moving reverse to diagonal right");
-                } else if (direction == JoystickJhr.STICK_DOWN) {
-                    drive(Direction.REVERSE.toString(), "Moving in reverse");
-                } else if (direction == JoystickJhr.STICK_DOWNLEFT) {
-                    drive(Direction.BACKLEFT.toString(), "Moving reverse to diagonal left");
-                } else if (direction == JoystickJhr.STICK_LEFT) {
-                    drive(Direction.LEFT.toString(), "Moving to the left");
-                } else if (direction == JoystickJhr.STICK_UPLEFT) {
-                    drive(Direction.UPLEFT.toString(), "Moving diagonal forward left");
-                }
-
+                sendJoystickDirection(direction);
             }
-
             return true;
         });
 
     }
 
+    /**
+     * Publish the direction of the joystick and the topic for the joystick control
+     * @param direction - an int use by the library to define a direction
+     */
+    private void sendJoystickDirection(int direction) {
+
+        switch (direction) {
+            case JoystickJhr.STICK_UP:
+                drive(Direction.FORWARD.toString(), "Moving forward");
+                break;
+            case JoystickJhr.STICK_UPRIGHT:
+                drive(Direction.UPRIGHT.toString(), "Moving forward to diagonal right");
+                break;
+            case JoystickJhr.STICK_RIGHT:
+                drive(Direction.RIGHT.toString(), "Moving right");
+                break;
+            case JoystickJhr.STICK_DOWNRIGHT:
+                drive(Direction.BACKRIGHT.toString(), "Moving reverse to diagonal right");
+                break;
+            case JoystickJhr.STICK_DOWN:
+                drive(Direction.REVERSE.toString(), "Moving in reverse");
+                break;
+            case JoystickJhr.STICK_DOWNLEFT:
+                drive(Direction.BACKLEFT.toString(), "Moving reverse to diagonal left");
+                break;
+            case JoystickJhr.STICK_LEFT:
+                drive(Direction.LEFT.toString(), "Moving to the left");
+                break;
+            case JoystickJhr.STICK_UPLEFT:
+                drive(Direction.UPLEFT.toString(), "Moving diagonal forward left");
+                break;
+        }
+
+    }
+
+    /**
+     * Method used for the escapeHash to go back to ControlChoice activity
+     */
     private void goBack() {
         Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }
 
-
+    /**
+     * Send a message to the broker for a specific topic and prints a description in the android compiler
+     * @param message - the message that will be send to the broker
+     * @param actionDescription - the action description that will be printed
+     */
     @Override
-    public void drive(String direction, String actionDescription) {
-        super.drive(direction,actionDescription);
-        mMqttClient.publish(CONTROLLER, direction,QOS, null);
+    public void drive(String message, String actionDescription) {
+        super.drive(message,actionDescription);
+        mMqttClient.publish(CONTROLLER, message,QOS, null);
     }
+    /**
+        Method use to send to stop the car. The toString of the enum Stop is
+        actually sending a number. See the Direction class.
+     */
     private void stopCar() {
         drive(Direction.STOP.toString(),"Stopping");
     }
-
-
 }

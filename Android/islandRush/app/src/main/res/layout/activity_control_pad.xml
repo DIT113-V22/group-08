@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background1"
     tools:context=".ControlPad"
-    android:id="@+id/control_pad"
-    android:background="@drawable/background1">
+    android:id="@+id/control_pad">
+
 
     <ImageView
         android:id="@+id/controlPad_camera"
@@ -29,10 +30,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="104dp"
         android:textAllCaps="true"
-        android:textStyle="bold"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/black"
         android:textSize="100sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,9 +45,10 @@
         android:layout_height="190dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835"
+        app:layout_constraintVertical_bias="0.818"
         app:srcCompat="@drawable/pad_image" />
 
     <Button
@@ -124,12 +126,14 @@
     <ImageButton
         android:id="@+id/controlPad_escapeHash"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="45dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

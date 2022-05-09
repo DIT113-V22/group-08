@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">islandRush</string>
-    <string name="escapehash">escapeHash</string>
-    <string name="button_pad">Button Pad</string>
-    <string name="joystick">Joystick</string>
+    <string name="Enter_players_name">Enter players name</string>
+    <string name="enter_race">Enter Race</string>
+    <string name="leaderboard">LeaderBoard</string>
     <string name="control_type">Control type</string>
-    <string name="enter_players_name">enter_players_name</string>
+    <string name="joystick">Joystick</string>
+    <string name="button_pad">Button Pad</string>
+    <string name="escapeHash">EscapeHash</string>
+    <string name="cameraview">cameraView</string>
+    <string name="islandrush">IslandRush</string>
+    <string name="palm_image">palm image</string>
+    <string name="car_image">car image</string>
 </resources>

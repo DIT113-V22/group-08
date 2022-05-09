@@ -1,5 +1,12 @@
 package com.quinstedt.islandRush;
 
+/**
+ * This class is used to create different direction for the controller
+ * The toString method has been modified so that it send a number
+ *
+ * The Arduino file can only use chars or int in a switch case.
+ * This gives a better readability while reading the code in the joystick
+ */
 public enum Direction {
 
     FORWARD{
