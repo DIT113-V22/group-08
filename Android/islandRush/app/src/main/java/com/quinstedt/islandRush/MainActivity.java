@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button enterRace, leaderboard;
+    Button enterRace, leaderboard1;
     EditText editText;
 
     @Override
