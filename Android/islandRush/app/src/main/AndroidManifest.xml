@@ -44,6 +44,7 @@
             android:name=".MainActivity"
             android:exported="false"/>
 
+
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
 

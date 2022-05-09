@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/mendrill01.obj-8cf371f6073d2f778f29a7bb8f47a55f.mesh"
+path="res://.import/mendrill01.obj-01ac715ddd6c8584eea6da21f61a31ac.mesh"
 
 [deps]
 
-files=[ "res://.import/mendrill01.obj-8cf371f6073d2f778f29a7bb8f47a55f.mesh" ]
+files=[ "res://.import/mendrill01.obj-01ac715ddd6c8584eea6da21f61a31ac.mesh" ]
 
-source_file="res://mendrill01.obj"
-dest_files=[ "res://.import/mendrill01.obj-8cf371f6073d2f778f29a7bb8f47a55f.mesh", "res://.import/mendrill01.obj-8cf371f6073d2f778f29a7bb8f47a55f.mesh" ]
+source_file="res://dependencies/mendrill01.obj"
+dest_files=[ "res://.import/mendrill01.obj-01ac715ddd6c8584eea6da21f61a31ac.mesh", "res://.import/mendrill01.obj-01ac715ddd6c8584eea6da21f61a31ac.mesh" ]
 
 [params]
 

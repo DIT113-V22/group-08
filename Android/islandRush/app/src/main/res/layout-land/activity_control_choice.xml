@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ControlChoice"
     android:background="@drawable/dynamic_list"
-    android:id="@+id/control_choice">
+    android:id="@+id/controlChoice">
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,5 +52,14 @@
         app:layout_constraintStart_toEndOf="@+id/button_joystick"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.606" />
+    <ImageButton
+        android:id="@+id/controlChoice_escapeHash"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
