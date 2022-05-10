@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Leaderboard1 extends MovementConnection {
+public class Leaderboard1 extends BrokerConnection {
     private Button lead2,goBack;
 
     @Override
@@ -16,7 +16,7 @@ public class Leaderboard1 extends MovementConnection {
         setContentView(R.layout.activity_leaderboard1);
 
         mMqttClient = new MqttClient(getApplicationContext(), MQTT_SERVER, TAG);
-        player1 = (TextView) findViewById(R.id.player1);
+        player1 = findViewById(R.id.player1);
         player2 = findViewById(R.id.player2);
         player3 = findViewById(R.id.player3);
         player4 = findViewById(R.id.player4);
