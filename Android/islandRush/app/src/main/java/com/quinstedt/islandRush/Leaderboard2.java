@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class Leaderboard2 extends MovementConnection {
+public class Leaderboard2 extends BrokerConnection {
     private Button lead1;
 
     @Override
