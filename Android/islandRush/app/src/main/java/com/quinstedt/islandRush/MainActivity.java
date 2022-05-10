@@ -66,11 +66,11 @@ public class MainActivity extends BrokerConnection {
         playerName= editText.getText().toString();
         if(!playerName.isEmpty()){
             mMqttClient.publish(nameTopic,playerName,1,null);
+            Intent raceIntent = new Intent(this, ControlChoice.class);
+            startActivity(raceIntent);
         }else{
             String message = "Player name can't be empty.";
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         }
-        Intent raceIntent = new Intent(this, ControlChoice.class);
-        startActivity(raceIntent);
     }
 }
