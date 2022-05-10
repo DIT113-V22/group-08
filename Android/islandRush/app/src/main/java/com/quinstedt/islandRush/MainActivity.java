@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
             if(actionId == EditorInfo.IME_ACTION_SEND){
                 String toastMessage = "Saved";
-                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
 
             }
            return false;
