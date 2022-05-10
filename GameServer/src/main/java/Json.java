@@ -1,4 +1,4 @@
-package GameServer.main.java;
+package main.java;
 
 import com.fasterxml.jackson.databind.*;
 
@@ -10,7 +10,7 @@ import java.io.*;
 public class Json {
 
     /*
-    Methods from:
+    Methods adapted from:
     https://www.youtube.com/watch?v=Hv_a3ZBSO_g
     https://www.youtube.com/watch?v=zqoYDkDl2Z4
      */

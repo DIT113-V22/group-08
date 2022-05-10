@@ -1,4 +1,4 @@
-package GameServer.main.java;
+package main.java;
 
 import static java.lang.Double.compare;
 
