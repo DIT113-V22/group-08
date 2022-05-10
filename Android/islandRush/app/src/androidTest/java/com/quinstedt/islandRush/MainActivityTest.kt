@@ -14,7 +14,7 @@ class MainActivityTest {
 // To run all test classes run ActivityTestSuite
 
     /** delay between the tests */
-    val wait = Thread.sleep(2000)
+    val wait = Thread.sleep(4000)
 
     /**
      * Not using a global activityTest:
