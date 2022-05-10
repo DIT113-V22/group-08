@@ -66,8 +66,8 @@ public class main {
     public static void main(String[] args) throws MqttException {
         MQttClient client= new MQttClient(MQTT_SERVER, TAG);
         client.connect(null);
-        client.subscribe("/IslandRush/Server/name");
-        client.publish(playerName1,"fAISAL");
+
+        client.publish(playerName1,"Khaled");
         client.publish(playerName2,"HELLO");
         client.publish(playerName3,"Danesh");
         client.publish(playerName4, "NICOLE");
@@ -87,32 +87,34 @@ public class main {
         client.publish(thirdPlayerName,"dimitrios");
         client.publish(fourthPlayerName,"dimitris");
         client.publish(fifthPlayerName,"kelly");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /**to be implemented:
-         * create leaderboard object and serialize to a json file
-         * if a json file already exists then it is deserialized to a leaderboard object
-         * MQTT connection will be used to get time and average speed values,then create
-         * their correponding objects and add it to the leaderboard*/
+        while(client.isConnected){
+            client.subscribe("/IslandRush/Server/name", new IMqttMessageListener() {
+                public void messageArrived (String topic,MqttMessage message) throws Exception {
+                    if (topic.equals("/IslandRush/Server/name")) {
+                        String payload = new String(message.getPayload());
+                        Time player = new Time(payload,1000);
+                        System.out.println(payload);
+                        System.out.println(player.toString());
+                    }
+                }
+            });
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/**to be implemented:
+ * create leaderboard object and serialize to a json file
+ * if a json file already exists then it is deserialized to a leaderboard object
+ * MQTT connection will be used to get time and average speed values,then create
+ * their correponding objects and add it to the leaderboard*/
