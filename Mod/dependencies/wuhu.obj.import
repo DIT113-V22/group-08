@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/wuhu.obj-e7afe1fd4b674e6872e8d825d8ba485d.mesh"
+path="res://.import/wuhu.obj-ad8ce9daf706f135b7a7ede6b423ac3f.mesh"
 
 [deps]
 
-files=[ "res://.import/wuhu.obj-e7afe1fd4b674e6872e8d825d8ba485d.mesh" ]
+files=[ "res://.import/wuhu.obj-ad8ce9daf706f135b7a7ede6b423ac3f.mesh" ]
 
-source_file="res://wuhu.obj"
-dest_files=[ "res://.import/wuhu.obj-e7afe1fd4b674e6872e8d825d8ba485d.mesh", "res://.import/wuhu.obj-e7afe1fd4b674e6872e8d825d8ba485d.mesh" ]
+source_file="res://dependencies/wuhu.obj"
+dest_files=[ "res://.import/wuhu.obj-ad8ce9daf706f135b7a7ede6b423ac3f.mesh", "res://.import/wuhu.obj-ad8ce9daf706f135b7a7ede6b423ac3f.mesh" ]
 
 [params]
 

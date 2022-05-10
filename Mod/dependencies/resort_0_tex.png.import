@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/resort_0_tex.png-8903f2f959a8903853e9dfe9a8b5bf91.s3tc.stex"
-path.etc2="res://.import/resort_0_tex.png-8903f2f959a8903853e9dfe9a8b5bf91.etc2.stex"
+path.s3tc="res://.import/resort_0_tex.png-10a5ad7dbb473658a15e8336946ca39a.s3tc.stex"
+path.etc2="res://.import/resort_0_tex.png-10a5ad7dbb473658a15e8336946ca39a.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resort_0_tex.png"
-dest_files=[ "res://.import/resort_0_tex.png-8903f2f959a8903853e9dfe9a8b5bf91.s3tc.stex", "res://.import/resort_0_tex.png-8903f2f959a8903853e9dfe9a8b5bf91.etc2.stex" ]
+source_file="res://dependencies/resort_0_tex.png"
+dest_files=[ "res://.import/resort_0_tex.png-10a5ad7dbb473658a15e8336946ca39a.s3tc.stex", "res://.import/resort_0_tex.png-10a5ad7dbb473658a15e8336946ca39a.etc2.stex" ]
 
 [params]
 

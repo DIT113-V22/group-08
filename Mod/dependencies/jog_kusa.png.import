@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/jog_kusa.png-d8ece961a445f06e113cd2fde3b18678.s3tc.stex"
-path.etc2="res://.import/jog_kusa.png-d8ece961a445f06e113cd2fde3b18678.etc2.stex"
+path.s3tc="res://.import/jog_kusa.png-dcb3dd15b09ca47ed60f969c7e45fa72.s3tc.stex"
+path.etc2="res://.import/jog_kusa.png-dcb3dd15b09ca47ed60f969c7e45fa72.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://jog_kusa.png"
-dest_files=[ "res://.import/jog_kusa.png-d8ece961a445f06e113cd2fde3b18678.s3tc.stex", "res://.import/jog_kusa.png-d8ece961a445f06e113cd2fde3b18678.etc2.stex" ]
+source_file="res://dependencies/jog_kusa.png"
+dest_files=[ "res://.import/jog_kusa.png-dcb3dd15b09ca47ed60f969c7e45fa72.s3tc.stex", "res://.import/jog_kusa.png-dcb3dd15b09ca47ed60f969c7e45fa72.etc2.stex" ]
 
 [params]
 

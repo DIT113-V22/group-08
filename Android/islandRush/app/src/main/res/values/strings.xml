@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">islandRush</string>
+    <string name="escapehash">escapeHash</string>
+    <string name="button_pad">Button Pad</string>
+    <string name="joystick">Joystick</string>
+    <string name="control_type">Control type</string>
+    <string name="enter_players_name">enter_players_name</string>
 </resources>

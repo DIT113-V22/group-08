@@ -15,16 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grace">
         <activity
-            android:name="com.quinstedt.islandRush.ControlPad"
-            android:exported="false" />
-        <activity
-            android:name="com.quinstedt.islandRush.Control_choice"
-            android:exported="false" />
-        <activity
-            android:name="com.quinstedt.islandRush.Joystick"
-            android:exported="false" />
-        <activity
-            android:name="com.quinstedt.islandRush.MainActivity"
+            android:name=".IntroSplashAnimation"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +23,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ControlPad"
+            android:exported="false" />
+        <activity
+            android:name=".ControlChoice"
+            android:exported="false" />
+        <activity
+            android:name=".Joystick"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
+
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
