@@ -15,6 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grace">
         <activity
+            android:name=".Leaderboard2"
+            android:exported="false" />
+        <activity
+            android:name=".Leaderboard1"
+            android:exported="false" />
+      
+        <activity
             android:name=".IntroSplashAnimation"
             android:exported="true">
             <intent-filter>
@@ -23,6 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ControlPad"
             android:exported="false" />

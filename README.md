@@ -1,5 +1,6 @@
 ![Arduino Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/arduino-build.yml/badge.svg)
-![Android CI status](https://github.com/DIT113-V22/group-08/actions/workflows/android-ci.yml/badge.svg)
+![Android CI Status](https://github.com/DIT113-V22/group-08/actions/workflows/android-ci.yml/badge.svg)
+![GameServer Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/gameServer-build.yml/badge.svg)
 # group-08
 
 # What is IslandRush?
@@ -15,3 +16,6 @@ The App will be created in Android studios which uses XML for the UI and Kotlin 
 The car-behavior will be writted in C++ using Arduino and the smartCar API.
 We will use the SMCE emulator to visualize the racing track.
 Github will be used for document management and updating the code.
+
+# Modding Instructions
+For modding instructions click [here](https://github.com/DIT113-V22/group-08/wiki/Modding-Instructions)
