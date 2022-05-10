@@ -1,58 +1,59 @@
 package com.quinstedt.islandRush;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MovementConnection {
 
-    Button enterRace, leaderboard;
-    EditText editText;
-
+    private Button button, leaderboard1;
+    EditText player;
+    String playerName;
+    final static String nameTopic =  "IslandRush/Server/name";
+    //ViewPager2 viewPager2;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //Dynamic background
-        ConstraintLayout layout = findViewById(R.id.mainLayout);
+        RelativeLayout layout = findViewById(R.id.mainLayout);
         AnimationDrawable animationBackground = (AnimationDrawable) layout.getBackground();
         animationBackground.setEnterFadeDuration(2500);
         animationBackground.setExitFadeDuration(5000);
         animationBackground.start();
 
+        EditText player= findViewById(R.id.playerName);
+        playerName = player.getText().toString();
+       // viewPager2.findViewById(R.id.leaderboard1);
+        mMqttClient = new MqttClient(getApplicationContext(), MQTT_SERVER, TAG);
+
         // On Click goes to Controller choice
-        enterRace = findViewById(R.id.button_enterRace);
-        enterRace.setOnClickListener(view -> openControlChoice());
+        button = findViewById(R.id.button_enterRace);
+        button.setOnClickListener(view -> openControlChoice());
 
-        editText = findViewById(R.id.playerName);
-        editText.setOnEditorActionListener(editorActionListener);
-
-        leaderboard = findViewById(R.id.button_Leaderboard);
+        leaderboard1 = findViewById(R.id.button_Leaderboard);
+        leaderboard1.setOnClickListener(view -> openLeaderboard1());
     }
-    private final TextView.OnEditorActionListener editorActionListener = (textView, actionId, keyEvent) -> {
-        if(actionId == EditorInfo.IME_ACTION_SEND){
-            String toastMessage = "Saved";
-            Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_SHORT).show();
 
-        }
-        return false;
-    };
+
+
+    public void openLeaderboard1() {
+        Intent leadIntent = new Intent(this, Leaderboard1.class);
+
+        startActivity(leadIntent);
+    }
+
 
     public void openControlChoice() {
-        // if the player name is empty
-        //message
-        // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        mMqttClient.publish(nameTopic,playerName,1,null);
         Intent raceIntent = new Intent(this, ControlChoice.class);
         startActivity(raceIntent);
     }
