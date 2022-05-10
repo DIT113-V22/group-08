@@ -17,10 +17,8 @@ We will use the SMCE emulator to visualize the racing track.
 Github will be used for document management and updating the code.
 
 # System Overview
-## MQTT Communication to control the Car
-![image](https://user-images.githubusercontent.com/91395562/167311828-bf5789e0-951e-41b3-9360-149113d86994.png)
-***
-## MQTT Communication to view the Leaderboard
-![image](https://user-images.githubusercontent.com/91395562/167311864-0b696be4-a3d2-433b-bf86-25d144db9ecb.png)
+![image](https://user-images.githubusercontent.com/91395562/167540595-130d5d76-0b58-43e0-b49b-2ea8c59734af.png)
 
-For more details and clarity,please visit our Wiki page on [System Overview](https://github.com/DIT113-V22/group-08/wiki/System-Overview).
+![image](https://user-images.githubusercontent.com/91395562/167541568-7ab96e7e-542f-4f26-9244-2c24bbe422b5.png)
+
+For more details and clarity, please visit our Wiki page on [System Architecture](https://github.com/DIT113-V22/group-08/wiki/System-Architecture).
