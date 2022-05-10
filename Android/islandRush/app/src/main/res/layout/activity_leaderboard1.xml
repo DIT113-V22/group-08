@@ -81,15 +81,18 @@
 
                 <TextView
                     android:id="@+id/player1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Alice"
+                    android:layout_width="75dp"
+                    android:layout_height="28dp"
+                    android:text="----                                "
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/gold_medal"
+                    app:layout_constraintHorizontal_bias="0.574"
                     app:layout_constraintStart_toEndOf="@+id/rank1"
-                    app:layout_constraintTop_toTopOf="@+id/rank1" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.476" />
 
                 <ImageView
                     android:id="@+id/gold_medal"
@@ -101,17 +104,23 @@
                     android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.586"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/first_medal" />
 
                 <TextView
                     android:id="@+id/time1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5:07"
-                    android:textSize="18sp"
+                    android:layout_width="54dp"
+                    android:layout_height="29dp"
+                    android:text="----"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.565"
+                    app:layout_constraintStart_toEndOf="@+id/gold_medal"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -142,16 +151,17 @@
 
                 <TextView
                     android:id="@+id/player2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Alison"
+                    android:layout_width="72dp"
+                    android:layout_height="24dp"
+                    android:text="----                                  "
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/silver_medal"
+                    app:layout_constraintHorizontal_bias="0.568"
                     app:layout_constraintStart_toEndOf="@+id/rank2"
-                    app:layout_constraintTop_toTopOf="@+id/rank2" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/silver_medal"
@@ -163,17 +173,24 @@
                     android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.591"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.1"
                     app:srcCompat="@drawable/second_medal" />
 
                 <TextView
                     android:id="@+id/time2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6:03"
-                    android:textSize="18sp"
+                    android:layout_width="55dp"
+                    android:layout_height="24dp"
+                    android:text="----"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.573"
+                    app:layout_constraintStart_toEndOf="@+id/silver_medal"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -203,16 +220,17 @@
 
                 <TextView
                     android:id="@+id/player3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Ben"
+                    android:layout_width="72dp"
+                    android:layout_height="26dp"
+                    android:text="----                                   "
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/bronze_medal"
+                    app:layout_constraintHorizontal_bias="0.519"
                     app:layout_constraintStart_toEndOf="@+id/rank3"
-                    app:layout_constraintTop_toTopOf="@+id/rank3" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/bronze_medal"
@@ -224,18 +242,25 @@
                     android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.596"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/third_medal" />
 
                 <TextView
                     android:id="@+id/time3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10:02"
-                    android:textSize="18sp"
+                    android:layout_width="53dp"
+                    android:layout_height="24dp"
+                    android:text="----"
+                    android:textColor="#050505"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.58"
+                    app:layout_constraintStart_toEndOf="@+id/bronze_medal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.478" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -264,25 +289,33 @@
 
                 <TextView
                     android:id="@+id/player4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Oliver"
+                    android:layout_width="74dp"
+                    android:layout_height="25dp"
+                    android:text="----                                    "
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/time4"
+                    app:layout_constraintHorizontal_bias="0.241"
                     app:layout_constraintStart_toEndOf="@+id/rank4"
-                    app:layout_constraintTop_toTopOf="@+id/rank4" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/time4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="11:00"
-                    android:textSize="18sp"
+                    android:layout_width="51dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="----"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.945"
+                    app:layout_constraintStart_toEndOf="@+id/rank4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.487" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -311,24 +344,32 @@
 
                 <TextView
                     android:id="@+id/player5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="John"
+                    android:layout_width="75dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="28dp"
+                    android:text="----                                "
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/time5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/rank5"
-                    app:layout_constraintTop_toTopOf="@+id/rank5" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.578" />
 
                 <TextView
                     android:id="@+id/time5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12:00"
-                    android:textSize="18sp"
+                    android:layout_width="52dp"
+                    android:layout_height="23dp"
+                    android:text="----"
+                    android:textColor="#121212"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.875"
+                    app:layout_constraintStart_toEndOf="@+id/rank5"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
