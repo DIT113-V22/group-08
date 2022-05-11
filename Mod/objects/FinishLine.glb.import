@@ -13,7 +13,7 @@ dest_files=[ "res://.import/FinishLine.glb-e2a8ca77fe1927706b605cb907de7be2.scn"
 
 nodes/root_type="Spatial"
 nodes/root_name="Scene Root"
-nodes/root_scale=0.5
+nodes/root_scale=0.6
 nodes/custom_script=""
 nodes/storage=0
 nodes/use_legacy_names=false

@@ -1,4 +1,3 @@
-#include <vector>
 #include <MQTT.h>
 #include <WiFi.h>
 #ifdef __SMCE__
@@ -15,7 +14,7 @@ const char pass[] = "****";
 const auto oneSecond = 1000UL;
 
 //Camera 
-std::vector<char> frameBuffer;
+//std::vector<char> frameBuffer;
 
 #ifdef __SMCE__
 const auto triggerPin = 6;
@@ -30,7 +29,7 @@ const auto maxDistance = 400;
 
 // car movements
 
-const auto carSpeed = 50;
+//const auto carSpeed = 50;
 const auto degreeLeft = -50; 
 const auto degreeRight = 50;
 const auto diagonalFirst = 80;
@@ -44,36 +43,36 @@ const String MAIN_TOPIC ="/IslandRush";
 const char CAMERA[] ="/IslandRush/camera";
 
 // new topics to test
-const String ODOMETOR_DISTANCE  = MAIN_TOPIC + "/Odometer/Distance";
-const String ODOMETOR_SPEED  = MAIN_TOPIC + "/Odometer/Speed";
+//const String ODOMETOR_DISTANCE  = MAIN_TOPIC + "/Odometer/Distance";
+//const String ODOMETOR_SPEED  = MAIN_TOPIC + "/Odometer/Speed";
 
 //Controller topics;
-const String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
-const String SPEED = MAIN_TOPIC + "/Control/Speed";
+//const String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
+//const String SPEED = MAIN_TOPIC + "/Control/Speed";
 
 ArduinoRuntime arduinoRuntime;
 // Motors
-BrushedMotor leftMotor(arduinoRuntime, smartcarlib::pins::v2::leftMotorPins);
-BrushedMotor rightMotor(arduinoRuntime, smartcarlib::pins::v2::rightMotorPins);
+// BrushedMotor leftMotor(arduinoRuntime, smartcarlib::pins::v2::leftMotorPins);
+// BrushedMotor rightMotor(arduinoRuntime, smartcarlib::pins::v2::rightMotorPins);
 // Steering
-DifferentialControl control(leftMotor, rightMotor);
+// DifferentialControl control(leftMotor, rightMotor);
 // Ultrasonic sensor
-SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
+// SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 // Odometer
 const auto pulsesPerMeter = 600;
-DirectionlessOdometer leftOdometer{ arduinoRuntime, smartcarlib::pins::v2::leftOdometerPin,
-  []() { leftOdometer.update(); }, pulsesPerMeter };
-DirectionlessOdometer rightOdometer{ arduinoRuntime, smartcarlib::pins::v2::rightOdometerPin,
-  []() { rightOdometer.update(); }, pulsesPerMeter };
+// DirectionlessOdometer leftOdometer{ arduinoRuntime, smartcarlib::pins::v2::leftOdometerPin,
+//  []() { leftOdometer.update(); }, pulsesPerMeter };
+// DirectionlessOdometer rightOdometer{ arduinoRuntime, smartcarlib::pins::v2::rightOdometerPin,
+//  []() { rightOdometer.update(); }, pulsesPerMeter };
 
-DistanceCar car(arduinoRuntime, control, leftOdometer, rightOdometer);
+//DistanceCar car(arduinoRuntime, control, leftOdometer, rightOdometer);
 
 
 void setup() {
   Serial.begin(9600);
 #ifdef __SMCE__
-  Camera.begin(QVGA, RGB888, 15);
-  frameBuffer.resize(Camera.width() * Camera.height() * Camera.bytesPerPixel());
+  //Camera.begin(QVGA, RGB888, 15);
+  //frameBuffer.resize(Camera.width() * Camera.height() * Camera.bytesPerPixel());
 #endif
 
   WiFi.begin(ssid, pass);
@@ -95,7 +94,7 @@ void setup() {
     delay(1000);
   }
 
-  mqtt.subscribe("/IslandRush/Control/#", 1);
+  /*mqtt.subscribe("/IslandRush/Control/#", 1);
   mqtt.onMessage([](String topic, String message)
   {
     if(topic == CONTROLLER ) {
@@ -152,7 +151,7 @@ void setup() {
     }else {
       Serial.println(topic + " " + message);
     }
-  });
+  });*/
 }
 
 void loop() {
@@ -160,22 +159,22 @@ void loop() {
     mqtt.loop();
     const auto currentTime = millis();
 #ifdef __SMCE__
-    static auto previousFrame = 0UL;
+    /*static auto previousFrame = 0UL;
     if (currentTime - previousFrame >= 65) {
       previousFrame = currentTime;
-      Camera.readFrame(frameBuffer.data());
+      //Camera.readFrame(frameBuffer.data());
       mqtt.publish(CAMERA, frameBuffer.data(), frameBuffer.size(),
                  false, 0);
-    }
+    }*/
 #endif
     static auto previousTransmission = 0UL;
     if (currentTime - previousTransmission >= oneSecond) {
       previousTransmission = currentTime;
      
     // average speed of the car via both Odometers ( meters per second)
-     mqtt.publish(ODOMETOR_SPEED, String(car.getSpeed()));
+     //mqtt.publish(ODOMETOR_SPEED, String(car.getSpeed()));
   // average distance from both Odometers (in centimeters)   
-     mqtt.publish(ODOMETOR_DISTANCE, String(car.getDistance()));
+     //mqtt.publish(ODOMETOR_DISTANCE, String(car.getDistance()));
     }
   }
 #ifdef __SMCE__
