@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button enterRace, leaderboard;
+    Button enterRace, leaderboard1;
     EditText editText;
 
     @Override
@@ -30,16 +30,23 @@ public class MainActivity extends AppCompatActivity {
         animationBackground.setEnterFadeDuration(2500);
         animationBackground.setExitFadeDuration(5000);
         animationBackground.start();
+       // viewPager2.findViewById(R.id.leaderboard1);
 
         // On Click goes to Controller choice
         enterRace = findViewById(R.id.button_enterRace);
         enterRace.setOnClickListener(view -> openControlChoice());
-
         editText = findViewById(R.id.playerName);
         editText.setOnEditorActionListener(editorActionListener);
 
-        leaderboard = findViewById(R.id.button_Leaderboard);
 
+        leaderboard1 = findViewById(R.id.button_Leaderboard);
+        leaderboard1.setOnClickListener(view -> openLeaderboard1());
+    }
+
+    public void openLeaderboard1() {
+        Intent leadIntent = new Intent(this, Leaderboard1.class);
+
+        startActivity(leadIntent);
 
     }
 
@@ -62,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Opens ControlChoice when the EnterRace button has been pressed
      */
+
     public void openControlChoice() {
         Intent raceIntent = new Intent(this, ControlChoice.class);
         startActivity(raceIntent);
