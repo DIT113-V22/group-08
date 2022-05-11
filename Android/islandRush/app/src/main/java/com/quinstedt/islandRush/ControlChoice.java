@@ -12,12 +12,12 @@ import android.widget.ImageButton;
 public class ControlChoice extends AppCompatActivity {
     Button controlPad, joystick;
     ImageButton escapeHash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_choice);
-
-        // Dynamic background
+      
         ConstraintLayout layout = findViewById(R.id.controlChoice);
         AnimationDrawable animationBackground = (AnimationDrawable) layout.getBackground();
         animationBackground.setEnterFadeDuration(2500);
@@ -26,7 +26,6 @@ public class ControlChoice extends AppCompatActivity {
 
         escapeHash =  findViewById(R.id.controlChoice_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
-
         joystick = findViewById(R.id.button_joystick);
         joystick.setOnClickListener(view -> openJoystick());
 
