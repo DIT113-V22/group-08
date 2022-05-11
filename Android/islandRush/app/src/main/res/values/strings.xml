@@ -5,4 +5,24 @@
     <string name="joystick">Joystick</string>
     <string name="control_type">Control type</string>
     <string name="enter_players_name">enter_players_name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_1">1</string>
+    <string name="no_2">2</string>
+    <string name="no_3">3</string>
+    <string name="no_4">4</string>
+    <string name="no_5">5</string>
+
+    <string name="name_1">Alice</string>
+    <string name="name_2">John</string>
+    <string name="name_3">Faisal</string>
+    <string name="name_4">Ben</string>
+    <string name="name_5">Sam</string>
+
+    <string name="time_1">5:04</string>
+    <string name="time_2">6:07</string>
+    <string name="time_3">7:00</string>
+    <string name="time_4">12:09</string>
+    <string name="time_5">12:40</string>
+
 </resources>

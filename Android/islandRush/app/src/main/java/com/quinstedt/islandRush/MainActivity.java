@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button enterRace, leaderboard1;
+    Button enterRace, leaderboard;
     EditText editText;
 
     @Override
@@ -38,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.playerName);
         editText.setOnEditorActionListener(editorActionListener);
 
-        leaderboard1 = findViewById(R.id.button_Leaderboard);
-        leaderboard1.setOnClickListener(view -> openLeaderboard1());
+        leaderboard = findViewById(R.id.button_Leaderboard);
+        leaderboard.setOnClickListener(view -> openLeaderboard());
     }
 
-    public void openLeaderboard1() {
-        Intent leadIntent = new Intent(this, Leaderboard1.class);
+    public void openLeaderboard() {
+        Intent leadIntent = new Intent(this, Leaderboard.class);
 
         startActivity(leadIntent);
     }

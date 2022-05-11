@@ -15,12 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grace">
         <activity
-            android:name=".Leaderboard2"
+            android:name=".Leaderboard"
             android:exported="false" />
-        <activity
-            android:name=".Leaderboard1"
-            android:exported="false" />
-      
         <activity
             android:name=".IntroSplashAnimation"
             android:exported="true">
@@ -30,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ControlPad"
             android:exported="false" />
@@ -42,8 +37,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>

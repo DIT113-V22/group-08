@@ -1,40 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/rush_ireland"
     android:layout_height="match_parent"
-    tools:context=".Leaderboard2">
-
-
-    <Button
-        android:id="@+id/leaderboard_1"
-        android:layout_width="190dp"
-        android:layout_height="49dp"
-
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="32dp"
-        android:text="Go back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.016" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+   android:background="@drawable/palm"
+    tools:context=".Leaderboard1">
 
     <TableLayout
-        android:layout_width="293dp"
-        android:layout_height="528dp"
+        android:layout_width="310dp"
+        android:layout_height="534dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="58dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="16dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -43,22 +26,22 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="0dp"
             android:background="@color/purple_200">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
-                android:padding="8dp">
+                android:padding="0dp">
 
                 <TextView
                     android:id="@+id/rank1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textColor="#000"
-                    android:textSize="40sp"
+                    android:text="@string/no_1"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -69,17 +52,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Danesh"
-                    android:textColor="#000"
-                    android:textSize="20sp"
+                    android:text="@string/name_1"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/rank1"
                     app:layout_constraintTop_toTopOf="@+id/rank1" />
 
                 <ImageView
                     android:id="@+id/gold_medal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="32dp"
@@ -94,8 +77,8 @@
                     android:id="@+id/time1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12:00"
-                    android:textSize="18sp"
+                    android:text="@string/time_1"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -105,21 +88,21 @@
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
-                android:padding="12dp">
+                android:padding="0dp">
 
                 <TextView
                     android:id="@+id/rank2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
-                    android:textColor="#000"
-                    android:textSize="40sp"
+                    android:text="@string/no_2"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -130,18 +113,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Alison"
-                    android:textColor="#000"
-                    android:textSize="20sp"
+                    android:text="@string/name_2"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/rank2"
                     app:layout_constraintTop_toTopOf="@+id/rank2" />
 
                 <ImageView
-                    android:id="@+id/silver_medal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/second_medal"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="32dp"
@@ -156,8 +138,8 @@
                     android:id="@+id/time2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9:03"
-                    android:textSize="18sp"
+                    android:text="@string/time_2"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -167,21 +149,21 @@
             android:id="@+id/cardView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
-                android:padding="12dp">
+                android:padding="0dp">
 
                 <TextView
                     android:id="@+id/rank3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3"
-                    android:textColor="#000"
-                    android:textSize="40sp"
+                    android:text="@string/no_3"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -192,18 +174,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Ali"
-                    android:textColor="#000"
-                    android:textSize="20sp"
+                    android:text="@string/name_3"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/rank3"
                     app:layout_constraintTop_toTopOf="@+id/rank3" />
 
                 <ImageView
-                    android:id="@+id/bronze_medal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/third_medal"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="32dp"
@@ -218,8 +199,8 @@
                     android:id="@+id/time3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10:00"
-                    android:textSize="18sp"
+                    android:text="@string/time_3"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -229,21 +210,21 @@
             android:id="@+id/cardView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
-                android:padding="12dp">
+                android:padding="0dp">
 
                 <TextView
                     android:id="@+id/rank4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4"
-                    android:textColor="#000"
-                    android:textSize="40sp"
+                    android:text="@string/no_4"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -254,73 +235,100 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Oliver"
-                    android:textColor="#000"
-                    android:textSize="20sp"
+                    android:text="@string/name_4"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/rank4"
                     app:layout_constraintTop_toTopOf="@+id/rank4" />
+
+                <ImageView
+                    android:id="@+id/fourth_medal"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
                 <TextView
                     android:id="@+id/time4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="11:00"
-                    android:textSize="18sp"
+                    android:text="@string/time_5"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="5dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+          <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_200"
+            android:padding="0dp">
+
+            <TextView
+                android:id="@+id/rank5"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/teal_200"
-                android:padding="12dp">
+                android:text="@string/no_5"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/rank5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5"
-                    android:textColor="#000"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/player5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/name_5"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/rank5"
+                app:layout_constraintTop_toTopOf="@+id/rank5" />
 
-                <TextView
-                    android:id="@+id/player5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="John"
-                    android:textColor="#000"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank5"
-                    app:layout_constraintTop_toTopOf="@+id/rank5" />
+            <ImageView
+                android:id="@+id/fifth_medal"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                 />
 
-                <TextView
-                    android:id="@+id/time5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12:00"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/time5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_5"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.cardview.widget.CardView>
-    </TableLayout>
 
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
