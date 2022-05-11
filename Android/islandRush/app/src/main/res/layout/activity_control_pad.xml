@@ -126,8 +126,8 @@
     <ImageButton
         android:id="@+id/controlPad_escapeHash"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="53dp"
+        android:layout_height="38dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
