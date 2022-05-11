@@ -17,5 +17,13 @@ The car-behavior will be writted in C++ using Arduino and the smartCar API.
 We will use the SMCE emulator to visualize the racing track.
 Github will be used for document management and updating the code.
 
+
 # Modding Instructions
 For modding instructions click [here](https://github.com/DIT113-V22/group-08/wiki/Modding-Instructions)
+# System Overview
+![image](https://user-images.githubusercontent.com/91395562/167540595-130d5d76-0b58-43e0-b49b-2ea8c59734af.png)
+
+![image](https://user-images.githubusercontent.com/91395562/167541568-7ab96e7e-542f-4f26-9244-2c24bbe422b5.png)
+
+For more details and clarity, please visit our Wiki page on [System Architecture](https://github.com/DIT113-V22/group-08/wiki/System-Architecture).
+
