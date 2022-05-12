@@ -1,0 +1,13 @@
+{
+    "label": "cat_car",
+    "vehicle": "Catcar",
+    "slots": {
+        "Front2": {
+            "class": "Camera",
+            "name": "Front Camera",
+            "props": {
+                "far": 10000
+            }
+        }
+    }
+}
