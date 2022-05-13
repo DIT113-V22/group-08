@@ -158,7 +158,6 @@ void setup() {
 void loop() {
   if (mqtt.connected()) {
     mqtt.loop();
-    Serial.println("I'm here ");
     const auto currentTime = millis();
 #ifdef __SMCE__
     static auto previousFrame = 0UL;

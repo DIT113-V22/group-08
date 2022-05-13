@@ -62,18 +62,19 @@ void setup() {
 
 bool carDetected() {
     const auto distance = back.getDistance();
-    return (distance > 0 && distance <= 100);
+    return (distance > 0 && distance <= 200);
 }
 
 void loop() {
   if (mqtt.connected()) {
     mqtt.loop();
+// initializing timer
     const auto currentTime = millis();
     static auto previousTransmission = 0UL;
     if (currentTime - previousTransmission >= oneSecond) {
-// if the IR sensor detects an object publish to mqtt 
-      if (carDetected()) {
-        mqtt.publish(MAIN_TOPIC, "Race Finish");
+// if the US sensor detects an object publish topic to mqtt 
+      if (carDetected() && currentTime > 60000 millis()) {
+        mqtt.publish(MAIN_TOPIC, null);
         Serial.println("Passing Finish Line !");
       }
       previousTransmission = currentTime;
