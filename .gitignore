@@ -68,3 +68,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Godot
+Mod/.import
+
