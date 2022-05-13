@@ -68,3 +68,8 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Godot files
+*.import/
+*export.cfg
+*export_presets.cfg
