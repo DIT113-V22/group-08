@@ -105,6 +105,12 @@ class LeaderboardTest {
         onView(withId(R.id.L2bronze_medal)).check(matches(isDisplayed()))
         wait
     }
+    @Test
+    fun test_escapeHash(){
+        val activityTest = ActivityScenario.launch(Leaderboard::class.java)
+        onView(withId(R.id.leaderboard_escapeHash)).perform(click());
+        onView(withId(R.id.mainLayout)).check(matches(isDisplayed()))
+    }
 
 
 }

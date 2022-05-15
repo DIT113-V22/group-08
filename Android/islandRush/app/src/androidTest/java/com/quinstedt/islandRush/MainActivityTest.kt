@@ -14,7 +14,7 @@ class MainActivityTest {
 // To run all test classes run ActivityTestSuite
 
     /** delay between the tests */
-    val wait = Thread.sleep(4000)
+    val wait = Thread.sleep(4500)
 
     /**
      * Not using a global activityTest:
@@ -73,9 +73,9 @@ class MainActivityTest {
         val playerName = "PlayerTest1"
         onView(withId(R.id.playerName)).perform(typeText(playerName))
         onView(withId(R.id.playerName)).perform(pressImeActionButton())
+        onView(withText(playerName)).check(matches(isDisplayed()))
         val toastMessage = "Saved"
         onView(withText(toastMessage)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
-        onView(withText(playerName)).check(matches(isDisplayed()))
         wait
     }
     @Test
@@ -85,8 +85,6 @@ class MainActivityTest {
         onView(withId(R.id.controlChoice)).check(matches(isDisplayed()))
         wait
     }
-
-/** Not passing because the leaderboard has not yet been implemented */
 
     @Test
     fun test_Navigation_From_MainActivity_To_LeaderBoard(){
