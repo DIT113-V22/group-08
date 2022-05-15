@@ -18,5 +18,6 @@ public class Leaderboard1 extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_leaderboard1, container, false);
     }
+
 }
 

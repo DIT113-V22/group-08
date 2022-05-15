@@ -70,13 +70,10 @@ class MainActivityTest {
     fun test_process_of_entering_a_playerName(){
         val activityTest = ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.playerName)).perform(click())
-        /** Entering a player name */
         val playerName = "PlayerTest1"
         onView(withId(R.id.playerName)).perform(typeText(playerName))
-        /** Pressing enter/done button in the keyboard*/
         onView(withId(R.id.playerName)).perform(pressImeActionButton())
         onView(withText(playerName)).check(matches(isDisplayed()))
-        /** check if toast is displayed after entering the player name*/
         val toastMessage = "Saved"
         onView(withText(toastMessage)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
         wait
@@ -91,13 +88,13 @@ class MainActivityTest {
 
 /** Not passing because the leaderboard has not yet been implemented */
 
-/* @Test
+    @Test
     fun test_Navigation_From_MainActivity_To_LeaderBoard(){
         val activityTest = ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.button_Leaderboard)).perform(click())
-        onView(withId(R.id.leaderboardLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.leaderboardMain)).check(matches(isDisplayed()))
     }
-    */
+
 
 
 

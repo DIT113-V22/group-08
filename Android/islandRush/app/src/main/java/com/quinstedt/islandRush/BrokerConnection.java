@@ -1,5 +1,6 @@
 package com.quinstedt.islandRush;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-public class BrokerConnection extends AppCompatActivity {
+public class BrokerConnection  {
 
     public static final String TAG = "IslandRush"; // The name of the user in the broker
     private static final String EXTERNAL_MQTT_BROKER = "aerostun.dev";
@@ -45,41 +46,15 @@ public class BrokerConnection extends AppCompatActivity {
     private static final int IMAGE_HEIGHT = 240;
     ImageView mCameraView;
     TextView actualSpeed;
+    Context context;
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mMqttClient = new MqttClient(getApplicationContext(), MQTT_SERVER, TAG);
-        mCameraView = findViewById(R.id.controlPad_camera);
-        actualSpeed = findViewById(R.id.actualSpeed);
-        connectToMqttBroker();
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+    public  BrokerConnection(Context context){
+        this.context = context;
+        mMqttClient = new MqttClient(context, MQTT_SERVER,TAG);
 
         connectToMqttBroker();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        mMqttClient.disconnect(new IMqttActionListener() {
-            @Override
-            public void onSuccess(IMqttToken asyncActionToken) {
-                Log.i(TAG, "Disconnected from broker");
-            }
-
-            @Override
-            public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-            }
-        });
-    }
 
     public void connectToMqttBroker() {
         if (!isConnected) {
@@ -93,7 +68,7 @@ public class BrokerConnection extends AppCompatActivity {
                     isConnected = true;
                     final String successfulConnection = "Connected to MQTT broker";
                     Log.i(TAG, successfulConnection);
-                    Toast.makeText(getApplicationContext(), successfulConnection, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, successfulConnection, Toast.LENGTH_SHORT).show();
                     mMqttClient.subscribe(ODOMETER_SPEED, QOS, null);
                     mMqttClient.subscribe(ODOMETER_DISTANCE, QOS, null);
                     mMqttClient.subscribe(CAMERA, QOS, null);
@@ -105,7 +80,7 @@ public class BrokerConnection extends AppCompatActivity {
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     final String failedConnection = "Failed to connect to MQTT broker";
                     Log.e(TAG, failedConnection);
-                    Toast.makeText(getApplicationContext(), failedConnection, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, failedConnection, Toast.LENGTH_SHORT).show();
                 }
             }, new MqttCallback() {
                 @Override
@@ -114,7 +89,7 @@ public class BrokerConnection extends AppCompatActivity {
 
                     final String connectionLost = "Connection to MQTT broker lost";
                     Log.w(TAG, connectionLost);
-                    Toast.makeText(getApplicationContext(), connectionLost, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, connectionLost, Toast.LENGTH_SHORT).show();
                 }
                 /**
                  *  Method that retrieve the message inside a topic
@@ -168,7 +143,7 @@ public class BrokerConnection extends AppCompatActivity {
         if (!isConnected) {
             final String notConnected = "Not connected (yet)";
             Log.e(TAG, notConnected);
-            Toast.makeText(getApplicationContext(), notConnected, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, notConnected, Toast.LENGTH_SHORT).show();
             return;
         }
         Log.i(TAG, actionDescription);
@@ -188,4 +163,19 @@ public class BrokerConnection extends AppCompatActivity {
         return actualSpeed;
     }
 
+    public void setmMqttClient(MqttClient mMqttClient) {
+        this.mMqttClient = mMqttClient;
+    }
+
+    public void setmCameraView(ImageView mCameraView) {
+        this.mCameraView = mCameraView;
+    }
+
+    public void setActualSpeed(TextView actualSpeed) {
+        this.actualSpeed = actualSpeed;
+    }
+
+    public MqttClient getmMqttClient() {
+        return mMqttClient;
+    }
 }

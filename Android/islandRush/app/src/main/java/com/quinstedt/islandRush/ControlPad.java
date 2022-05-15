@@ -5,17 +5,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class ControlPad extends BrokerConnection {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ControlPad extends AppCompatActivity {
     ImageButton escapeHash;
+    BrokerConnection brokerConnection;
+    MqttClient mMqttClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_pad);
-        mMqttClient = new MqttClient(getApplicationContext(), MQTT_SERVER, TAG);
-        mCameraView = findViewById(R.id.controlPad_camera);
-        actualSpeed = findViewById(R.id.actualSpeed);
-        connectToMqttBroker();
+
+        brokerConnection = new BrokerConnection(getApplicationContext());
+        brokerConnection.setActualSpeed(findViewById(R.id.actualSpeed));
+        brokerConnection.setmCameraView(findViewById(R.id.controlPad_camera));
+        mMqttClient = brokerConnection.getmMqttClient();
+        brokerConnection.connectToMqttBroker();
 
         escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
@@ -35,10 +41,10 @@ public class ControlPad extends BrokerConnection {
      * @param message - the message that we send to the broker
      * @param actionDescription - the action description that will be printed
      */
-    @Override
+
     public void drive(String message, String actionDescription) {
-        super.drive(message,actionDescription);
-        mMqttClient.publish(CONTROLLER, message,QOS, null);
+        brokerConnection.drive(message,actionDescription);
+        mMqttClient.publish(brokerConnection.CONTROLLER, message,brokerConnection.QOS, null);
 
     }
 

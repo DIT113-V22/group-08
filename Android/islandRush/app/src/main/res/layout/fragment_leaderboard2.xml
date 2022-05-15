@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/logo"
+    android:id="@+id/leaderboard2"
     tools:context=".Leaderboard2">
 
 
     <TableLayout
+        android:id="@+id/L2tableLayout"
         android:layout_width="310dp"
         android:layout_height="534dp"
         android:layout_marginStart="8dp"
@@ -26,7 +28,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/L2cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
@@ -37,7 +39,7 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank1"
+                    android:id="@+id/L2rank1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_1"
@@ -49,7 +51,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player1"
+                    android:id="@+id/L2player1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -57,11 +59,11 @@
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank1"
-                    app:layout_constraintTop_toTopOf="@+id/rank1" />
+                    app:layout_constraintStart_toEndOf="@+id/L2rank1"
+                    app:layout_constraintTop_toTopOf="@+id/L2rank1" />
 
                 <ImageView
-                    android:id="@+id/gold_medal"
+                    android:id="@+id/L2gold_medal"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="32dp"
@@ -75,7 +77,7 @@
                     app:srcCompat="@drawable/first_medal" />
 
                 <TextView
-                    android:id="@+id/time1"
+                    android:id="@+id/L2time1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/text"
@@ -87,7 +89,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+            android:id="@+id/L2cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp">
@@ -98,7 +100,7 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank2"
+                    android:id="@+id/L2rank2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_2"
@@ -110,7 +112,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player2"
+                    android:id="@+id/L2player2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -119,11 +121,11 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank2"
-                    app:layout_constraintTop_toTopOf="@+id/rank2" />
+                    app:layout_constraintStart_toEndOf="@+id/L2rank2"
+                    app:layout_constraintTop_toTopOf="@+id/L2rank2" />
 
                 <ImageView
-                    android:id="@+id/silver_medal"
+                    android:id="@+id/L2silver_medal"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="32dp"
@@ -137,7 +139,7 @@
                     app:srcCompat="@drawable/second_medal" />
 
                 <TextView
-                    android:id="@+id/time2"
+                    android:id="@+id/L2time2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/text"
@@ -148,7 +150,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+            android:id="@+id/L2cardView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp">
@@ -159,7 +161,7 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank3"
+                    android:id="@+id/L2rank3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_3"
@@ -171,7 +173,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player3"
+                    android:id="@+id/L2player3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -180,11 +182,11 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank3"
-                    app:layout_constraintTop_toTopOf="@+id/rank3" />
+                    app:layout_constraintStart_toEndOf="@+id/L2rank3"
+                    app:layout_constraintTop_toTopOf="@+id/L2rank3" />
 
                 <ImageView
-                    android:id="@+id/bronze_medal"
+                    android:id="@+id/L2bronze_medal"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="32dp"
@@ -198,7 +200,7 @@
                     app:srcCompat="@drawable/third_medal" />
 
                 <TextView
-                    android:id="@+id/time3"
+                    android:id="@+id/L2time3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/text"
@@ -209,7 +211,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView4"
+            android:id="@+id/L2cardView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp">
@@ -220,7 +222,7 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank4"
+                    android:id="@+id/L2rank4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_4"
@@ -232,7 +234,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player4"
+                    android:id="@+id/L2player4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -241,11 +243,11 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank4"
-                    app:layout_constraintTop_toTopOf="@+id/rank4" />
+                    app:layout_constraintStart_toEndOf="@+id/L2rank4"
+                    app:layout_constraintTop_toTopOf="@+id/L2rank4" />
 
                 <TextView
-                    android:id="@+id/time4"
+                    android:id="@+id/L2time4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/text"
@@ -256,7 +258,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView5"
+            android:id="@+id/L2cardView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp">
@@ -267,7 +269,7 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank5"
+                    android:id="@+id/L2rank5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_5"
@@ -279,7 +281,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player5"
+                    android:id="@+id/L2player5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -288,11 +290,11 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank5"
-                    app:layout_constraintTop_toTopOf="@+id/rank5" />
+                    app:layout_constraintStart_toEndOf="@+id/L2rank5"
+                    app:layout_constraintTop_toTopOf="@+id/L2rank5" />
 
                 <TextView
-                    android:id="@+id/time5"
+                    android:id="@+id/L2time5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/text"

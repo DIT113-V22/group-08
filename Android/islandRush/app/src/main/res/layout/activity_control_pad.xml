@@ -82,6 +82,7 @@
         android:background="@color/cardview_shadow_end_color"
         android:onClick="stop"
         android:text="STOP"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="8dp"
         app:layout_constraintStart_toStartOf="@+id/controlBackground"

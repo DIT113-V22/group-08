@@ -8,13 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.joystickjhr.JoystickJhr;
 
-public class Joystick extends ControlPad {
+public class Joystick extends AppCompatActivity {
 
-    int lastDirection = 0;
-    ImageButton escapeHash;
-
+    private int lastDirection = 0;
+    private ImageButton escapeHash;
+    private MqttClient mMqttClient;
+    private BrokerConnection brokerConnection;
     private Button stop;
 
 
@@ -23,9 +26,12 @@ public class Joystick extends ControlPad {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joystick);
-        mMqttClient = new MqttClient(getApplicationContext(), MQTT_SERVER, TAG);
-        mCameraView = findViewById(R.id.joystick_camera);
-        actualSpeed = findViewById(R.id.actualSpeedJoystick);
+
+        brokerConnection = new BrokerConnection(getApplicationContext());
+        brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
+        brokerConnection.setmCameraView(findViewById(R.id.joystick_camera));
+        mMqttClient = brokerConnection.getmMqttClient();
+        brokerConnection.connectToMqttBroker();
 
         escapeHash = findViewById(R.id.joystick_escapeHash);
         escapeHash.setOnClickListener((View view) -> goBack());
@@ -106,10 +112,10 @@ public class Joystick extends ControlPad {
      * @param message - the message that will be send to the broker
      * @param actionDescription - the action description that will be printed
      */
-    @Override
     public void drive(String message, String actionDescription) {
-        super.drive(message,actionDescription);
-        mMqttClient.publish(CONTROLLER, message,QOS, null);
+        brokerConnection.drive(message,actionDescription);
+        mMqttClient.publish(brokerConnection.CONTROLLER, message,brokerConnection.QOS, null);
+
     }
     /**
         Method use to send to stop the car. The toString of the enum Stop is

@@ -12,10 +12,12 @@ import org.junit.runners.Suite
     MainActivityTest::class,
     ControlChoiceTest::class,
     ControlPadTest::class,
-    JoystickTest::class
+    JoystickTest::class,
+    LeaderboardTest::class
 )
+
+ */
 class ActivityTestSuite {
 
 }
 
- */
