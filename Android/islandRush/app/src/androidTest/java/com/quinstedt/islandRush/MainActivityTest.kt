@@ -73,10 +73,8 @@ class MainActivityTest {
         val playerName = "PlayerTest1"
         onView(withId(R.id.playerName)).perform(typeText(playerName))
         onView(withId(R.id.playerName)).perform(pressImeActionButton())
-        Thread.sleep(1000)
         val toastMessage = "Saved"
         onView(withText(toastMessage)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
-        Thread.sleep(1000)
         onView(withText(playerName)).check(matches(isDisplayed()))
         wait
     }
