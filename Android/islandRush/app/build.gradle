@@ -47,6 +47,7 @@ dependencies {
      * Author: https://github.com/jose-jhr/joystick-android-studio-para-arduino
      */
     implementation files('libs/joytstick.aar')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
 
