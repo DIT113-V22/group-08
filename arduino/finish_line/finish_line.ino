@@ -8,6 +8,8 @@ WiFiClient net;
 const char ssid[] = "***";
 const char pass[] = "****";
 const auto oneSecond = 1000UL;
+// variable to stop publishing to mqtt after the car has been detected
+bool detected = false;
 
 #ifdef __SMCE__
 const auto triggerPin = 6;
@@ -71,10 +73,12 @@ void loop() {
 // initializing timer
     const auto currentTime = millis();
     static auto previousTransmission = 0UL;
-    if (currentTime - previousTransmission >= oneSecond) {
-// if the US sensor detects an object publish topic to mqtt 
-      if (carDetected() && currentTime > 60000 millis()) {
-        mqtt.publish(MAIN_TOPIC, null);
+    if ((currentTime - previousTransmission >= oneSecond) && (detected == false)) {
+// if the IR sensor detects an object publish topic to mqtt 
+      if (carDetected() && currentTime > 30000) {
+        mqtt.publish(MAIN_TOPIC, "");
+// car is detected so I stop checking the surroundings
+        detected = true;
         Serial.println("Passing Finish Line !");
       }
       previousTransmission = currentTime;
