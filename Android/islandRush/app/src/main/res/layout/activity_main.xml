@@ -34,7 +34,7 @@
         android:layout_marginEnd="50sp"
         android:background="#19F3E9E9"
         android:drawableStart="@drawable/ic_person_vector"
-        android:hint="enter players name"
+        android:hint="@string/Enter_players_name"
         android:imeOptions="actionSend"
         android:inputType="text"
         android:minHeight="48dp"
