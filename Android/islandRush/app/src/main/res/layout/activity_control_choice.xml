@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="@string/control_type"
+        android:id="@+id/titleControlChoice"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -38,7 +39,7 @@
     <Button
         android:id="@+id/button_control"
         android:background="@drawable/main_buttons"
-        android:layout_width="wrap_content"
+        android:layout_width="162dp"
         android:layout_height="58dp"
         android:text="@string/button_pad"
         android:textColor="@color/white"
@@ -59,8 +60,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert"
-        android:contentDescription="@string/escapehash" />
-
-
+        android:contentDescription="@string/escapeHash" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

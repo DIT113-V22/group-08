@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:drawableStart="@drawable/ic_person_vector"
-        android:hint="Enter players name"
+        android:hint="@string/Enter_players_name"
         android:imeOptions="actionSend"
         android:minHeight="48dp"
         android:textAlignment="center"
