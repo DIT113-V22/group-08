@@ -15,7 +15,7 @@ class JoystickTest {
     // To run all test classes run ActivityTestSuite
 
     /** delay between the tests */
-    val wait = Thread.sleep(2000)
+    val wait = Thread.sleep(3000)
 
     @Test
     fun test_isActivityInView(){

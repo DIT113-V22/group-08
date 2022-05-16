@@ -5,6 +5,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -66,18 +67,7 @@ class MainActivityTest {
         onView(withId(R.id.playerName)).check(matches(withHint(R.string.Enter_players_name)))
         wait
     }
-    @Test
-    fun test_process_of_entering_a_playerName(){
-        val activityTest = ActivityScenario.launch(MainActivity::class.java)
-        onView(withId(R.id.playerName)).perform(click())
-        val playerName = "PlayerTest1"
-        onView(withId(R.id.playerName)).perform(typeText(playerName))
-        onView(withId(R.id.playerName)).perform(pressImeActionButton())
-        onView(withText(playerName)).check(matches(isDisplayed()))
-        //val toastMessage = "Saved"
-        //onView(withText(toastMessage)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
-        wait
-    }
+
     @Test
     fun test_Navigation_From_MainActivity_To_ControlChoice(){
         val activityTest = ActivityScenario.launch(MainActivity::class.java)
@@ -91,6 +81,25 @@ class MainActivityTest {
         val activityTest = ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.button_Leaderboard)).perform(click())
         onView(withId(R.id.leaderboardMain)).check(matches(isDisplayed()))
+    }
+
+    /** @LargeTest - the test is ignore and dont run
+     *  @Test- runs the test
+     *  To run this test uncomment @Test
+     *  NOTE: to avoid problems with the CI make sure to comment @Test */
+
+    @LargeTest
+   // @Test
+    fun test_process_of_entering_a_playerName(){
+        val activityTest = ActivityScenario.launch(MainActivity::class.java)
+        onView(withId(R.id.playerName)).perform(click())
+        val playerName = "PlayerTest1"
+        onView(withId(R.id.playerName)).perform(typeText(playerName))
+        onView(withId(R.id.playerName)).perform(pressImeActionButton())
+        onView(withText(playerName)).check(matches(isDisplayed()))
+        val toastMessage = "Saved"
+        onView(withText(toastMessage)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
+        wait
     }
 
 

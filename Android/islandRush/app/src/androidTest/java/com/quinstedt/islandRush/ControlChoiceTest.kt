@@ -14,7 +14,7 @@ class ControlChoiceTest {
     // To run all test classes run ActivityTestSuite
 
     /** delay between the tests */
-    private val wait = Thread.sleep(2000)
+    private val wait = Thread.sleep(3000)
 
     @Test
     fun test_isActivityInView(){

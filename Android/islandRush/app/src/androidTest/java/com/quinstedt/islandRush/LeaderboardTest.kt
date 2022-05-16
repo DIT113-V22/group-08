@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class LeaderboardTest {
 
-    val wait = Thread.sleep(2000)
+    val wait = Thread.sleep(3000)
     /** NAVIGATION TESTS*/
     @Test
     fun test_Launching_LeaderboardActivity(){
