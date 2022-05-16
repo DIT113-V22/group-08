@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://gd/Playground.gd" type="Script" id=4]
+[ext_resource path="res://objects/island.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Materials/depth_buffer/depth_buffer_material.tres" type="Material" id=7]
+
+[sub_resource type="ProceduralSky" id=10]
+sky_top_color = Color( 0.443137, 0.6, 0.960784, 1 )
+sky_horizon_color = Color( 0.690196, 0.813113, 0.921569, 1 )
+sky_energy = 2.47
+ground_bottom_color = Color( 0.690196, 0.760784, 0.921569, 1 )
+ground_horizon_color = Color( 0.690196, 0.760784, 0.921569, 1 )
+sun_latitude = 50.0
+sun_longitude = -20.0
+sun_angle_max = 30.0
+sun_energy = 27.13
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 10 )
+ambient_light_color = Color( 0.5, 0.5, 0.5, 1 )
+ambient_light_energy = 2.8
+ambient_light_sky_contribution = 0.2
+
+[sub_resource type="PlaneMesh" id=11]
+size = Vector2( 10000, 10000 )
+subdivide_width = 1000
+subdivide_depth = 1000
+center_offset = Vector3( 500, 20, 500 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( 0.974885, -0.0731331, -0.210357, 0.119979, -0.623294, 0.772729, -0.187627, -0.77856, -0.598866, 0, 79.7674, 0 )
+light_color = Color( 0.964706, 0.843137, 0.698039, 1 )
+light_energy = 0.9
+light_indirect_energy = 0.0
+light_specular = 2.496
+shadow_bias = -7.79
+
+[node name="Water" type="MeshInstance" parent="."]
+transform = Transform( 0.908792, 0, 0.417249, 0, 1, 0, -0.417249, 0, 0.908792, 58.874, -22, -345.902 )
+mesh = SubResource( 11 )
+software_skinning_transform_normals = false
+material/0 = ExtResource( 7 )
+
+[node name="DebugVehicleSpawn" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 9, 5 )
+far = 8000.0
+
+[node name="VehicleSpawn" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 9, 5 )
+far = 8000.0
+
+[node name="FinishLine" type="Camera" parent="."]
+transform = Transform( -0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -12, 9, 6.3 )
+far = 8000.0
+
+[node name="island" parent="." instance=ExtResource( 6 )]
+transform = Transform( 49.9315, 0, -2.6168, 0, 50, 0, 2.6168, 0, 49.9315, -480.002, -1, -278.356 )
+
+[node name="CamPosition" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 8, 5 )
+far = 8000.0

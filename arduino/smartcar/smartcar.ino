@@ -12,8 +12,9 @@ WiFiClient net;
 
 const char ssid[] = "***";
 const char pass[] = "****";
+const auto oneSecond = 1000UL;
 
-//Camera stream
+//Camera 
 std::vector<char> frameBuffer;
 
 #ifdef __SMCE__
@@ -27,33 +28,28 @@ const auto mqttBrokerUrl = "192.168.0.40";
 #endif
 const auto maxDistance = 400;
 
-// Car movements
-const auto carSpeed =50;
-const auto degreeLeft = -55; 
-const auto degreeRight = 55;
+// car movements
+
+const auto carSpeed = 50;
+const auto degreeLeft = -50; 
+const auto degreeRight = 50;
 const auto diagonalFirst = 80;
 const auto diagonalRight = 20;
 const auto diagonalLeft = -20;
-const auto diagonalDelay = 500;
-
-const auto oneSecond = 1000UL;
+const auto diagonalDelay = 1000;
 
 //topics
-const String MAIN_TOPIC = "/IslandRush";
-const char CAMERA[] = "/IslandRush/camera";
-//OLD Sensor topics
-const String ULTRASOUND = MAIN_TOPIC +  "/ultrasound/front";
-const String ODOMETER_LEFT_DISTANCE = MAIN_TOPIC + "/Odometer/LeftDistance";
-const String ODOMETER_RIGHT_DISTANCE = MAIN_TOPIC + "/Odometer/RightDistance";
-const String ODOMETER_LEFT_SPEED = MAIN_TOPIC + "/Odometer/LeftSpeed";
-const String ODOMETER_RIGHT_SPEED = MAIN_TOPIC + "/Odometer/RightSpeed";
+
+const String MAIN_TOPIC ="/IslandRush";
+const char CAMERA[] ="/IslandRush/camera";
+
 // new topics to test
 const String ODOMETOR_DISTANCE  = MAIN_TOPIC + "/Odometer/Distance";
 const String ODOMETOR_SPEED  = MAIN_TOPIC + "/Odometer/Speed";
+
 //Controller topics;
 const String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
 const String SPEED = MAIN_TOPIC + "/Control/Speed";
-
 
 ArduinoRuntime arduinoRuntime;
 // Motors
@@ -61,6 +57,8 @@ BrushedMotor leftMotor(arduinoRuntime, smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(arduinoRuntime, smartcarlib::pins::v2::rightMotorPins);
 // Steering
 DifferentialControl control(leftMotor, rightMotor);
+// Ultrasonic sensor
+SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 // Odometer
 const auto pulsesPerMeter = 600;
 DirectionlessOdometer leftOdometer{ arduinoRuntime, smartcarlib::pins::v2::leftOdometerPin,
@@ -70,13 +68,14 @@ DirectionlessOdometer rightOdometer{ arduinoRuntime, smartcarlib::pins::v2::righ
 
 DistanceCar car(arduinoRuntime, control, leftOdometer, rightOdometer);
 
+
 void setup() {
   Serial.begin(9600);
 #ifdef __SMCE__
-    Camera.begin(QVGA, RGB888, 15);
+  Camera.begin(QVGA, RGB888, 15);
   frameBuffer.resize(Camera.width() * Camera.height() * Camera.bytesPerPixel());
 #endif
-// Stars Wifi connection to localhost using port 1883
+
   WiFi.begin(ssid, pass);
   mqtt.begin(mqttBrokerUrl, 1883, net);
 
@@ -96,12 +95,11 @@ void setup() {
     delay(1000);
   }
 
-  mqtt.subscribe(MAIN_TOPIC + "/Control/#", 1);
+  mqtt.subscribe("/IslandRush/Control/#", 1);
   mqtt.onMessage([](String topic, String message)
   {
-    if(topic == CONTROLLER){
+    if(topic == CONTROLLER ) {
           auto input = message.toInt();
-          //auto carSpeed = car.getSpeed();
             switch (input){
         case 1: // up 
             car.setSpeed(carSpeed);
@@ -119,7 +117,7 @@ void setup() {
             break;
         case 4: // down-right 
           car.setSpeed(-carSpeed);
-            car.setAngle(diagonalFirst);
+            car.setAngle(-diagonalFirst);
             delay(diagonalDelay);
             car.setAngle(diagonalRight);
             break;
@@ -139,7 +137,7 @@ void setup() {
             break;
         case 8: // up left 
             car.setSpeed(carSpeed);
-            car.setAngle(-diagonalFirst);
+            car.setAngle(diagonalFirst);
             delay(diagonalDelay);
             car.setAngle(diagonalLeft);
             break;
@@ -147,9 +145,10 @@ void setup() {
             car.setSpeed(0);
             car.setAngle(0);
         }
-    } else if (topic == SPEED){
+    } else if(topic == SPEED) {
+       // This is going to be use for the introduction of the speed buttons 
       // the speed is set between 0-100, increasing or decrising by 10 everytime
-        car.setSpeed(message.toInt());
+      //  car.setSpeed(message.toInt());
     }else {
       Serial.println(topic + " " + message);
     }
@@ -164,15 +163,16 @@ void loop() {
     static auto previousFrame = 0UL;
     if (currentTime - previousFrame >= 65) {
       previousFrame = currentTime;
-      Camera.readFrame(frameBuffer.data()); 
-     mqtt.publish(CAMERA, frameBuffer.data(), frameBuffer.size(),
-                   false, 0);
+      Camera.readFrame(frameBuffer.data());
+      mqtt.publish(CAMERA, frameBuffer.data(), frameBuffer.size(),
+                 false, 0);
     }
 #endif
     static auto previousTransmission = 0UL;
     if (currentTime - previousTransmission >= oneSecond) {
       previousTransmission = currentTime;
-  // average speed of the car via both Odometers ( meters per second)
+     
+    // average speed of the car via both Odometers ( meters per second)
      mqtt.publish(ODOMETOR_SPEED, String(car.getSpeed()));
   // average distance from both Odometers (in centimeters)   
      mqtt.publish(ODOMETOR_DISTANCE, String(car.getDistance()));

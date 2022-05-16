@@ -1,0 +1,14 @@
+{
+    "from_scratch": "true",
+    "vehicle": "FinishLine",
+    "label": "finish_line",
+    "slots": {
+      "Back": {
+         "class": "AnalogRaycast",
+         "name": "Back Infrared",
+         "props": {
+            "pin": 3
+         }
+      }
+   }
+}
