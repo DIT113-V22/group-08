@@ -1,7 +1,0 @@
-ToastMessageTest:
-  - 'Go to MainActivityTest and uncommit @Test'
-  - 'Run test manually '
-  - 'Add a picture of the test result in the comments'
-  - 'Comment @Test again to avoid future problems with the CI'
- 
-

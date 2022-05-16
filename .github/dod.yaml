@@ -5,3 +5,7 @@ dod:
   - 'Acceptance criteria of the linked stories satisfied'
   - 'Code change comprehended by those who approved it'
   - 'State of target branch maintained or improved after the code change'
+  - 'Go to MainActivityTest in the Android App and uncommit @Test'
+  - 'Run test manually '
+  - 'Add a picture of the test result in the comments'
+  - 'Comment @Test again to avoid future problems with the CI' 

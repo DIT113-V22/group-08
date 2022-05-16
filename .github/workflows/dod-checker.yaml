@@ -14,8 +14,3 @@ jobs:
         with:
           dod_yaml: '.github/dod.yaml'
           github_token: ${{ secrets.GITHUB_TOKEN }}
-	- name: Check ToastMessageTest
-	  uses: platisd/definition-of-done@master
-	  with:
-          ToastMessage_yaml: '.github/ToastMessage.yaml'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
