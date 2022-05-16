@@ -1,0 +1,20 @@
+name: Publish Island.zip artifact
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:    
+      - 'Finish-Line'
+
+jobs:
+       
+  archive-build-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v3
+        with: 
+          name: Island
+          path: ~/Mod/
