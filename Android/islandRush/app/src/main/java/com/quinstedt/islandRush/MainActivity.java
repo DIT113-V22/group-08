@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button enterRace, leaderboard1;
+    Button enterRace, leaderboard;
     EditText editText;
 
     @Override
@@ -38,24 +38,38 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.playerName);
         editText.setOnEditorActionListener(editorActionListener);
 
-        leaderboard1 = findViewById(R.id.button_Leaderboard);
-        leaderboard1.setOnClickListener(view -> openLeaderboard1());
+
+        leaderboard = findViewById(R.id.button_Leaderboard);
+        leaderboard.setOnClickListener(view -> openLeaderboard());
+
     }
 
-    public void openLeaderboard1() {
-        Intent leadIntent = new Intent(this, Leaderboard1.class);
+    public void openLeaderboard() {
+        Intent leadIntent = new Intent(this, Leaderboard.class);
 
         startActivity(leadIntent);
-    }
-    private final TextView.OnEditorActionListener editorActionListener = (textView, actionId, keyEvent) -> {
-        if(actionId == EditorInfo.IME_ACTION_SEND){
-            String toastMessage = "Saved";
-            Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_SHORT).show();
 
+    }
+
+    /**
+     * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
+     * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
+     */
+    private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+            if(actionId == EditorInfo.IME_ACTION_SEND){
+                String toastMessage = "Saved";
+                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
+
+            }
+           return false;
         }
-        return false;
     };
 
+    /**
+     * Opens ControlChoice when the EnterRace button has been pressed
+     */
 
     public void openControlChoice() {
         Intent raceIntent = new Intent(this, ControlChoice.class);

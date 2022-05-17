@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://shaders/water_3d/Shaders_3d.tscn" type="PackedScene" id=1]
-[ext_resource path="res://shaders/water_3d/depth_buffer/depth_buffer_material.tres" type="Material" id=2]
+[ext_resource path="res://Materials/depth_buffer/depth_buffer_material.tres" type="Material" id=2]
 
 [sub_resource type="PlaneMesh" id=1]
 

@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroSplashAnimation"
-    android:id="@+id/IntroSplash">
+    tools:context=".IntroSplashAnimation">
+
     <ImageView
         android:id="@+id/palmBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/animation_background"
+        android:contentDescription="@string/palm_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.282"
         app:srcCompat="@drawable/palm" />
 
     <ImageView
@@ -24,13 +25,13 @@
         android:layout_width="319dp"
         android:layout_height="126dp"
         android:background="@android:color/transparent"
-        android:contentDescription="car_image"
+        android:contentDescription="@string/car_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.159"
+        app:layout_constraintVertical_bias="0.196"
         app:srcCompat="@drawable/bil" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -52,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:background="#070071D4"
-        android:text="islandrush"
+        android:text="@string/islandrush"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#FF9800"
@@ -83,4 +84,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="805dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

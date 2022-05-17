@@ -3,11 +3,12 @@
     "vehicle": "FinishLine",
     "label": "finish_line",
     "slots": {
-      "Back": {
-         "class": "AnalogRaycast",
-         "name": "Back Infrared",
+      "FrontTop": {
+         "class": "UltraSonic",
+         "name": "Front UltraSonic",
          "props": {
-            "pin": 3
+            "trigger_pin": 6,
+            "echo_pin": 7
          }
       }
    }
