@@ -5,7 +5,6 @@ on: [push, pull_request, workflow_dispatch]
 env: 
   GODOT_VERSION: 3.4.4 
   DIR: Mod # directory where the Godot project is
-  EXPORT_NAME: Island
 
 jobs:
   export-linux:
@@ -22,9 +21,9 @@ jobs:
         run: |
           mkdir -v -p build/mods
           cd $DIR
-          godot --export-pack "Linux/X11" --no-window ../build/mods/$EXPORT_NAME.pck
+          godot --export-pack "Linux/X11" --no-window ../build/mods/Island.pck
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with: # the final result should be called Island.zip
-          name: ${{ EXPORT_NAME }}
+          name: Island
           path: build/mods
