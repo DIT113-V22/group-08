@@ -22,9 +22,9 @@ jobs:
         run: |
           mkdir -v -p build/mods
           cd $DIR
-          godot --export-pack "Linux/X11" --no-window ../build/mods/$EXPORT_NAME.pck
+          godot --export-pack "Linux/X11" --no-window ../build/mods/${{ EXPORT_NAME }}.pck
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with: # the final result should be called Island.zip
-          name: $EXPORT_NAME
+          name: ${{ EXPORT_NAME }}
           path: build/mods
