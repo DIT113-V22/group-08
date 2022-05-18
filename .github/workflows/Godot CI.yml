@@ -1,0 +1,29 @@
+name: Build Island.zip Artifact
+
+on: [push, pull_request, workflow_dispatch] 
+       
+env: 
+  GODOT_VERSION: 3.4.4 
+  DIR: Mod # directory where the Godot project is
+
+jobs:
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:mono-latest 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Resolve Dependencies
+        run: |
+          mkdir -v -p build
+          cd $DIR
+          godot --export-pack "Linux/X11" --no-window ../build/mods/Island.pck
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with: 
+          name: Island
+          path: build/mods
