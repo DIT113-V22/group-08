@@ -19,7 +19,7 @@ jobs:
           lfs: true
       - name: Resolve Dependencies
         run: |
-          mkdir -v -p build
+          mkdir -v -p build/mods
           cd $DIR
           godot --export-pack "Linux/X11" --no-window ../build/mods/Island.pck
       - name: Upload Artifact
