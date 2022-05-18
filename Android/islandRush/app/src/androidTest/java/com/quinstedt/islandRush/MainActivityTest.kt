@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MainActivityTest {
-// To run all test classes run ActivityTestSuite
+// To run all test classes sequentially  run ActivityTestSuite
 
     /** delay between the tests */
     val wait = Thread.sleep(4500)

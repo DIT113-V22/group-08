@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ControlChoiceTest {
-    // To run all test classes run ActivityTestSuite
+// To run all test classes sequentially  run ActivityTestSuite
 
     /** delay between the tests */
     private val wait = Thread.sleep(3000)

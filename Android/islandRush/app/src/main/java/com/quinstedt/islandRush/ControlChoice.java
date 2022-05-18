@@ -9,11 +9,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Switch;
 
 public class ControlChoice extends AppCompatActivity {
 
     Button controlPad, joystick;
     ImageButton escapeHash;
+    boolean cameraOn = true;
+    boolean speedometerOn = true;
+    Switch camera;
+    Switch speedometer;
   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,21 @@ public class ControlChoice extends AppCompatActivity {
 
         controlPad = findViewById(R.id.button_control);
         controlPad.setOnClickListener(view -> openButtonControl());
+
     }
+     /*  cameraSwitch = findViewById(R.id.switchControlPad);
+        cameraSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+
+                }else{
+
+                }
+            }
+        });
+
+       */
 
     /**
      * Method for the escape Hash that launches MainActivity

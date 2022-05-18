@@ -2,7 +2,9 @@ package com.quinstedt.islandRush;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,10 +17,11 @@ import com.example.joystickjhr.JoystickJhr;
 public class Joystick extends AppCompatActivity {
 
     private int lastDirection = 0;
-    private ImageButton escapeHash;
+    private int counter = 0;
     private MqttClient mMqttClient;
     private BrokerConnection brokerConnection;
-    private Button stop;
+    private SpeedometerView Speed;
+    private String setSpeed = "Speed";
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -33,10 +36,20 @@ public class Joystick extends AppCompatActivity {
         mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
 
-        escapeHash = findViewById(R.id.joystick_escapeHash);
+        ImageButton escapeHash = findViewById(R.id.joystick_escapeHash);
         escapeHash.setOnClickListener((View view) -> goBack());
-        stop = findViewById(R.id.stopJoystick);
-        stop.setOnClickListener(view -> stopCar());
+
+        Button brake = findViewById(R.id.brakeJoystick);
+        brake.setOnClickListener(view -> brake());
+
+        Button stop = findViewById(R.id.stopJoystick);
+        stop.setOnClickListener(view -> stop());
+
+        Button acceleration = findViewById(R.id.accelerateJoystick);
+        acceleration.setOnClickListener(view -> acceleration());
+
+        Button fullSpeed = findViewById(R.id.fullSpeedJoystick);
+        fullSpeed.setOnClickListener(view -> setFullSpeed());
 
 
         JoystickJhr joystick = findViewById(R.id.joystick);
@@ -61,6 +74,19 @@ public class Joystick extends AppCompatActivity {
             }
             return true;
         });
+
+        Speed =  findViewById(R.id.speedometerControlPad);
+        Speed.setLabelConverter((progress, maxProgress) -> String.valueOf((int) Math.round(progress)));
+
+// configure value range and ticks in the UI
+        Speed.setMaxSpeed(100);
+        Speed.setMajorTickStep(20);
+        Speed.setMinorTicks(0);
+
+// Configure value range colors in the UI
+        Speed.addColoredRange(0, 50, Color.GREEN);
+        Speed.addColoredRange(50, 75, Color.YELLOW);
+        Speed.addColoredRange(75, 100, Color.RED);
 
     }
 
@@ -118,10 +144,41 @@ public class Joystick extends AppCompatActivity {
 
     }
     /**
-        Method use to send to stop the car. The toString of the enum Stop is
-        actually sending a number. See the Direction class.
+        The methods below are sending the speed to arduino, changing the speedometer UI and printing the velocity
      */
-    private void stopCar() {
-        drive(Direction.STOP.toString(),"Stopping");
+    public void setFullSpeed() {
+        counter = 10;
+        String velocityText = "Velocity: " + counter * 10;
+        drive(Integer.toString(counter), velocityText + ". On full speed.");
+        Speed.setSpeed(counter * 10, 2000, 500);  // process: the speed wanted, duration: the animation duration, startDelay: the delay before the animation starts
+        Log.i(setSpeed, velocityText);
+    }
+    public void brake() {
+        if(counter > 0){
+            counter--;
+            String velocityText = "Velocity: " + counter * 10;
+            drive(Integer.toString(counter), "Using Brake new " + velocityText);
+            Speed.setSpeed(counter * 10 , 2000, 500);
+            Log.i(setSpeed, velocityText);
+        }
+    }
+    public void acceleration() {
+        if(counter < 10){
+            counter ++;
+            String velocityText = "Velocity: " + counter * 10;
+            drive(Integer.toString(counter), "Using Acceleration new " + velocityText);
+            Speed.setSpeed(counter * 10 , 2000, 500);
+            Log.i(setSpeed, velocityText);
+        }
+    }
+    public void stop() {
+        counter = 0;
+        String velocityText = "Velocity: " + counter;
+        Log.i(setSpeed, velocityText);
+        drive(Integer.toString(counter),velocityText + ".Stopping");
+        double stop = 0.000001;
+        // The speed needs to be < 0
+        Speed.setSpeed(stop,2000,500);
+
     }
 }

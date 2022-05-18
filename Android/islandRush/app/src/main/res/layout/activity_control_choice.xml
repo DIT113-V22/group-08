@@ -9,11 +9,11 @@
     android:id="@+id/controlChoice">
 
     <TextView
+        android:id="@+id/titleControlChoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="@string/control_type"
-        android:id="@+id/titleControlChoice"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -23,9 +23,9 @@
 
     <Button
         android:id="@+id/button_joystick"
-        android:background="@drawable/main_buttons"
         android:layout_width="169dp"
         android:layout_height="55dp"
+        android:background="@drawable/main_buttons"
         android:text="@string/joystick"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -34,13 +34,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintVertical_bias="0.473" />
 
     <Button
         android:id="@+id/button_control"
-        android:background="@drawable/main_buttons"
         android:layout_width="162dp"
         android:layout_height="58dp"
+        android:background="@drawable/main_buttons"
         android:text="@string/button_pad"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -50,7 +50,8 @@
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601" />
+        app:layout_constraintVertical_bias="0.623" />
+
     <ImageButton
         android:id="@+id/controlChoice_escapeHash"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -61,5 +62,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert"
         android:contentDescription="@string/escapeHash" />
+
+    <Switch
+        android:id="@+id/cameraChoice"
+        android:layout_width="182dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="16dp"
+        android:text="Camera"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/speedometerChoice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.244"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Switch
+        android:id="@+id/speedometerChoice"
+        android:layout_width="187dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="124dp"
+        android:text="Speedometer"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.254"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
