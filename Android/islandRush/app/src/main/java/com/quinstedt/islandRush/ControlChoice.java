@@ -17,8 +17,8 @@ public class ControlChoice extends AppCompatActivity {
     ImageButton escapeHash;
     boolean cameraOn = true;
     boolean speedometerOn = true;
-    Switch camera;
-    Switch speedometer;
+  //  Switch camera;
+  //  Switch speedometer;
   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +36,24 @@ public class ControlChoice extends AppCompatActivity {
         joystick = findViewById(R.id.button_joystick);
         joystick.setOnClickListener(view -> openJoystick());
 
+        joystick = findViewById(R.id.joystickNoCamera);
+        joystick.setOnClickListener(view -> openJoystickNoCamera());
+
         controlPad = findViewById(R.id.button_control);
         controlPad.setOnClickListener(view -> openButtonControl());
 
     }
-     /*  cameraSwitch = findViewById(R.id.switchControlPad);
+
+    private void openJoystickNoCamera() {
+        Intent joystick2Intent = new Intent(this, Joystick2.class);
+        startActivity(joystick2Intent);
+    }
+     /*
+       Testing Switch option for the controlChoice
+
+       cameraSwitch = findViewById(R.id.switchControlPad);
+
+
         cameraSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {

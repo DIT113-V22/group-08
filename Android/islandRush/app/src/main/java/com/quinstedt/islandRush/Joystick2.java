@@ -1,5 +1,7 @@
 package com.quinstedt.islandRush;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,18 +12,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.joystickjhr.JoystickJhr;
 
-public class Joystick extends AppCompatActivity {
+public class Joystick2 extends AppCompatActivity {
+
 
     private int lastDirection = 0;
     private int counter = 0;
     private MqttClient mMqttClient;
     private BrokerConnection brokerConnection;
     private SpeedometerView Speed;
-    private int setSpeed = counter * 10;
     private final String printSpeed = "Speed";
 
 
@@ -29,31 +29,30 @@ public class Joystick extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_joystick);
+        setContentView(R.layout.activity_joystick2);
 
         brokerConnection = new BrokerConnection(getApplicationContext());
-        brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
-        brokerConnection.setmCameraView(findViewById(R.id.joystick_camera));
+        brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick2));
         mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
 
-        ImageButton escapeHash = findViewById(R.id.joystick_escapeHash);
+        ImageButton escapeHash = findViewById(R.id.joystick_escapeHash2);
         escapeHash.setOnClickListener((View view) -> goBack());
 
-        Button brake = findViewById(R.id.brakeJoystick);
+        Button brake = findViewById(R.id.brakeJoystick2);
         brake.setOnClickListener(view -> brake());
 
-        Button stop = findViewById(R.id.stopJoystick);
+        Button stop = findViewById(R.id.stopJoystick2);
         stop.setOnClickListener(view -> stop());
 
-        Button acceleration = findViewById(R.id.accelerateJoystick);
+        Button acceleration = findViewById(R.id.accelerateJoystick2);
         acceleration.setOnClickListener(view -> acceleration());
 
-        Button fullSpeed = findViewById(R.id.fullSpeedJoystick);
+        Button fullSpeed = findViewById(R.id.fullSpeedJoystick2);
         fullSpeed.setOnClickListener(view -> setFullSpeed());
 
 
-        JoystickJhr joystick = findViewById(R.id.joystick);
+        JoystickJhr joystick = findViewById(R.id.joystick2);
         /**
          * TO avoid sending the same direction multiple times when the joystick
          * is the same angle range the variable lastDirection makes sure that
@@ -76,7 +75,7 @@ public class Joystick extends AppCompatActivity {
             return true;
         });
 
-        Speed =  findViewById(R.id.speedometerControlPad);
+        Speed =  findViewById(R.id.speedometerJoystick2);
         Speed.setLabelConverter((progress, maxProgress) -> String.valueOf((int) Math.round(progress)));
 
 // configure value range and ticks in the UI
@@ -149,7 +148,7 @@ public class Joystick extends AppCompatActivity {
         mMqttClient.publish(BrokerConnection.SET_CAR_SPEED, message, BrokerConnection.QOS, null);
     }
     /**
-        The methods below are sending the speed to arduino, changing the speedometer UI and printing the velocity
+     The methods below are sending the speed to arduino, changing the speedometer UI and printing the velocity
      */
     public void setFullSpeed() {
         counter = 10;

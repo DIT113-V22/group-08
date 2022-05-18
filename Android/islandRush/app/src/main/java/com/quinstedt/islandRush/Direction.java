@@ -38,8 +38,5 @@ public enum Direction {
     }, UPLEFT {
         @Override
         public String toString() { return "8"; }
-    },STOP {
-        @Override
-        public String toString() { return "9"; }
     }
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -18,6 +19,8 @@ public class ControlPad extends AppCompatActivity {
     private MqttClient mMqttClient;
     private SpeedometerView Speed;
     int counter = 0;
+    private int setSpeed = counter * 10;
+    private final String printSpeed = "Speed";
 
     @Override
     public void onCreate(Bundle savedInstanceState ) {
@@ -61,37 +64,42 @@ public class ControlPad extends AppCompatActivity {
 
     }
 
-
-
     public void setFullSpeed() {
         counter = 10;
-        String velocityText = "Velocity: " + counter * 10;
-        drive(Integer.toString(counter), "Setting velocity on full speed");
-        Speed.setSpeed(counter * 10, 2000, 500);
+        int setSpeed = counter * 10;
+        String velocityText = "Velocity: " + setSpeed;
+        driveSpeed(Integer.toString(setSpeed), "Setting velocity on full speed");
+        Speed.setSpeed(setSpeed, 2000, 500);
+        Log.i(printSpeed, velocityText);
     }
     public void brake() {
         if(counter > 0){
             counter--;
-            String velocityText = "Velocity: " + counter * 10;
-            drive(Integer.toString(counter), "Using Brake new " + velocityText);
-            Speed.setSpeed(counter * 10 , 2000, 500);
+            int setSpeed = counter * 10;
+            String velocityText = "Velocity: " + setSpeed;
+            driveSpeed(Integer.toString(setSpeed), "Using Brake new " + velocityText);
+            Speed.setSpeed(setSpeed, 2000, 500);
+            Log.i(printSpeed, velocityText);
         }
     }
     public void acceleration() {
         if(counter < 10){
             counter ++;
-            String velocityText = "Velocity: " + counter * 10;
-            drive(Integer.toString(counter), "Using Acceleration new " + velocityText);
-            Speed.setSpeed(counter * 10 , 2000, 500);
+            int setSpeed = counter * 10;
+            String velocityText = "Velocity: " + setSpeed;
+            driveSpeed(Integer.toString(setSpeed), "Using Acceleration new " + velocityText);
+            Speed.setSpeed(setSpeed , 2000, 500);
+            Log.i(printSpeed, velocityText);
         }
     }
     public void stop() {
         counter = 0;
         String velocityText = "Velocity: " + counter;
-        drive(Integer.toString(counter),"Stopping");
+        driveSpeed(Integer.toString(counter),"Stopping");
         double stop = 0.000001;
         Speed.setSpeed(stop,2000,500);
         // The speed needs to be < 0
+        Log.i(printSpeed, velocityText);
     }
 
     /**
@@ -108,10 +116,14 @@ public class ControlPad extends AppCompatActivity {
      * @param actionDescription - the action description that will be printed
      */
 
-    public void drive(String message, String actionDescription) {
+    public void driveControl(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(brokerConnection.CONTROLLER, message,brokerConnection.QOS, null);
-
+        mMqttClient.publish(BrokerConnection.CONTROLLER, message,brokerConnection.QOS, null);
+        mMqttClient.publish(brokerConnection.SET_CAR_SPEED, message,brokerConnection.QOS, null);
+    }
+    public void driveSpeed(String message, String actionDescription) {
+        brokerConnection.drive(message,actionDescription);
+        mMqttClient.publish(brokerConnection.SET_CAR_SPEED, message,brokerConnection.QOS, null);
     }
 
     /**
@@ -123,17 +135,17 @@ public class ControlPad extends AppCompatActivity {
      * @param view - The activity that has been used
      */
     public void moveForward(View view) {
-        drive(Direction.FORWARD.toString(), "Moving forward");
+        driveControl(Direction.FORWARD.toString(), "Moving forward");
     }
     public void moveForwardLeft(View view) {
-        drive(Direction.LEFT.toString(), "Moving to the left");
+        driveControl(Direction.LEFT.toString(), "Moving to the left");
     }
 
     public void moveForwardRight(View view) {
-        drive(Direction.RIGHT.toString(), "Moving right");
+        driveControl(Direction.RIGHT.toString(), "Moving right");
     }
     public void moveBackward(View view) {
-        drive(Direction.REVERSE.toString(), "Moving in reverse");
+        driveControl(Direction.REVERSE.toString(), "Moving in reverse");
     }
 
 }
