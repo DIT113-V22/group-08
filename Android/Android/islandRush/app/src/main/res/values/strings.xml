@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">islandRush</string>
+    <string name="Enter_players_name">Enter players name</string>
+    <string name="enter_race">Enter Race</string>
+    <string name="leaderboard">LeaderBoard</string>
+    <string name="control_type">Control type</string>
+    <string name="joystick">Joystick</string>
+    <string name="button_pad">Button Pad</string>
+    <string name="escapeHash">EscapeHash</string>
+    <string name="cameraview">cameraView</string>
+    <string name="islandrush">IslandRush</string>
+    <string name="palm_image">palm image</string>
+    <string name="car_image">car image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_1">1</string>
+    <string name="no_2">2</string>
+    <string name="no_3">3</string>
+    <string name="no_4">4</string>
+    <string name="no_5">5</string>
+
+</resources>
