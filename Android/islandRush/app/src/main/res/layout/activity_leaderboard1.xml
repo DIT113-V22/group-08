@@ -1,354 +1,372 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Leaderboard1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/palm"
-    android:id="@+id/leaderboard1"
+    android:background="@drawable/background1"
     tools:context=".Leaderboard1">
 
+    <ImageButton
+        android:id="@+id/Leaderboard_escapeHash"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="53dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <Button
+        android:id="@+id/GoToLeaderboard2"
+        android:layout_width="149dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="48dp"
+        android:background="@color/cardview_shadow_end_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/L1Bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/leaderboard1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TableLayout
-        android:layout_width="307dp"
-        android:layout_height="398dp"
+        android:id="@+id/TableLayout"
+        android:layout_width="316dp"
+        android:layout_height="534dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="16dp"
         android:alpha="0.7"
+        android:background="@drawable/palm"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.745">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
+            android:alpha="0.5"
             android:background="@color/purple_200">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
-                android:padding="0dp">
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank1"
+                    android:id="@+id/Rank1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_1"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:textSize="40sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player1"
+                    android:id="@+id/Player1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:alpha="1"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textColor="#000"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank1"
-                    app:layout_constraintTop_toTopOf="@+id/rank1" />
-
-                <ImageView
-                    android:id="@+id/gold_medal"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/first_medal" />
+                    app:layout_constraintStart_toEndOf="@+id/Rank1" />
 
                 <TextView
-                    android:id="@+id/time1"
+                    android:id="@+id/Time1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+            android:id="@+id/CardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="12dp"
+            android:alpha="0.5">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
-                android:padding="0dp">
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank2"
+                    android:id="@+id/Rank2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_2"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="40sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player2"
+                    android:id="@+id/Time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="----"
+                    android:textAppearance="?android:attr/text"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/Player2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank2"
-                    app:layout_constraintTop_toTopOf="@+id/rank2" />
-
-                <ImageView
-                    android:id="@+id/second_medal"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/second_medal" />
-
-                <TextView
-                    android:id="@+id/time2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/text"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/Rank2" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+            android:id="@+id/CardView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="12dp"
+            android:alpha="0.5">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:background="@color/teal_200"
-                android:padding="0dp">
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank3"
+                    android:id="@+id/Rank3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_3"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="40sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player3"
+                    android:id="@+id/Player3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank3"
-                    app:layout_constraintTop_toTopOf="@+id/rank3" />
-
-                <ImageView
-                    android:id="@+id/third_medal"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/third_medal" />
+                    app:layout_constraintStart_toEndOf="@+id/Rank3"
+                    app:layout_constraintTop_toTopOf="@+id/Rank3" />
 
                 <TextView
-                    android:id="@+id/time3"
+                    android:id="@+id/Time3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-    </TableLayout>
-
-    <TableLayout
-        android:layout_width="317dp"
-        android:layout_height="442dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="16dp"
-        android:alpha="0.7"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.793"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView4"
+            android:id="@+id/CardView4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:alpha="0.5">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
-                android:padding="0dp">
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank4"
+                    android:id="@+id/Rank4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_4"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="40sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player4"
+                    android:id="@+id/Player4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank4"
-                    app:layout_constraintTop_toTopOf="@+id/rank4" />
-
-                <ImageView
-                    android:id="@+id/fourth_medal"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/Rank4" />
 
                 <TextView
-                    android:id="@+id/time4"
+                    android:id="@+id/Time4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView5"
+            android:id="@+id/CardView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="12dp"
+            android:alpha="0.5">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
-                android:padding="0dp">
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/rank5"
+                    android:id="@+id/Rank5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_5"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="40sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/player5"
+                    android:id="@+id/Player5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rank5"
-                    app:layout_constraintTop_toTopOf="@+id/rank5" />
-
-                <ImageView
-                    android:id="@+id/fifth_medal"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/Rank5" />
 
                 <TextView
-                    android:id="@+id/time5"
+                    android:id="@+id/Time5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:text="----"
                     android:textAppearance="?android:attr/text"
-                    android:textSize="12sp"
+                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.cardview.widget.CardView>
-
     </TableLayout>
+
+    <ImageView
+        android:id="@+id/Gold_medal"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="28dp"
+        android:alpha="1"
+        app:layout_constraintBottom_toTopOf="@+id/Silver_medal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/TableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/GoToLeaderboard2"
+        app:srcCompat="@drawable/first_medal" />
+
+    <ImageView
+        android:id="@+id/Silver_medal"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/TableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/Gold_medal"
+        app:srcCompat="@drawable/second_medal" />
+
+    <ImageView
+        android:id="@+id/Bronze_medal"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="396dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/TableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/Silver_medal"
+        app:layout_constraintVertical_bias="0.894"
+        app:srcCompat="@drawable/third_medal" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

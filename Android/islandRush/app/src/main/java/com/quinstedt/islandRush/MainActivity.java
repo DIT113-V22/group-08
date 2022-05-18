@@ -10,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button enterRace, leaderboard;
     EditText editText;
+    BrokerConnection brokerConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         animationBackground.setEnterFadeDuration(2500);
         animationBackground.setExitFadeDuration(5000);
         animationBackground.start();
-       // viewPager2.findViewById(R.id.leaderboard1);
+
 
         // On Click goes to Controller choice
         enterRace = findViewById(R.id.button_enterRace);
@@ -38,14 +38,16 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.playerName);
         editText.setOnEditorActionListener(editorActionListener);
 
-
         leaderboard = findViewById(R.id.button_Leaderboard);
         leaderboard.setOnClickListener(view -> openLeaderboard());
+
+        brokerConnection = new BrokerConnection(getApplicationContext());
+        brokerConnection.connectToMqttBroker();
 
     }
 
     public void openLeaderboard() {
-        Intent leadIntent = new Intent(this, Leaderboard.class);
+        Intent leadIntent = new Intent(this, Leaderboard1.class);
 
         startActivity(leadIntent);
 

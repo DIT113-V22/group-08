@@ -1,5 +1,8 @@
 package com.quinstedt.islandRush;
 
+import static com.quinstedt.islandRush.Topics.Connection.QOS;
+import static com.quinstedt.islandRush.Topics.Controller.CONTROLLER;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +23,8 @@ public class ControlPad extends AppCompatActivity {
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeed));
         brokerConnection.setmCameraView(findViewById(R.id.controlPad_camera));
-        mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
+        mMqttClient = brokerConnection.getmMqttClient();
 
         escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
@@ -44,7 +47,7 @@ public class ControlPad extends AppCompatActivity {
 
     public void drive(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(brokerConnection.CONTROLLER, message,brokerConnection.QOS, null);
+        mMqttClient.publish(CONTROLLER, message,QOS, null);
 
     }
 

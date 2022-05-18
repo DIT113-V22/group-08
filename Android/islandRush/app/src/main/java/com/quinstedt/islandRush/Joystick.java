@@ -1,5 +1,8 @@
 package com.quinstedt.islandRush;
 
+import static com.quinstedt.islandRush.Topics.Connection.QOS;
+import static com.quinstedt.islandRush.Topics.Controller.CONTROLLER;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,8 +33,9 @@ public class Joystick extends AppCompatActivity {
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
         brokerConnection.setmCameraView(findViewById(R.id.joystick_camera));
-        mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
+        mMqttClient = brokerConnection.getmMqttClient();
+
 
         escapeHash = findViewById(R.id.joystick_escapeHash);
         escapeHash.setOnClickListener((View view) -> goBack());
@@ -114,7 +118,7 @@ public class Joystick extends AppCompatActivity {
      */
     public void drive(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(brokerConnection.CONTROLLER, message,brokerConnection.QOS, null);
+        mMqttClient.publish(CONTROLLER, message,QOS, null);
 
     }
     /**
