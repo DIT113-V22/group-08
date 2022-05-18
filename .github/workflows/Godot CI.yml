@@ -11,7 +11,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:mono-latest # not sure this image works with godot 3.4.4
+      image: barichello/godot-ci:mono-latest 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,11 +19,11 @@ jobs:
           lfs: true
       - name: Resolve Dependencies
         run: |
-          mkdir -v -p build/mods
+          mkdir -v -p build
           cd $DIR
           godot --export-pack "Linux/X11" --no-window ../build/mods/Island.pck
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
-        with: # the final result should be called Island.zip
+        with: 
           name: Island
           path: build/mods
