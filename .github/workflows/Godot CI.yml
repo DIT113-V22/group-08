@@ -1,6 +1,6 @@
 name: Build Island.zip Artifact
 
-on: [workflow_dispatch] 
+on: [push, pull_request, workflow_dispatch] 
        
 env: 
   GODOT_VERSION: 3.4.4 
