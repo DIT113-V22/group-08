@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +17,10 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BrokerConnection  {
 
@@ -40,6 +46,7 @@ public class BrokerConnection  {
 
     public static final String SERVER = MAIN_TOPIC + "/server";
 
+    public static final String FINISH = MAIN_TOPIC + "/Mood/Race/Finish";
 
     // CAMERA
     private static final int IMAGE_WIDTH = 320;
@@ -47,6 +54,9 @@ public class BrokerConnection  {
     ImageView mCameraView;
     TextView actualSpeed;
     Context context;
+    TextView finish;
+    Chronometer simpleChronometer;
+    TextView t;
 
     public  BrokerConnection(Context context){
         this.context = context;
@@ -118,7 +128,24 @@ public class BrokerConnection  {
                         String messageMQTT = message.toString();
                         setActualSpeedFromString(actualSpeed,messageMQTT);
                         Log.i(TAG, "Car speed: " + messageMQTT);
-                    }else {
+
+                    }else if(topic.equals(FINISH)){
+                            String finishMessage = "Finish";
+                            finish.setText(finishMessage);
+
+                            simpleChronometer.stop();
+                            long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+
+
+                            DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
+
+
+                            Date result = new Date(elapsedMillis);
+
+
+                            t.setText(String.valueOf(simple.format(result)));
+
+                        }else {
                         Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
                     }
                 }
@@ -178,4 +205,16 @@ public class BrokerConnection  {
     public MqttClient getmMqttClient() {
         return mMqttClient;
     }
+
+        public void setFinish(TextView finish) {
+            this.finish = finish;
+        }
+
+        public void setSimpleChronometer(Chronometer simpleChronometer) {
+            this.simpleChronometer = simpleChronometer;
+        }
+
+        public void setT(TextView t) {
+            this.t = t;
+        }
 }
