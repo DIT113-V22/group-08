@@ -48,7 +48,7 @@ dependencies {
      */
     implementation files('libs/joytstick.aar')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+  //  implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     testImplementation 'junit:junit:4.13.2'
 
