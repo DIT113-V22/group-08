@@ -12,16 +12,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
-
+import android.widget.Chronometer;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ControlPad extends AppCompatActivity {
+
     private BrokerConnection brokerConnection;
     private MqttClient mMqttClient;
     private SpeedometerView Speed;
     int counter = 0;
     private final String printSpeed = "Speed";
+
+    ImageButton escapeHash;
+    Chronometer simpleChronometer;
 
 
     @Override
@@ -31,12 +35,22 @@ public class ControlPad extends AppCompatActivity {
 
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeed));
-      //  brokerConnection.setmCameraView(findViewById(R.id.controlPad_camera));
         brokerConnection.setFinish(findViewById(R.id.finish_controlPad));
+        brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerControlPad));
+        brokerConnection.setT(findViewById(R.id.TOTALTIME_ControlPad));
         mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
 
-        ImageButton escapeHash = findViewById(R.id.controlPad_escapeHash);
+
+        // start timer
+        simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometerControlPad);
+
+        simpleChronometer.start();
+
+        TextView timerView = (TextView) findViewById(R.id.TOTALTIME_ControlPad);
+
+        escapeHash = findViewById(R.id.controlPad_escapeHash);
+
         escapeHash.setOnClickListener(view -> goBack());
 
         Button brake = findViewById(R.id.brakeControlPad);

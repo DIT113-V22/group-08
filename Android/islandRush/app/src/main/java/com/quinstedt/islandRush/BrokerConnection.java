@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,24 +18,28 @@ import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class BrokerConnection  {
 
-    public class Topics {
+    public static class Topics {
 
         public static final String MAIN_TOPIC = "/IslandRush";
 
-        public class Connection{
+        public static class Connection{
             public static final String TAG = "IslandRushApp";
             public static final String EXTERNAL_MQTT_BROKER = "aerostun.dev";
             public static final String LOCALHOST = "10.0.2.2";
             public static final String MQTT_SERVER = "tcp://" + LOCALHOST + ":1883";
             public static final int QOS = 1;
         }
-        public class Sensor{
+        public static class Sensor{
             public static final String ODOMETER_DISTANCE = MAIN_TOPIC + "/Odometer/Distance";
             public static final String ODOMETER_SPEED = MAIN_TOPIC + "/Odometer/Speed";
         }
-        public class Race {
+        public static class Race {
             public static final String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
             public static final String SET_CAR_SPEED = MAIN_TOPIC + "/Control/Speed";
             public static final String FINISH = MAIN_TOPIC + "/Mood/Race/Finish";
@@ -41,13 +47,15 @@ public class BrokerConnection  {
 
     }
 
-
     private boolean isConnected = false;
     public MqttClient mMqttClient;
 
     TextView actualSpeed;
     Context context;
     TextView finish;
+    Chronometer simpleChronometer;
+    TextView t;
+
 
     public  BrokerConnection(Context context){
         this.context = context;
@@ -105,11 +113,19 @@ public class BrokerConnection  {
                         String messageMQTT = message.toString();
                         setActualSpeedFromString(actualSpeed, messageMQTT);
                         Log.i(Topics.Connection.TAG, "Car speed: " + messageMQTT);
+
                     }else if(topic.equals(Topics.Race.FINISH)){
-                         finish.setText("Finish");
-                         Log.i(Topics.Connection.TAG, "Finish" + message.toString());
-                    }else {
+                            String finishMessage = "Finish";
+                            finish.setText(finishMessage);
+                            simpleChronometer.stop();
+                            long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+                            DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
+                            Date result = new Date(elapsedMillis);
+                            t.setText(String.valueOf(simple.format(result)));
+
+                        }else {
                         Log.i(Topics.Connection.TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
+
                     }
                 }
 
@@ -152,16 +168,20 @@ public class BrokerConnection  {
         actualSpeed.setText(" : " + roundedSpeed + " m/s");
         return actualSpeed;
     }
-
     public void setActualSpeed(TextView actualSpeed) {
         this.actualSpeed = actualSpeed;
     }
-
     public MqttClient getmMqttClient() {
         return mMqttClient;
     }
-
     public void setFinish(TextView finish) {
-        this.finish = finish;
-    }
+            this.finish = finish;
+        }
+    public void setSimpleChronometer(Chronometer simpleChronometer) {
+            this.simpleChronometer = simpleChronometer;
+        }
+    public void setT(TextView t) {
+            this.t = t;
+        }
+
 }

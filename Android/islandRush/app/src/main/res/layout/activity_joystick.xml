@@ -24,17 +24,16 @@
         android:id="@+id/actualSpeedJoystick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="336dp"
+        android:layout_marginTop="292dp"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:drawableLeftCompat="@drawable/ic_baseline_speed_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.764"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.quinstedt.islandRush.SpeedometerView
         android:id="@+id/speedometerControlPad"
@@ -45,9 +44,10 @@
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/fullSpeedJoystick"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.402" />
+        app:layout_constraintVertical_bias="0.249" />
 
     <Button
         android:id="@+id/stopJoystick"
@@ -117,6 +117,32 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <Chronometer
+        android:id="@+id/simpleChronometerJoystick"
+        android:layout_width="141dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="280dp"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TOTALTIME_Joystick"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="364dp"
+        android:textAppearance="?android:attr/text"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

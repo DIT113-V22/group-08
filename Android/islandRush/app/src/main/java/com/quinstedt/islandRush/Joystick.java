@@ -13,6 +13,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Chronometer;
+import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +29,9 @@ public class Joystick extends AppCompatActivity {
     private BrokerConnection brokerConnection;
     private SpeedometerView Speed;
     private final String printSpeed = "Speed";
+    private Button stop;
+    Chronometer simpleChronometer;
+
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -36,9 +42,17 @@ public class Joystick extends AppCompatActivity {
 
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
-       // brokerConnection.setmCameraView(findViewById(R.id.joystick_camera));
+
+        brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerJoystick));
+        brokerConnection.setT(findViewById(R.id.TOTALTIME_Joystick));
         mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
+
+        // Start
+        simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometerJoystick); // initiate a chronometer
+
+        simpleChronometer.start(); // start a chronometer
+        TextView timerView = (TextView) findViewById(R.id.TOTALTIME_Joystick);
 
         ImageButton escapeHash = findViewById(R.id.joystick_escapeHash);
         escapeHash.setOnClickListener((View view) -> goBack());
