@@ -27,15 +27,6 @@ const auto mqttBrokerUrl = "192.168.0.40";
 #endif
 const auto maxDistance = 400;
 
-// Car movements
-int currentSpeed;
-const auto degreeLeft = -50; 
-const auto degreeRight = 50;
-const auto diagonalFirst = 80;
-const auto diagonalRight = 20;
-const auto diagonalLeft = -20;
-const auto diagonalDelay = 500;
-
 const auto oneSecond = 1000UL;
 
 //topics
@@ -69,6 +60,15 @@ DirectionlessOdometer rightOdometer{ arduinoRuntime, smartcarlib::pins::v2::righ
   []() { rightOdometer.update(); }, pulsesPerMeter };
 
 DistanceCar car(arduinoRuntime, control, leftOdometer, rightOdometer);
+
+// Car movements
+int currentSpeed;
+const auto degreeLeft = -50; 
+const auto degreeRight = 50;
+const auto diagonalFirst = 20;
+const auto diagonalRight = 20;
+const auto diagonalLeft = -20;
+const auto diagonalDelay = 500;
 
 void setup() {
   Serial.begin(9600);
