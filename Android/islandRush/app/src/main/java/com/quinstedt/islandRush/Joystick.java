@@ -34,6 +34,8 @@ public class Joystick extends AppCompatActivity {
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
         brokerConnection.setmCameraView(findViewById(R.id.joystick_camera));
+        brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerJoystick));
+        brokerConnection.setT(findViewById(R.id.TOTALTIME_Joystick));
         mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
 
@@ -41,7 +43,7 @@ public class Joystick extends AppCompatActivity {
         simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometerJoystick); // initiate a chronometer
 
         simpleChronometer.start(); // start a chronometer
-        TextView timerView = (TextView) findViewById(R.id.TIMERVIEW); //TODO
+        TextView timerView = (TextView) findViewById(R.id.TOTALTIME_Joystick);
 
         escapeHash = findViewById(R.id.joystick_escapeHash);
         escapeHash.setOnClickListener((View view) -> goBack());

@@ -132,18 +132,17 @@ public class BrokerConnection  {
                     }else if(topic.equals(FINISH)){
                             String finishMessage = "Finish";
                             finish.setText(finishMessage);
-                            //Chronometer simpleChronometer= findViewById(R.id.simpleChronometer);
+
                             simpleChronometer.stop();
                             long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
 
-                            // THE CHOSEN DATE FORMAT
+
                             DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
 
-                            // Creating date from milliseconds
+
                             Date result = new Date(elapsedMillis);
 
-                            // SET DATE TO CHOSEN FORMAT
-                            // TextView t = findViewById(R.id.TOTALTIME);
+
                             t.setText(String.valueOf(simple.format(result)));
 
                         }else {

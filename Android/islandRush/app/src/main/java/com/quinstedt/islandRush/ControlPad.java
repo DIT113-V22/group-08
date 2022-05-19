@@ -26,17 +26,17 @@ public class ControlPad extends AppCompatActivity {
         brokerConnection.setmCameraView(findViewById(R.id.controlPad_camera));
         brokerConnection.setFinish(findViewById(R.id.finish_controlPad));
         brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerControlPad));
-        brokerConnection.setT(findViewById(R.id.TIMERVIEW_ControlPad));
+        brokerConnection.setT(findViewById(R.id.TOTALTIME_ControlPad));
         mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
 
 
         // start timer
-        simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometerControlPad); // initiate a chronometer
+        simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometerControlPad);
 
-        simpleChronometer.start(); // start a chronometer
+        simpleChronometer.start();
 
-        TextView timerView = (TextView) findViewById(R.id.TIMERVIEW_ControlPad);
+        TextView timerView = (TextView) findViewById(R.id.TOTALTIME_ControlPad);
 
         escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
