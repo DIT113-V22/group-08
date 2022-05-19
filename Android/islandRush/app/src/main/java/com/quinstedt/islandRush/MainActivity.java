@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openLeaderboard() {
-        Intent leadIntent = new Intent(this, Leaderboard.class);
+        Intent leadIntent = new Intent(this, LeaderboardAnimation.class);
 
         startActivity(leadIntent);
 
