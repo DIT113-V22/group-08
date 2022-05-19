@@ -90,7 +90,6 @@ void setup() {
     wifiStatus = WiFi.status();
   }
 
-
   Serial.println("Connecting to MQTT broker");
   while (!mqtt.connect("arduino", "public", "public")) {
     Serial.print(".");
@@ -149,15 +148,14 @@ void setup() {
         }
     } else if (topic == SPEED){
       // the speed is set between 0-100, increasing or decrising by 10 everytime
-        car.setSpeed(message.toInt());
-        currentSpeed = message.toInt();
-        
+         currentSpeed = message.toInt();
+        car.setSpeed(currentSpeed);
+               
     }else {
       Serial.println(topic + " " + message);
     }
   });
 }
-
 
 
 void loop() {

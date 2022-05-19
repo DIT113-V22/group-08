@@ -9,32 +9,18 @@
     tools:context=".ControlPad">
 
 
-    <ImageView
-        android:id="@+id/controlPad_camera"
-        android:layout_width="match_parent"
-        android:layout_height="288dp"
-        android:layout_marginStart="2sp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="2sp"
-        android:background="@color/cardview_shadow_end_color"
-        android:contentDescription="cameraView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/finish_controlPad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="308dp"
         android:textAllCaps="true"
         android:textAppearance="?android:attr/text"
-        android:textColor="@color/black"
-        android:textSize="100sp"
+        android:textColor="@color/white"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,10 +30,10 @@
         android:layout_height="190dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805"
+        app:layout_constraintVertical_bias="0.866"
         app:srcCompat="@drawable/pad_image" />
 
     <Button
@@ -73,20 +59,6 @@
         app:layout_constraintTop_toTopOf="@+id/controlBackground" />
 
     <Button
-        android:id="@+id/stop"
-        android:layout_width="61dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="13dp"
-        android:background="@color/cardview_shadow_end_color"
-        android:text="STOP"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="8dp"
-        app:layout_constraintStart_toStartOf="@+id/controlBackground"
-        app:layout_constraintTop_toBottomOf="@+id/up" />
-
-    <Button
         android:id="@+id/down"
         android:layout_width="76dp"
         android:layout_height="50dp"
@@ -110,28 +82,28 @@
 
     <com.quinstedt.islandRush.SpeedometerView
         android:id="@+id/speedometerControlPad"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
+        android:layout_width="385dp"
+        android:layout_height="349dp"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:layout_marginTop="16dp"
         android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/actualSpeed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/controlPad_camera" />
+        app:layout_constraintTop_toBottomOf="@+id/controlPad_escapeHash" />
 
     <TextView
         android:id="@+id/actualSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="276dp"
+        android:layout_marginTop="256dp"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:drawableLeftCompat="@drawable/ic_baseline_speed_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -147,10 +119,10 @@
 
     <Button
         android:id="@+id/brakeControlPad"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="112dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="152dp"
         android:background="@drawable/black_circle_button"
         android:text="B"
         android:textColor="@color/white"
@@ -159,10 +131,10 @@
 
     <Button
         android:id="@+id/accelerateControlPad"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="88dp"
         android:background="@drawable/black_circle_button"
         android:text="A"
         android:textColor="@color/white"
@@ -171,10 +143,10 @@
 
     <Button
         android:id="@+id/fullSpeedControlPad"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="184dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="216dp"
         android:background="@drawable/red_circle_button"
         android:text="Full Speed"
         android:textColor="@color/white"
@@ -182,6 +154,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="152dp"
+        android:alpha="0.8"
+        android:background="@drawable/black_circle_button"
+        android:text="stop"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

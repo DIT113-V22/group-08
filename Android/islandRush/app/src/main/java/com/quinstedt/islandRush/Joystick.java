@@ -1,5 +1,9 @@
 package com.quinstedt.islandRush;
 
+import static com.quinstedt.islandRush.BrokerConnection.Topics.Connection.QOS;
+import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.CONTROLLER;
+import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.SET_CAR_SPEED;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,7 +25,6 @@ public class Joystick extends AppCompatActivity {
     private MqttClient mMqttClient;
     private BrokerConnection brokerConnection;
     private SpeedometerView Speed;
-    private int setSpeed = counter * 10;
     private final String printSpeed = "Speed";
 
 
@@ -33,7 +36,7 @@ public class Joystick extends AppCompatActivity {
 
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
-        brokerConnection.setmCameraView(findViewById(R.id.joystick_camera));
+       // brokerConnection.setmCameraView(findViewById(R.id.joystick_camera));
         mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
 
@@ -141,12 +144,11 @@ public class Joystick extends AppCompatActivity {
      */
     public void driveControl(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(BrokerConnection.CONTROLLER, message, BrokerConnection.QOS, null);
-        mMqttClient.publish(BrokerConnection.SET_CAR_SPEED, message, BrokerConnection.QOS, null);
+        mMqttClient.publish(CONTROLLER, message, QOS, null);
     }
     public void driveSpeed(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(BrokerConnection.SET_CAR_SPEED, message, BrokerConnection.QOS, null);
+        mMqttClient.publish(SET_CAR_SPEED, message, QOS, null);
     }
     /**
         The methods below are sending the speed to arduino, changing the speedometer UI and printing the velocity

@@ -38,22 +38,6 @@
         app:layout_constraintVertical_bias="0.466" />
 
     <Button
-        android:id="@+id/joystickNoCamera"
-        android:layout_width="169dp"
-        android:layout_height="55dp"
-        android:background="@drawable/main_buttons"
-        android:text="JoyStick No Camera"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.458"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.327" />
-
-    <Button
         android:id="@+id/button_control"
         android:layout_width="162dp"
         android:layout_height="58dp"

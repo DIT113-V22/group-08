@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background1"
     tools:context=".Joystick">
+
     <ImageButton
         android:id="@+id/joystick_escapeHash"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -18,65 +19,52 @@
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
 
-    <ImageView
-        android:id="@+id/joystick_camera"
-        android:layout_width="400dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_weight="0.3"
-        android:contentDescription="cameraView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.272" />
-
-    <com.quinstedt.islandRush.SpeedometerView
-        android:id="@+id/speedometerControlPad"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
-        android:padding="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/actualSpeedJoystick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="184dp"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:drawableLeftCompat="@drawable/ic_baseline_speed_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.joystickjhr.JoystickJhr
         android:id="@+id/joystick"
-        android:layout_width="219dp"
-        android:layout_height="205dp"
+        android:layout_width="229dp"
+        android:layout_height="218dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
         app:alphaCircleFirst="100"
         app:alphaCircleSecond="100"
         app:colorFirst="#06EBF3"
         app:colorSecond="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/joystick_camera"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914"
+        app:layout_constraintVertical_bias="0.835"
         app:radioCircle="0.5" />
+
+    <com.quinstedt.islandRush.SpeedometerView
+        android:id="@+id/speedometerControlPad"
+        android:layout_width="621dp"
+        android:layout_height="332dp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_marginTop="16dp"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/brakeJoystick"
@@ -85,16 +73,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginEnd="64dp"
         android:alpha="0.6"
         android:background="@drawable/black_circle_button"
         android:text="brake"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/accelerateJoystick"
-        app:layout_constraintHorizontal_bias="0.536"
-        app:layout_constraintStart_toEndOf="@+id/joystick_camera"
-        app:layout_constraintTop_toBottomOf="@+id/fullSpeedJoystick"
-        app:layout_constraintVertical_bias="0.437" />
+        app:layout_constraintEnd_toStartOf="@+id/stopJoystick"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.745" />
 
     <Button
         android:id="@+id/fullSpeedJoystick"
@@ -102,15 +89,14 @@
         android:layout_height="64dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="132dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="64dp"
         android:alpha="0.6"
         android:background="@drawable/red_circle_button"
         android:text="Full SPEED"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
-        app:layout_constraintStart_toEndOf="@+id/joystick_camera"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/accelerateJoystick"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/accelerateJoystick"
@@ -118,17 +104,14 @@
         android:layout_height="64dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="16dp"
         android:alpha="0.6"
         android:background="@drawable/black_circle_button"
         android:text="A"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/joystick_camera"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/stopJoystick"
@@ -137,17 +120,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:alpha="0.6"
         android:background="@drawable/black_circle_button"
         android:text="stop"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/accelerateJoystick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/fullSpeedJoystick"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

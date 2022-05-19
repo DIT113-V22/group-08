@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroSplashAnimation">
+    tools:context=".IntroSplashAnimation"
+    android:id="@+id/splashAnimation">
 
     <ImageView
         android:id="@+id/palmBackground"
@@ -27,10 +28,10 @@
         android:contentDescription="@string/car_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.159"
+        app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/bil" />
 
     <androidx.constraintlayout.widget.Guideline

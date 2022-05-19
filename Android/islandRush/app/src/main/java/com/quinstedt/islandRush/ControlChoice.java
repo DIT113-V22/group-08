@@ -33,21 +33,17 @@ public class ControlChoice extends AppCompatActivity {
 
         escapeHash =  findViewById(R.id.controlChoice_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
+
         joystick = findViewById(R.id.button_joystick);
         joystick.setOnClickListener(view -> openJoystick());
 
-        joystick = findViewById(R.id.joystickNoCamera);
-        joystick.setOnClickListener(view -> openJoystickNoCamera());
+
 
         controlPad = findViewById(R.id.button_control);
         controlPad.setOnClickListener(view -> openButtonControl());
 
     }
 
-    private void openJoystickNoCamera() {
-        Intent joystick2Intent = new Intent(this, Joystick2.class);
-        startActivity(joystick2Intent);
-    }
      /*
        Testing Switch option for the controlChoice
 

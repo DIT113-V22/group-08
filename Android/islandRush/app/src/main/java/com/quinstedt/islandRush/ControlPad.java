@@ -1,26 +1,28 @@
 package com.quinstedt.islandRush;
 
-import android.annotation.SuppressLint;
+import static com.quinstedt.islandRush.BrokerConnection.Topics.Connection.QOS;
+import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.CONTROLLER;
+import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.SET_CAR_SPEED;
+
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.Switch;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ControlPad extends AppCompatActivity {
-    private ImageButton escapeHash;
     private BrokerConnection brokerConnection;
     private MqttClient mMqttClient;
     private SpeedometerView Speed;
     int counter = 0;
-    private int setSpeed = counter * 10;
     private final String printSpeed = "Speed";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState ) {
@@ -29,11 +31,12 @@ public class ControlPad extends AppCompatActivity {
 
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeed));
-        brokerConnection.setmCameraView(findViewById(R.id.controlPad_camera));
+      //  brokerConnection.setmCameraView(findViewById(R.id.controlPad_camera));
+        brokerConnection.setFinish(findViewById(R.id.finish_controlPad));
         mMqttClient = brokerConnection.getmMqttClient();
         brokerConnection.connectToMqttBroker();
 
-        escapeHash = findViewById(R.id.controlPad_escapeHash);
+        ImageButton escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
 
         Button brake = findViewById(R.id.brakeControlPad);
@@ -118,12 +121,11 @@ public class ControlPad extends AppCompatActivity {
 
     public void driveControl(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(BrokerConnection.CONTROLLER, message,brokerConnection.QOS, null);
-        mMqttClient.publish(brokerConnection.SET_CAR_SPEED, message,brokerConnection.QOS, null);
+        mMqttClient.publish(CONTROLLER, message,QOS, null);
     }
     public void driveSpeed(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(brokerConnection.SET_CAR_SPEED, message,brokerConnection.QOS, null);
+        mMqttClient.publish(SET_CAR_SPEED, message,QOS, null);
     }
 
     /**

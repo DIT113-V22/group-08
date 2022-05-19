@@ -20,15 +20,15 @@
         app:civ_shadow_radius="0dp"
         app:layout_constraintBottom_toTopOf="@+id/playerName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.338" />
 
     <EditText
         android:id="@+id/playerName"
-        android:layout_width="326dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="50sp"
         android:layout_marginEnd="50sp"
@@ -46,10 +46,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/button_enterRace"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.927" />
+        app:layout_constraintVertical_bias="0.896" />
 
     <Button
         android:id="@+id/button_enterRace"
@@ -64,10 +64,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/button_Leaderboard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintVertical_bias="0.981" />
 
     <Button
         android:id="@+id/button_Leaderboard"
@@ -75,14 +75,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="124dp"
         android:background="@drawable/main_buttons"
         android:text="LeaderBoard "
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
 
