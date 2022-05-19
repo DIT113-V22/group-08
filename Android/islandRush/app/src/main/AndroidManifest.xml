@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Grace">
+        android:theme="@style/Theme.IslandRush">
         <activity
             android:name=".Leaderboard"
             android:exported="false" />

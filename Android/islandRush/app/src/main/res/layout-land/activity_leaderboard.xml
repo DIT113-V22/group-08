@@ -4,32 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/leaderboardMain"
     tools:context=".Leaderboard">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="729dp"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toTopOf="@+id/view_pager"
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="391dp"
+        android:layout_height="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047">
+        app:layout_constraintVertical_bias="0.085">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="121dp"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="?actionBarSize"
-            android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            android:text="Leaderboard 1" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="33dp" />
-    </com.google.android.material.appbar.AppBarLayout>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leaderboard 2" />
+
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"

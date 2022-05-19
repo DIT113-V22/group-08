@@ -1,6 +1,6 @@
 package com.quinstedt.islandRush;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -17,11 +16,9 @@ import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-public class BrokerConnection extends AppCompatActivity {
-    /**
-     * Create setters and getter for the the ones with public and see if a composition can be done
-     */
-    public static final String TAG = "IslandRushApp";
+public class BrokerConnection  {
+
+    public static final String TAG = "IslandRush"; // The name of the user in the broker
     private static final String EXTERNAL_MQTT_BROKER = "aerostun.dev";
     private static final String LOCALHOST = "10.0.2.2";
     public static final String MQTT_SERVER = "tcp://" + LOCALHOST + ":1883";
@@ -34,74 +31,48 @@ public class BrokerConnection extends AppCompatActivity {
 
     public static final String CAMERA = MAIN_TOPIC + "/camera";
     //Sensor topics
-    // static final String ULTRASOUND = MAIN_TOPIC +  "/ultrasound/front";
+
     public  static final String ODOMETER_DISTANCE = MAIN_TOPIC + "/Odometer/Distance";
     public static final String ODOMETER_SPEED = MAIN_TOPIC + "/Odometer/Speed";
     //Controller topics
     public static final String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
-    public static final String SET_CAR_SPEED = MAIN_TOPIC + "/Control/Speed";
+    public static final String  SET_CAR_SPEED = MAIN_TOPIC + "/Control/Speed";
 
     public static final String SERVER = MAIN_TOPIC + "/server";
-   // public static final String FINISH = MAIN_TOPIC + "/Mood/Race/Finish";
 
 
     // CAMERA
-    private static final int IMAGE_WIDTH = 320; //640
-    private static final int IMAGE_HEIGHT = 240;//480
-
+    private static final int IMAGE_WIDTH = 320;
+    private static final int IMAGE_HEIGHT = 240;
     ImageView mCameraView;
     TextView actualSpeed;
+    Context context;
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mMqttClient = new MqttClient(getApplicationContext(), MQTT_SERVER, TAG);
-        mCameraView = findViewById(R.id.controlPad_camera);
-        actualSpeed = findViewById(R.id.actualSpeed);
-        connectToMqttBroker();
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+    public  BrokerConnection(Context context){
+        this.context = context;
+        mMqttClient = new MqttClient(context, MQTT_SERVER,TAG);
 
         connectToMqttBroker();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        mMqttClient.disconnect(new IMqttActionListener() {
-            @Override
-            public void onSuccess(IMqttToken asyncActionToken) {
-                Log.i(TAG, "Disconnected from broker");
-            }
-
-            @Override
-            public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-            }
-        });
-    }
 
     public void connectToMqttBroker() {
         if (!isConnected) {
             mMqttClient.connect(TAG, "", new IMqttActionListener() {
+                /**
+                 *  Add below the topic that the app subscribe to
+                 *  and add the method for that topic in messageArrived(...)
+                 */
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
                     isConnected = true;
-
                     final String successfulConnection = "Connected to MQTT broker";
                     Log.i(TAG, successfulConnection);
-                    Toast.makeText(getApplicationContext(), successfulConnection, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, successfulConnection, Toast.LENGTH_SHORT).show();
                     mMqttClient.subscribe(ODOMETER_SPEED, QOS, null);
                     mMqttClient.subscribe(ODOMETER_DISTANCE, QOS, null);
                     mMqttClient.subscribe(CAMERA, QOS, null);
                     mMqttClient.subscribe(SERVER,QOS,null);
-                 //   mMqttClient.subscribe(FINISH,QOS,null);
 
                 }
 
@@ -109,7 +80,7 @@ public class BrokerConnection extends AppCompatActivity {
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     final String failedConnection = "Failed to connect to MQTT broker";
                     Log.e(TAG, failedConnection);
-                    Toast.makeText(getApplicationContext(), failedConnection, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, failedConnection, Toast.LENGTH_SHORT).show();
                 }
             }, new MqttCallback() {
                 @Override
@@ -118,9 +89,13 @@ public class BrokerConnection extends AppCompatActivity {
 
                     final String connectionLost = "Connection to MQTT broker lost";
                     Log.w(TAG, connectionLost);
-                    Toast.makeText(getApplicationContext(), connectionLost, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, connectionLost, Toast.LENGTH_SHORT).show();
                 }
-
+                /**
+                 *  Method that retrieve the message inside a topic
+                 *
+                 *  Note: change to a switch instead for better structure
+                 */
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
                     if (topic.equals(CAMERA)) {
@@ -139,22 +114,10 @@ public class BrokerConnection extends AppCompatActivity {
                     }else if(topic.equals(ODOMETER_DISTANCE)){
                         String messageMQTT = message.toString();
                         Log.i(TAG, "Car distance" + messageMQTT);
-                    }else if(topic.equals(ODOMETER_SPEED)) {
+                    }else if(topic.equals(ODOMETER_SPEED)){
                         String messageMQTT = message.toString();
-                        setActualSpeedFromString(actualSpeed, messageMQTT);
+                        setActualSpeedFromString(actualSpeed,messageMQTT);
                         Log.i(TAG, "Car speed: " + messageMQTT);
-                  /** TO TEST THE GODOT AND APP CONNECTION UNCOMMENT THE CODE BELOW
-                   * WHEN LISTENING TO THE TOPIC IT WILL CREATE A FINISH TEXT IN TOP OF THE CAMERA
-                   *
-                   * ONLY IN CONTROL PAD PORTRAIT MODE
-                   * */
-                        /*
-                    }else if(topic.equals(FINISH)){
-                        TextView finish = findViewById(R.id.finish_controlPad);
-                        String finishMessage = "Finish";
-                        finish.setText(finishMessage);
-
-                   */
                     }else {
                         Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
                     }
@@ -168,19 +131,51 @@ public class BrokerConnection extends AppCompatActivity {
         }
     }
 
-    public void drive(String direction, String actionDescription) {
+    /**
+     * This method is use to create the message that will be publish
+     * add the mMqttClient.publish(<topic>, <message >, QOS, null);
+     * to specify the topic as in ControlPad or Joystick Class
+     *
+     * @param message - the message that we send to the broker
+     * @param actionDescription - the action description that will be printed
+     */
+    public void drive(String message, String actionDescription) {
         if (!isConnected) {
             final String notConnected = "Not connected (yet)";
             Log.e(TAG, notConnected);
-            Toast.makeText(getApplicationContext(), notConnected, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, notConnected, Toast.LENGTH_SHORT).show();
             return;
         }
         Log.i(TAG, actionDescription);
     }
 
-    public void setActualSpeedFromString(TextView actualSpeed, String speed ) {
-        @SuppressLint("DefaultLocale") String roundedSpeed = String.format("%.2f",Double.parseDouble(speed));
+    /**
+     * Rounds the speed send from the emulator to two decimal and sets
+     * the textview that will be displayed on the app.
+     *
+     * @param actualSpeed - the textview
+     * @param speed - the Mqtt message converted to a String
+     * @return
+     */
+    public TextView setActualSpeedFromString(TextView actualSpeed,String speed ) {
+        String roundedSpeed = String.format("%.2f",Double.parseDouble(speed));
         actualSpeed.setText(" : " + roundedSpeed + " m/s");
+        return actualSpeed;
     }
 
+    public void setmMqttClient(MqttClient mMqttClient) {
+        this.mMqttClient = mMqttClient;
+    }
+
+    public void setmCameraView(ImageView mCameraView) {
+        this.mCameraView = mCameraView;
+    }
+
+    public void setActualSpeed(TextView actualSpeed) {
+        this.actualSpeed = actualSpeed;
+    }
+
+    public MqttClient getmMqttClient() {
+        return mMqttClient;
+    }
 }

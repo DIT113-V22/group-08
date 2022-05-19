@@ -10,15 +10,15 @@
 
     <ImageView
         android:id="@+id/controlPad_camera"
-        android:layout_width="400dp"
-        android:layout_height="match_parent"
+        android:layout_width="416dp"
+        android:layout_height="346dp"
         android:layout_marginStart="2sp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="2sp"
         android:background="@color/cardview_shadow_end_color"
         android:contentDescription="cameraView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,6 @@
         android:id="@+id/controlBackground"
         android:layout_width="209dp"
         android:layout_height="190dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"
@@ -66,6 +65,7 @@
         android:background="@color/cardview_shadow_end_color"
         android:onClick="stop"
         android:text="STOP"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="8dp"
         app:layout_constraintStart_toStartOf="@+id/controlBackground"
@@ -93,20 +93,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/controlBackground"
         app:layout_constraintEnd_toEndOf="@+id/controlBackground" />
 
-    <TextView
-        android:id="@+id/actualSpeed"
-        android:layout_width="25dp"
-        android:layout_height="27dp"
-        android:layout_marginEnd="120dp"
-        android:textAppearance="?android:attr/text"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:drawableLeftCompat="@drawable/ic_baseline_speed_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.958" />
-
     <ImageButton
         android:id="@+id/controlPad_escapeHash"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -116,6 +102,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

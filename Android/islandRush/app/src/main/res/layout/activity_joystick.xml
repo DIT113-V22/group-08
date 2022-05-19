@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/joystickActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background1"
@@ -9,8 +10,8 @@
 
     <ImageView
         android:id="@+id/joystick_camera"
-        android:layout_width="390dp"
-        android:layout_height="273dp"
+        android:layout_width="match_parent"
+        android:layout_height="365dp"
         android:layout_marginTop="44dp"
         android:layout_weight="0.3"
         android:contentDescription="cameraview"
@@ -37,7 +38,7 @@
         android:layout_marginTop="288dp"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="30sp"
         app:drawableLeftCompat="@drawable/ic_baseline_speed_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.818"
@@ -72,8 +73,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
