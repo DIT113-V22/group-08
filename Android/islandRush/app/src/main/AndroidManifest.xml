@@ -21,10 +21,7 @@
             android:name=".SaveScore"
             android:exported="false" />
         <activity
-            android:name=".Leaderboard2"
-            android:exported="false" />
-        <activity
-            android:name=".Leaderboard1"
+            android:name=".LeaderboardAnimation"
             android:exported="false" />
         <activity
             android:name=".IntroSplashAnimation"

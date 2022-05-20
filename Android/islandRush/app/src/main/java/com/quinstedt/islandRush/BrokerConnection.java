@@ -11,7 +11,13 @@ import static com.quinstedt.islandRush.Topics.Sensor.ODOMETER_SPEED;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+
+
+import android.os.Bundle;
+import android.os.SystemClock;
+
 import android.util.Log;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +29,35 @@ import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+
 import java.util.HashMap;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class BrokerConnection  {
 
     private boolean isConnected = false;
     public MqttClient mMqttClient;
+
+    // MQTT TOPICS
+    public static final String MAIN_TOPIC = "/IslandRush";
+
+    public static final String CAMERA = MAIN_TOPIC + "/camera";
+    //Sensor topics
+
+    public  static final String ODOMETER_DISTANCE = MAIN_TOPIC + "/Odometer/Distance";
+    public static final String ODOMETER_SPEED = MAIN_TOPIC + "/Odometer/Speed";
+    //Controller topics
+    public static final String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
+    public static final String  SET_CAR_SPEED = MAIN_TOPIC + "/Control/Speed";
+
+    public static final String SERVER = MAIN_TOPIC + "/server";
+
+    public static final String FINISH = MAIN_TOPIC + "/Mood/Race/Finish";
+
 
     // CAMERA
     private static final int IMAGE_WIDTH = 320;
@@ -37,6 +66,9 @@ public class BrokerConnection  {
     ImageView mCameraView;
     TextView actualSpeed;
     Context context;
+    TextView finish;
+    Chronometer simpleChronometer;
+    TextView t;
 
     public  BrokerConnection(Context context){
         this.context = context;
@@ -84,7 +116,7 @@ public class BrokerConnection  {
                  */
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
-                  /*
+                  
                     if (topic.equals(CAMERA)) {
                         final Bitmap bm = Bitmap.createBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, Bitmap.Config.ARGB_8888);
 
@@ -105,9 +137,26 @@ public class BrokerConnection  {
                         String messageMQTT = message.toString();
                         setActualSpeedFromString(actualSpeed, messageMQTT);
                         Log.i(TAG, "Car speed: " + messageMQTT);
+                    }else if(topic.equals(FINISH)){
+                            String finishMessage = "Finish";
+                            finish.setText(finishMessage);
+
+                            simpleChronometer.stop();
+                            long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+
+
+                            DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
+
+
+                            Date result = new Date(elapsedMillis);
+
+
+                            t.setText(String.valueOf(simple.format(result)));
+
+                        }else {
+                        Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
                     }
-                   */
-                    String messageMQTT;
+               /* String messageMQTT;
                     switch (topic){
                        case CAMERA:
                            final Bitmap bm = Bitmap.createBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, Bitmap.Config.ARGB_8888);
@@ -133,9 +182,9 @@ public class BrokerConnection  {
                            Log.i(TAG, "Car speed: " + messageMQTT);
                            break;
                        default:
-                           Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
-                    }
+                           Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());**/
                 }
+                                
 
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken token) {
@@ -188,4 +237,16 @@ public class BrokerConnection  {
     public MqttClient getmMqttClient() {
         return mMqttClient;
     }
+
+        public void setFinish(TextView finish) {
+            this.finish = finish;
+        }
+
+        public void setSimpleChronometer(Chronometer simpleChronometer) {
+            this.simpleChronometer = simpleChronometer;
+        }
+
+        public void setT(TextView t) {
+            this.t = t;
+        }
 }
