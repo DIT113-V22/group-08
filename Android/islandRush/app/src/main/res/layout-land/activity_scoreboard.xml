@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
+    android:background="@drawable/background1"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -19,17 +19,18 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="3dp"
-        tools:listitem="@layout/playerscore_rv_item" />
+        tools:listitem="@layout/playerscore_rv_item"
+        tools:ignore="NotSibling" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="341dp"
-        android:layout_height="75dp"
+        android:layout_width="356dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="73dp"
-        android:layout_marginBottom="334dp"
-        app:srcCompat="@drawable/scoreboard" />
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="315dp"
+        app:srcCompat="@drawable/score" />
 
     <TextView
         android:id="@+id/textView"
@@ -64,8 +65,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="448dp"
-        android:layout_marginBottom="117dp"
+        android:layout_marginEnd="466dp"
+        android:layout_marginBottom="106dp"
         android:src="@drawable/logo"
         app:civ_border_color="#2CD319"
         app:civ_border_width="5dp"
@@ -109,20 +110,20 @@
 
     <ImageButton
         android:id="@+id/homeBtn"
-        android:layout_width="61dp"
-        android:layout_height="63dp"
-        android:background="@color/purple_700"
+        android:layout_width="54dp"
+        android:layout_height="42dp"
+        android:background="@color/black"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <ImageButton
         android:id="@+id/resetBtn"
-        android:layout_width="74dp"
-        android:layout_height="79dp"
+        android:layout_width="57dp"
+        android:layout_height="49dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="332dp"
-        android:background="@color/purple_700"
+        android:layout_marginBottom="362dp"
+        android:background="@color/black"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
 

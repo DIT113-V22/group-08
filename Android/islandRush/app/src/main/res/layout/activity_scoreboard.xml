@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
+    android:background="@drawable/background1"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -15,8 +15,8 @@
         android:layout_height="561dp"
         android:layout_below="@+id/imageView"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="57dp"
         tools:listitem="@layout/playerscore_rv_item" />
 
     <ImageView
@@ -27,7 +27,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="76dp"
         android:layout_marginEnd="70dp"
-        app:srcCompat="@drawable/scoreboard" />
+        app:srcCompat="@drawable/score" />
 
     <ImageButton
         android:id="@+id/homeBtn"
@@ -37,7 +37,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="343dp"
         android:layout_marginBottom="664dp"
-        android:background="@color/purple_700"
+        android:background="@color/black"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
 
@@ -49,7 +49,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="-64dp"
         android:layout_marginBottom="664dp"
-        android:background="@color/purple_700"
+        android:background="@color/black"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
     <ImageView
