@@ -13,7 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  https://www.geeksforgeeks.org/how-to-perform-crud-operations-in-room-database-in-android**/
 
 
-@Database(entities = {PlayerScore.class}, version = 2)
+@Database(entities = {PlayerScore.class}, version = 2, exportSchema = false)
 public abstract class PlayerScoreDatabase extends RoomDatabase {
 
     private static PlayerScoreDatabase instance;
