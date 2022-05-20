@@ -15,11 +15,7 @@ public class ControlChoice extends AppCompatActivity {
 
     Button controlPad, joystick;
     ImageButton escapeHash;
-    boolean cameraOn = true;
-    boolean speedometerOn = true;
-  //  Switch camera;
-  //  Switch speedometer;
-  
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,31 +33,10 @@ public class ControlChoice extends AppCompatActivity {
         joystick = findViewById(R.id.button_joystick);
         joystick.setOnClickListener(view -> openJoystick());
 
-
-
         controlPad = findViewById(R.id.button_control);
         controlPad.setOnClickListener(view -> openButtonControl());
 
     }
-
-     /*
-       Testing Switch option for the controlChoice
-
-       cameraSwitch = findViewById(R.id.switchControlPad);
-
-
-        cameraSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-
-                }else{
-
-                }
-            }
-        });
-
-       */
 
     /**
      * Method for the escape Hash that launches MainActivity

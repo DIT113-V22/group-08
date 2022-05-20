@@ -2,7 +2,7 @@ package com.quinstedt.islandRush
 
 /** UNCOMMENT TO RUN ALL TEST CLASSES */
 
-
+/*
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
@@ -15,6 +15,8 @@ import org.junit.runners.Suite
     JoystickTest::class,
     LeaderboardTest::class
 )
+
+ */
 
 class ActivityTestSuite {
 

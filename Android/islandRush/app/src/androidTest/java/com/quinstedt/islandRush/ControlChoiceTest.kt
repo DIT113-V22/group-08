@@ -49,7 +49,7 @@ class ControlChoiceTest {
     }
 
     @Test
-    fun test_Navigation_From_ControlChoice_ToButtonPadActivity(){
+    fun test_Navigation_From_ControlChoice_ToControlPadActivity(){
         val activityTest = ActivityScenario.launch(ControlChoice::class.java)
         onView(withId(R.id.button_control)).perform(click())
         onView(withId(R.id.control_pad)).check(matches(isDisplayed()))
