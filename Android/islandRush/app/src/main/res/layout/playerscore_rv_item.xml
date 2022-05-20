@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/idLLPlayerScore"
         android:layout_width="391dp"
-        android:layout_height="wrap_content"
+        android:layout_height="53dp"
         android:layout_margin="5dp"
         android:background="@color/purple_700"
         android:orientation="horizontal">
@@ -19,21 +19,24 @@
         <TextView
             android:id="@+id/idTVPlayerName"
             android:layout_width="179dp"
-            android:layout_height="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="cursive"
             android:padding="8dp"
             android:text="Name"
-            android:layout_marginBottom="30dp"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/idTVRaceDuration"
-            android:layout_width="213dp"
+            android:layout_width="205dp"
             android:layout_height="match_parent"
+            android:fontFamily="cursive"
             android:padding="8dp"
             android:text="Time"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="35sp" />
 
     </LinearLayout>
 

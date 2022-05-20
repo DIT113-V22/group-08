@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background1"
     android:orientation="vertical"
+    android:theme="@style/Theme.IslandRush.NoActionBar"
     tools:context=".MainActivity">
 
 
@@ -15,8 +16,8 @@
         android:layout_height="561dp"
         android:layout_below="@+id/imageView"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="82dp"
         tools:listitem="@layout/playerscore_rv_item" />
 
     <ImageView
@@ -29,67 +30,75 @@
         android:layout_marginEnd="70dp"
         app:srcCompat="@drawable/score" />
 
+
     <ImageButton
         android:id="@+id/homeBtn"
         android:layout_width="61dp"
         android:layout_height="57dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="343dp"
-        android:layout_marginBottom="664dp"
+        android:layout_marginEnd="347dp"
+        android:layout_marginBottom="669dp"
         android:background="@color/black"
         app:srcCompat="@android:drawable/ic_menu_revert" />
-
 
     <ImageButton
         android:id="@+id/resetBtn"
         android:layout_width="61dp"
         android:layout_height="59dp"
-        android:layout_alignEnd="@+id/imageView"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="-64dp"
-        android:layout_marginBottom="664dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="1dp"
         android:background="@color/black"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
-        android:layout_height="77dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="331dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="327dp"
         android:layout_marginBottom="514dp"
         app:srcCompat="@drawable/first_medal" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="69dp"
-        android:layout_height="73dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="336dp"
-        android:layout_marginBottom="416dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="335dp"
+        android:layout_marginBottom="428dp"
         app:srcCompat="@drawable/second_medal" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="76dp"
-        android:layout_height="74dp"
+        android:layout_width="67dp"
+        android:layout_height="58dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="332dp"
-        android:layout_marginBottom="315dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="333dp"
+        android:layout_marginBottom="350dp"
         app:srcCompat="@drawable/third_medal" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="65dp"
+        android:layout_width="53dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="338dp"
-        android:layout_marginBottom="222dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="337dp"
+        android:layout_marginBottom="269dp"
         android:text=" 4"
         android:textColor="@color/black"
         android:textSize="50sp"
@@ -99,10 +108,12 @@
         android:id="@+id/textView3"
         android:layout_width="63dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="337dp"
-        android:layout_marginBottom="122dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="340dp"
+        android:layout_marginBottom="198dp"
         android:text=" 5"
         android:textColor="@color/black"
         android:textSize="50sp"
@@ -114,11 +125,12 @@
         android:layout_height="42dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="184dp"
-        android:layout_marginBottom="598dp"
+        android:layout_marginEnd="192dp"
+        android:layout_marginBottom="593dp"
+        android:fontFamily="cursive"
         android:text="Name"
         android:textColor="@android:color/holo_red_light"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <TextView
@@ -127,11 +139,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="599dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="586dp"
+        android:fontFamily="cursive"
         android:text="Time"
         android:textColor="@android:color/holo_red_light"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
 
