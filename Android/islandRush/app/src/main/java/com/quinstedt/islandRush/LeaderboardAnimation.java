@@ -80,7 +80,7 @@ public class LeaderboardAnimation extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 finish();
-                startActivity(new Intent(getApplicationContext(),Leaderboard.class));
+                startActivity(new Intent(getApplicationContext(),Scoreboard.class));
             }
 
             @Override
