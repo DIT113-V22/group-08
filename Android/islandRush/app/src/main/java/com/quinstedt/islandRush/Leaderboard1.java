@@ -1,12 +1,18 @@
 package com.quinstedt.islandRush;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Leaderboard1 extends AppCompatActivity {
@@ -15,31 +21,15 @@ public class Leaderboard1 extends AppCompatActivity {
      BrokerConnection connection;
      float x1,x2,y1,y2;
 
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard1);
 
         ImageButton escapeHash = findViewById(R.id.Leaderboard_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
-        connection = new BrokerConnection(getApplicationContext());
-        connection.setPlayer1(findViewById(R.id.Player1));
-        connection.setPlayer1(findViewById(R.id.Player2));
-        connection.setPlayer1(findViewById(R.id.Player3));
-        connection.setPlayer1(findViewById(R.id.Player4));
-        connection.setPlayer1(findViewById(R.id.Player5));
-
-        connection.setPlayer1(findViewById(R.id.Time1));
-        connection.setPlayer1(findViewById(R.id.Time2));
-        connection.setPlayer1(findViewById(R.id.Time3));
-        connection.setPlayer1(findViewById(R.id.Time4));
-        connection.setPlayer1(findViewById(R.id.Time5));
-        connection.connectToMqttBroker();
-
-
-
-
     }
+
     public boolean onTouchEvent(MotionEvent touchEvent2){
         switch (touchEvent2.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -53,7 +43,6 @@ public class Leaderboard1 extends AppCompatActivity {
                     Intent leaderboard2 = new Intent(this,Leaderboard2.class);
                     startActivity(leaderboard2);
                 }
-
         }return  false;
     }
 
@@ -61,7 +50,4 @@ public class Leaderboard1 extends AppCompatActivity {
         Intent goToMain = new Intent(this, MainActivity.class);
         startActivity(goToMain);
     }
-
-
-
 }

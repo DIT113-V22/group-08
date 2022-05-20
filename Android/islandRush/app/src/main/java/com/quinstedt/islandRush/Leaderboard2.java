@@ -18,29 +18,8 @@ public class Leaderboard2 extends AppCompatActivity {
 
         ImageButton escapeHash = findViewById(R.id.L2Leaderboard_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
-
-        connection = new BrokerConnection(getApplicationContext());
-
-        connection.setPlayer1(findViewById(R.id.L2Player1));
-        connection.setPlayer1(findViewById(R.id.L2Player2));
-        connection.setPlayer1(findViewById(R.id.L2Player3));
-        connection.setPlayer1(findViewById(R.id.L2Player4));
-        connection.setPlayer1(findViewById(R.id.L2Player5));
-
-        connection.setPlayer1(findViewById(R.id.avgSpeed1));
-        connection.setPlayer1(findViewById(R.id.avgSpeed2));
-        connection.setPlayer1(findViewById(R.id.avgSpeed3));
-        connection.setPlayer1(findViewById(R.id.avgSpeed4));
-        connection.setPlayer1(findViewById(R.id.avgSpeed5));
-        
-        connection.connectToMqttBroker();
-
-
-
-
-
-
     }
+
     public boolean onTouchEvent(MotionEvent touchEvent2){
         switch (touchEvent2.getAction()){
             case MotionEvent.ACTION_DOWN:

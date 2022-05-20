@@ -6,6 +6,7 @@ import static com.quinstedt.islandRush.Topics.Controller.CONTROLLER;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ public class ControlPad extends AppCompatActivity {
     ImageButton escapeHash;
     BrokerConnection brokerConnection;
     MqttClient mMqttClient;
+    Button saveScoreScreen;
 
     @Override
     public void onCreate(Bundle savedInstanceState ) {
@@ -29,13 +31,20 @@ public class ControlPad extends AppCompatActivity {
         escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
 
+        saveScoreScreen=findViewById(R.id.saveScoreBtn);
+        saveScoreScreen.setOnClickListener(view -> goToSaveScoreScreen());
     }
 
     /**
      * Launches the ControlChoice after that the escape Hash has been clicked
      */
     private void goBack() {
-        Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
+        Intent controlChoiceActivity = new Intent(this, MainActivity.class);
+        startActivity(controlChoiceActivity);
+    }
+
+    private void goToSaveScoreScreen() {
+        Intent controlChoiceActivity = new Intent(this, SaveScore.class);
         startActivity(controlChoiceActivity);
     }
 
