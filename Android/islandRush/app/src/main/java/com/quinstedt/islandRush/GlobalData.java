@@ -2,7 +2,13 @@ package com.quinstedt.islandRush;
 
 
 public class GlobalData {
-     private static GlobalData globalData;
+
+    /**
+     * This class is a singleton class
+     * It is a static class so that data stored here can be accesses
+     * by all the classes in the application
+     */
+    private static GlobalData globalData;
      public String playerData;
      public String time;
      public int timeInSec;
@@ -41,7 +47,7 @@ public class GlobalData {
     public void setTimeInSec(long timeInSec) {
         this.timeInSec = (int) timeInSec;
     }
-
+/** for the database stores the time of the race in miliseconds */
     public int getTimeInSec(Long time){
        long inSec = time /1000;
        timeInSec = (int) inSec;

@@ -1,6 +1,11 @@
 package com.quinstedt.islandRush;
 
 public class Utils {
+
+    /**
+     * This method is for creating a delay in android- use if needed.
+     * @param time - the time of the delay
+     */
     public static void delay(int time){
         try{
             Thread.sleep(time);
