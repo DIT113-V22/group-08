@@ -15,7 +15,7 @@ class MainActivityTest {
 // To run all test classes sequentially  run ActivityTestSuite
 
     /** delay between the tests */
-    val wait = Thread.sleep(4500)
+    val wait = Utils.delay(4500)
 
     /**
      * Not using a global activityTest:
@@ -71,6 +71,10 @@ class MainActivityTest {
     @Test
     fun test_Navigation_From_MainActivity_To_ControlChoice(){
         val activityTest = ActivityScenario.launch(MainActivity::class.java)
+        onView(withId(R.id.playerName)).perform(click())
+        val playerName = "PlayerTest1"
+        onView(withId(R.id.playerName)).perform(typeText(playerName))
+        onView(withId(R.id.playerName)).perform(pressImeActionButton())
         onView(withId(R.id.button_enterRace)).perform(click())
         onView(withId(R.id.controlChoice)).check(matches(isDisplayed()))
         wait
