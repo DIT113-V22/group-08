@@ -17,6 +17,7 @@ import org.junit.runners.Suite
 )
 
  */
+
 class ActivityTestSuite {
 
 }
