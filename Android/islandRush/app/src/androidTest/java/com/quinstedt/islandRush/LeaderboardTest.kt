@@ -17,6 +17,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LeaderboardTest {
+// To run all test classes sequentially  run ActivityTestSuite
 
     /*
     val wait = Thread.sleep(3000)

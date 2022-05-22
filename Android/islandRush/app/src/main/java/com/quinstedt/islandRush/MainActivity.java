@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
      * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
      * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
      */
-    private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
+    private final TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
             if(actionId == EditorInfo.IME_ACTION_SEND){

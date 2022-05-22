@@ -39,46 +39,51 @@ import java.util.Date;
 
 public class BrokerConnection  {
 
+    public static class Topics {
+
+
+        public static final String MAIN_TOPIC = "/IslandRush";
+
+        public static class Connection{
+            public static final String TAG = "IslandRushApp";
+            public static final String EXTERNAL_MQTT_BROKER = "aerostun.dev";
+            public static final String LOCALHOST = "10.0.2.2";
+            public static final String MQTT_SERVER = "tcp://" + LOCALHOST + ":1883";
+            public static final int QOS = 1;
+        }
+        public static class Sensor{
+            public static final String ODOMETER_DISTANCE = MAIN_TOPIC + "/Odometer/Distance";
+            public static final String ODOMETER_SPEED = MAIN_TOPIC + "/Odometer/Speed";
+        }
+        public static class Race {
+            public static final String CONTROLLER_JOYSTICK = MAIN_TOPIC + "/Control/Joystick/Direction";
+            public static final String CONTROLLER_CONTROLPAD = MAIN_TOPIC + "/Control/ControlPad/Direction";
+            public static final String SET_CAR_SPEED = MAIN_TOPIC + "/Control/Speed";
+            public static final String FINISH = MAIN_TOPIC + "/Mood/Race/Finish";
+        }
+
+    }
+
     private boolean isConnected = false;
     public MqttClient mMqttClient;
 
-    // MQTT TOPICS
-    public static final String MAIN_TOPIC = "/IslandRush";
-
-    public static final String CAMERA = MAIN_TOPIC + "/camera";
-    //Sensor topics
-
-    public  static final String ODOMETER_DISTANCE = MAIN_TOPIC + "/Odometer/Distance";
-    public static final String ODOMETER_SPEED = MAIN_TOPIC + "/Odometer/Speed";
-    //Controller topics
-    public static final String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
-    public static final String  SET_CAR_SPEED = MAIN_TOPIC + "/Control/Speed";
-
-    public static final String SERVER = MAIN_TOPIC + "/server";
-
-    public static final String FINISH = MAIN_TOPIC + "/Mood/Race/Finish";
-
-
-    // CAMERA
-    private static final int IMAGE_WIDTH = 320;
-    private static final int IMAGE_HEIGHT = 240;
-
-    ImageView mCameraView;
     TextView actualSpeed;
     Context context;
     TextView finish;
     Chronometer simpleChronometer;
     TextView t;
 
+
     public  BrokerConnection(Context context){
         this.context = context;
-        mMqttClient = new MqttClient(this.context, MQTT_SERVER,TAG);
+        mMqttClient = new MqttClient(context, Topics.Connection.MQTT_SERVER,Topics.Connection.TAG);
+
         connectToMqttBroker();
     }
 
     public void connectToMqttBroker() {
         if (!isConnected) {
-            mMqttClient.connect(TAG, "", new IMqttActionListener() {
+            mMqttClient.connect(Topics.Connection.TAG, "", new IMqttActionListener() {
                 /**
                  *  Add below the topic that the app subscribe to
                  *  and add the method for that topic in messageArrived(...)
@@ -87,17 +92,18 @@ public class BrokerConnection  {
                 public void onSuccess(IMqttToken asyncActionToken) {
                     isConnected = true;
                     final String successfulConnection = "Connected to MQTT broker";
-                    Log.i(TAG, successfulConnection);
+                    Log.i(Topics.Connection.TAG, successfulConnection);
                     Toast.makeText(context, successfulConnection, Toast.LENGTH_SHORT).show();
-                    mMqttClient.subscribe(ODOMETER_SPEED, QOS, null);
-                    mMqttClient.subscribe(ODOMETER_DISTANCE, QOS, null);
-                    mMqttClient.subscribe(CAMERA, QOS, null);
+
+                    mMqttClient.subscribe(Topics.Sensor.ODOMETER_SPEED,Topics.Connection.QOS, null);
+                    mMqttClient.subscribe(Topics.Sensor.ODOMETER_DISTANCE, Topics.Connection.QOS, null);
+                    mMqttClient.subscribe(Topics.Race.FINISH,Topics.Connection.QOS,null);
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     final String failedConnection = "Failed to connect to MQTT broker";
-                    Log.e(TAG, failedConnection);
+                    Log.e(Topics.Connection.TAG, failedConnection);
                     Toast.makeText(context, failedConnection, Toast.LENGTH_SHORT).show();
                 }
             }, new MqttCallback() {
@@ -106,7 +112,7 @@ public class BrokerConnection  {
                     isConnected = false;
 
                     final String connectionLost = "Connection to MQTT broker lost";
-                    Log.w(TAG, connectionLost);
+                    Log.w(Topics.Connection.TAG, connectionLost);
                     Toast.makeText(context, connectionLost, Toast.LENGTH_SHORT).show();
                 }
                 /**
@@ -116,79 +122,33 @@ public class BrokerConnection  {
                  */
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
-                  
-                    if (topic.equals(CAMERA)) {
-                        final Bitmap bm = Bitmap.createBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, Bitmap.Config.ARGB_8888);
 
-                        final byte[] payload = message.getPayload();
-                        final int[] colors = new int[IMAGE_WIDTH * IMAGE_HEIGHT];
-                        for (int ci = 0; ci < colors.length; ++ci) {
-                            final int r = payload[3 * ci] & 0xFF;
-                            final int g = payload[3 * ci + 1] & 0xFF;
-                            final int b = payload[3 * ci + 2] & 0xFF;
-                            colors[ci] = Color.rgb(r, g, b);
-                        }
-                        bm.setPixels(colors, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
-                        mCameraView.setImageBitmap(bm);
-                    }else if(topic.equals(ODOMETER_DISTANCE)){
+                    if(topic.equals(Topics.Sensor.ODOMETER_DISTANCE)){
                         String messageMQTT = message.toString();
-                        Log.i(TAG, "Car distance" + messageMQTT);
-                    }else if(topic.equals(ODOMETER_SPEED)) {
+                        Log.i(Topics.Connection.TAG, "Car distance" + messageMQTT);
+                    }else if(topic.equals(Topics.Sensor.ODOMETER_SPEED)) {
                         String messageMQTT = message.toString();
                         setActualSpeedFromString(actualSpeed, messageMQTT);
-                        Log.i(TAG, "Car speed: " + messageMQTT);
-                    }else if(topic.equals(FINISH)){
+                        Log.i(Topics.Connection.TAG, "Car speed: " + messageMQTT);
+
+                    }else if(topic.equals(Topics.Race.FINISH)){
+
                             String finishMessage = "Finish";
                             finish.setText(finishMessage);
-
                             simpleChronometer.stop();
                             long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
-
-
                             DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
-
-
                             Date result = new Date(elapsedMillis);
-
-
                             t.setText(String.valueOf(simple.format(result)));
 
                         }else {
-                        Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
-                    }
-               /* String messageMQTT;
-                    switch (topic){
-                       case CAMERA:
-                           final Bitmap bm = Bitmap.createBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, Bitmap.Config.ARGB_8888);
+                        Log.i(Topics.Connection.TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
 
-                           final byte[] payload = message.getPayload();
-                           final int[] colors = new int[IMAGE_WIDTH * IMAGE_HEIGHT];
-                           for (int ci = 0; ci < colors.length; ++ci) {
-                               final int r = payload[3 * ci] & 0xFF;
-                               final int g = payload[3 * ci + 1] & 0xFF;
-                               final int b = payload[3 * ci + 2] & 0xFF;
-                               colors[ci] = Color.rgb(r, g, b);
-                           }
-                           bm.setPixels(colors, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
-                           mCameraView.setImageBitmap(bm);
-                           break;
-                       case ODOMETER_DISTANCE:
-                           messageMQTT = message.toString();
-                           Log.i(TAG, "Car distance" + messageMQTT);
-                           break;
-                       case ODOMETER_SPEED:
-                           messageMQTT = message.toString();
-                           setActualSpeedFromString(actualSpeed, messageMQTT);
-                           Log.i(TAG, "Car speed: " + messageMQTT);
-                           break;
-                       default:
-                           Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());**/
-                }
-                                
+                    }                               
 
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken token) {
-                    Log.d(TAG, "Message delivered");
+                    Log.d(Topics.Connection.TAG, "Message delivered");
                 }
             });
         }
@@ -205,11 +165,11 @@ public class BrokerConnection  {
     public void drive(String message, String actionDescription) {
         if (!isConnected) {
             final String notConnected = "Not connected (yet)";
-            Log.e(TAG, notConnected);
+            Log.e(Topics.Connection.TAG, notConnected);
             Toast.makeText(context, notConnected, Toast.LENGTH_SHORT).show();
             return;
         }
-        Log.i(TAG, actionDescription);
+        Log.i(Topics.Connection.TAG, actionDescription);
     }
 
     /**
@@ -226,27 +186,20 @@ public class BrokerConnection  {
         return actualSpeed;
     }
 
-    public void setmCameraView(ImageView mCameraView) {
-        this.mCameraView = mCameraView;
-    }
-
     public void setActualSpeed(TextView actualSpeed) {
         this.actualSpeed = actualSpeed;
     }
-
     public MqttClient getmMqttClient() {
         return mMqttClient;
     }
-
-        public void setFinish(TextView finish) {
+    public void setFinish(TextView finish) {
             this.finish = finish;
         }
-
-        public void setSimpleChronometer(Chronometer simpleChronometer) {
+    public void setSimpleChronometer(Chronometer simpleChronometer) {
             this.simpleChronometer = simpleChronometer;
         }
-
-        public void setT(TextView t) {
+    public void setT(TextView t) {
             this.t = t;
         }
+
 }

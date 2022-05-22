@@ -14,7 +14,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ControlPadTest {
-    // To run all test classes run ActivityTestSuite
+// To run all test classes sequentially  run ActivityTestSuite
 
     /** delay between the tests */
     val wait = Thread.sleep(3000)
@@ -44,6 +44,10 @@ class ControlPadTest {
         onView(withId(R.id.controlPad_escapeHash)).perform(click())
         onView(withId(R.id.controlChoice)).check(matches(isDisplayed()))
         wait
+    }
+    @Test
+    fun test_speedButton_inView(){
+        val activityTest = ActivityScenario.launch(ControlPad::class.java)
     }
 
 
