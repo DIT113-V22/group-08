@@ -9,12 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Switch;
 
 public class ControlChoice extends AppCompatActivity {
 
     Button controlPad, joystick;
     ImageButton escapeHash;
-  
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +29,13 @@ public class ControlChoice extends AppCompatActivity {
 
         escapeHash =  findViewById(R.id.controlChoice_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
+
         joystick = findViewById(R.id.button_joystick);
         joystick.setOnClickListener(view -> openJoystick());
 
         controlPad = findViewById(R.id.button_control);
         controlPad.setOnClickListener(view -> openButtonControl());
+
     }
 
     /**
