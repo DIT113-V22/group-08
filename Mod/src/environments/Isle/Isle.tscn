@@ -93,8 +93,5 @@ transform = Transform( 4.98782, 0.348782, 0, -0.348782, 4.98782, 0, 0, 0, 5, -83
 [node name="castle" parent="." instance=ExtResource( 2 )]
 transform = Transform( 4.69846, 0, 1.7101, 0, 5, 0, -1.7101, 0, 4.69846, -225.471, 37.2952, -311.115 )
 
-[node name="coaster" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.179184, 0, 0.46679, 0, 0.5, 0, -0.46679, 0, 0.179184, -8, 19.3, -50 )
-
 [node name="coaster2" parent="." instance=ExtResource( 3 )]
 transform = Transform( -0.441474, 0, 0.234736, 0, 0.5, 0, -0.234736, 0, -0.441474, -262, 20.5, -198 )

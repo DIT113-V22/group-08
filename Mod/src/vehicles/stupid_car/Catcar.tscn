@@ -12,8 +12,8 @@ radius = 0.662875
 radius = 0.748471
 
 [sub_resource type="CylinderShape" id=4]
-radius = 0.562557
-height = 0.241962
+radius = 0.521927
+height = 0.52598
 
 [node name="TemplateCar" instance=ExtResource( 1 )]
 cosmetic_wheels = [ NodePath("LeftBack/wheel"), NodePath("LeftFront/wheel"), NodePath("RightBack/wheel"), NodePath("RightFront/wheel") ]
@@ -53,21 +53,21 @@ shape = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0471296, 0.286907, 2.30119 )
 shape = SubResource( 6 )
 
-[node name="wheelCollision" type="CollisionShape" parent="." index="9"]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.47253, -0.189607, -0.673244 )
+[node name="Front Left Collision" type="CollisionShape" parent="." index="9"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.29711, -0.233268, -0.560571 )
 shape = SubResource( 4 )
 
-[node name="wheelCollision4" type="CollisionShape" parent="." index="10"]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.46652, -0.189607, -0.673244 )
+[node name="Front Right Collision" type="CollisionShape" parent="." index="10"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.31652, -0.233268, -0.560571 )
 shape = SubResource( 4 )
 
-[node name="wheelCollision2" type="CollisionShape" parent="." index="11"]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.47253, -0.189607, 0.665022 )
+[node name="Back Left Collision" type="CollisionShape" parent="." index="11"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.29711, -0.233268, 0.595306 )
 shape = SubResource( 4 )
 
-[node name="wheelCollision3" type="CollisionShape" parent="." index="12"]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.4758, -0.189607, 0.665022 )
+[node name="Back Right Collision" type="CollisionShape" parent="." index="12"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.31186, -0.233268, 0.595306 )
 shape = SubResource( 4 )
 
 [node name="bodyCollision" parent="." index="13" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000542164, 0.126083, -1.01259 )
+transform = Transform( 0.85, 0, 0, 0, 1, 0, 0, 0, 1, 0.000542164, 0.126083, -1.01259 )
