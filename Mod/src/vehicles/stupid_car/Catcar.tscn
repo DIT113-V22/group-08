@@ -3,9 +3,7 @@
 [ext_resource path="res://src/vehicles/template_car/TemplateCar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/vehicles/stupid_car/car_parts/SMCE-wheel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/bubble/bubble.glb" type="PackedScene" id=3]
-
-[sub_resource type="BoxShape" id=5]
-extents = Vector3( 1, 0.244312, 1.08316 )
+[ext_resource path="res://src/vehicles/stupid_car/car_parts/CollisionShape3.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.662875
@@ -47,30 +45,29 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.00411
 [node name="bubble" parent="." index="6" instance=ExtResource( 3 )]
 transform = Transform( -1.49502e-08, -4.10753e-08, -1, -0.939693, 0.34202, 0, 0.34202, 0.939693, -4.37114e-08, -0.0138359, -0.366336, -1.14913 )
 
-[node name="bodyCollision" type="CollisionShape" parent="." index="7"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0720415, -0.442531 )
-shape = SubResource( 5 )
-
-[node name="headCollision" type="CollisionShape" parent="." index="8"]
+[node name="headCollision" type="CollisionShape" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.594483, 0.548938 )
 shape = SubResource( 2 )
 
-[node name="bubbleCollision" type="CollisionShape" parent="." index="9"]
+[node name="bubbleCollision" type="CollisionShape" parent="." index="8"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0471296, 0.286907, 2.30119 )
 shape = SubResource( 6 )
 
-[node name="wheelCollision" type="CollisionShape" parent="." index="10"]
+[node name="wheelCollision" type="CollisionShape" parent="." index="9"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.47253, -0.189607, -0.673244 )
 shape = SubResource( 4 )
 
-[node name="wheelCollision4" type="CollisionShape" parent="." index="11"]
+[node name="wheelCollision4" type="CollisionShape" parent="." index="10"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.46652, -0.189607, -0.673244 )
 shape = SubResource( 4 )
 
-[node name="wheelCollision2" type="CollisionShape" parent="." index="12"]
+[node name="wheelCollision2" type="CollisionShape" parent="." index="11"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.47253, -0.189607, 0.665022 )
 shape = SubResource( 4 )
 
-[node name="wheelCollision3" type="CollisionShape" parent="." index="13"]
+[node name="wheelCollision3" type="CollisionShape" parent="." index="12"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.4758, -0.189607, 0.665022 )
 shape = SubResource( 4 )
+
+[node name="bodyCollision" parent="." index="13" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000542164, 0.126083, -1.01259 )
