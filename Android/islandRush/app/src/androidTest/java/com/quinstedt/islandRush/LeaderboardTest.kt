@@ -19,7 +19,7 @@ import org.junit.runner.RunWith
 class LeaderboardTest {
 // To run all test classes sequentially  run ActivityTestSuite
 
-    /*val wait = Utils.delay(3000)
+    val wait = Utils.delay(3000)
     /** NAVIGATION TESTS*/
     @Test
     fun test_Launching_LeaderboardActivity(){
@@ -112,6 +112,6 @@ class LeaderboardTest {
         onView(withId(R.id.leaderboard_escapeHash)).perform(click());
         onView(withId(R.id.mainLayout)).check(matches(isDisplayed()))
     }
-**/
+
 
 }
