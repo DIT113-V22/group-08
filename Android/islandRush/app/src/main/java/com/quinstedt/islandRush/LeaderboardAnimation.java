@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class LeaderboardAnimation extends AppCompatActivity {
 
-    TextView rankingAnim, playerNameAnim, timeAnim, finnishMessageAnim;
+    TextView raceMessage, playerNameAnim, timeAnim, finnishMessageAnim;
     ImageView carImageAnim, mainImageAnim;
 
     @Override
@@ -19,7 +19,8 @@ public class LeaderboardAnimation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard_animation);
 
-        rankingAnim =  findViewById(R.id.ranking_anim);
+
+        raceMessage =  findViewById(R.id.raceMessage_anim);
         playerNameAnim = findViewById(R.id.player_name_anim);
         timeAnim = findViewById(R.id.timing_anim);
         mainImageAnim = findViewById(R.id.main_page_anim);
@@ -27,15 +28,14 @@ public class LeaderboardAnimation extends AppCompatActivity {
         finnishMessageAnim =findViewById(R.id.message_end_anim);
         mainImageAnim = findViewById(R.id.main_page_anim);
 
-        /* Example
-        playerNameAnim.setText("John");
-        rankingAnim.setText("20");
-        timeAnim.setText("12.3");
-        finnishMessageAnim.setText("Good luck next time");*/
-
-
-
-
+        playerNameAnim.setText(GlobalData.getGlobalData().getPlayerData());
+        String applause = Utils.getEmoji(Utils.APPLAUSE);
+        String raceMessage = "Good job! " + applause;
+        this.raceMessage.setText(raceMessage);
+        timeAnim.setText(GlobalData.getGlobalData().getRaceTime());
+        String crossedFingers = Utils.getEmoji(Utils.CROSSED_FINGERS);
+        String finishMessage = "Good luck next time " + crossedFingers;
+        finnishMessageAnim.setText(finishMessage);
 
         Animation slideBackground= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_background);
         Animation textSlideOut=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_text);
@@ -48,27 +48,20 @@ public class LeaderboardAnimation extends AppCompatActivity {
         //slide in the texts
         playerNameAnim.setAnimation(textSlideIn);
         timeAnim.setAnimation(textSlideIn);
-        rankingAnim.setAnimation(textSlideIn);
+        this.raceMessage.setAnimation(textSlideIn);
         finnishMessageAnim.setAnimation(textSlideIn);
 
         //rotate the texts
 
         playerNameAnim.animate().rotationBy(720).setDuration(2000).setStartDelay(2000);
         timeAnim.animate().rotationBy(720).setDuration(2000).setStartDelay(2000);
-        rankingAnim.animate().rotationBy(720).setDuration(2000).setStartDelay(2000);
+        this.raceMessage.animate().rotationBy(720).setDuration(2000).setStartDelay(2000);
 
         //Slide out the texts
         playerNameAnim.setAnimation(textSlideOut);
         timeAnim.setAnimation(textSlideOut);
-        rankingAnim.setAnimation(textSlideOut);
+        this.raceMessage.setAnimation(textSlideOut);
         finnishMessageAnim.setAnimation(textSlideOut);
-
-
-
-
-
-
-
         mainImageAnim.setAnimation(slideBackground);
 
         slideBackground.setAnimationListener(new Animation.AnimationListener() {

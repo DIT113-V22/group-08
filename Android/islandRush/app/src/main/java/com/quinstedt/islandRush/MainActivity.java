@@ -15,15 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    Button enterRace, leaderboard;
-    EditText editText;
+    private EditText editText;
+    String playerNameInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        playerNameInput = GlobalData.getGlobalData().getPlayerData();
         //Dynamic background
         ConstraintLayout layout = findViewById(R.id.mainLayout);
         AnimationDrawable animationBackground = (AnimationDrawable) layout.getBackground();
@@ -33,46 +32,54 @@ public class MainActivity extends AppCompatActivity {
 
 
         // On Click goes to Controller choice
-        enterRace = findViewById(R.id.button_enterRace);
+        Button enterRace = findViewById(R.id.button_enterRace);
         enterRace.setOnClickListener(view -> openControlChoice());
+
         editText = findViewById(R.id.playerName);
-        editText.setOnEditorActionListener(editorActionListener);
+        if(!playerNameInput.isEmpty()){
+            editText.setText(playerNameInput);
+        }
 
+        /**
+         * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
+         * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
+         */
 
-        leaderboard = findViewById(R.id.button_Leaderboard);
+        editText.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            if(actionId == EditorInfo.IME_ACTION_SEND){
+                String checkedEmoji = Utils.getEmoji(Utils.CHECKED);
+                String toastMessage = "Saved " + checkedEmoji;
+                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
+                playerNameInput = editText.getText().toString().trim();
+                GlobalData.getGlobalData().setPlayerData(playerNameInput);
+            }
+            return false;
+        });
+
+        Button leaderboard = findViewById(R.id.button_Leaderboard);
         leaderboard.setOnClickListener(view -> openLeaderboard());
 
     }
 
     public void openLeaderboard() {
-        Intent leadIntent = new Intent(this, Leaderboard.class);
-
+        Intent leadIntent = new Intent(this, LeaderboardAnimation.class);
         startActivity(leadIntent);
-
     }
-
-    /**
-     * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
-     * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
-     */
-    private final TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
-        @Override
-        public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-            if(actionId == EditorInfo.IME_ACTION_SEND){
-                String toastMessage = "Saved";
-                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
-
-            }
-           return false;
-        }
-    };
 
     /**
      * Opens ControlChoice when the EnterRace button has been pressed
      */
 
     public void openControlChoice() {
-        Intent raceIntent = new Intent(this, ControlChoice.class);
-        startActivity(raceIntent);
+        if(playerNameInput.isEmpty()){
+            String happyEmoji = Utils.getEmoji(Utils.HAPPY);
+            String toastMessage = "Enter a name " +happyEmoji;
+            Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
+        }else{
+            Intent raceIntent = new Intent(this, ControlChoice.class);
+            startActivity(raceIntent);
+        }
+
     }
+
 }

@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.052" />
 
     <TextView
-        android:id="@+id/ranking_anim"
+        android:id="@+id/raceMessage_anim"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:background="#070071D4"
