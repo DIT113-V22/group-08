@@ -94,10 +94,10 @@ public class BrokerConnection  {
                     final String successfulConnection = "Connected to MQTT broker";
                     Log.i(Topics.Connection.TAG, successfulConnection);
                     Toast.makeText(context, successfulConnection, Toast.LENGTH_SHORT).show();
-
                     mMqttClient.subscribe(Topics.Sensor.ODOMETER_SPEED,Topics.Connection.QOS, null);
                     mMqttClient.subscribe(Topics.Sensor.ODOMETER_DISTANCE, Topics.Connection.QOS, null);
                     mMqttClient.subscribe(Topics.Race.FINISH,Topics.Connection.QOS,null);
+
                 }
 
                 @Override
@@ -122,7 +122,6 @@ public class BrokerConnection  {
                  */
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
-
                     if(topic.equals(Topics.Sensor.ODOMETER_DISTANCE)){
                         String messageMQTT = message.toString();
                         Log.i(Topics.Connection.TAG, "Car distance" + messageMQTT);
@@ -132,19 +131,19 @@ public class BrokerConnection  {
                         Log.i(Topics.Connection.TAG, "Car speed: " + messageMQTT);
 
                     }else if(topic.equals(Topics.Race.FINISH)){
+                        String finishMessage = "Finish";
+                        finish.setText(finishMessage);
+                        simpleChronometer.stop();
+                        long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+                        DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
+                        Date result = new Date(elapsedMillis);
+                        t.setText(String.valueOf(simple.format(result)));
 
-                            String finishMessage = "Finish";
-                            finish.setText(finishMessage);
-                            simpleChronometer.stop();
-                            long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
-                            DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
-                            Date result = new Date(elapsedMillis);
-                            t.setText(String.valueOf(simple.format(result)));
-
-                        }else {
+                    }else {
                         Log.i(Topics.Connection.TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
 
-                    }                               
+                    }
+                }
 
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken token) {

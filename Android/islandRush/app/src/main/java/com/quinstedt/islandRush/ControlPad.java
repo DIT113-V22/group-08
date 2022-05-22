@@ -159,7 +159,7 @@ public class ControlPad extends AppCompatActivity {
         speedometer.addColoredRange(50, 75, Color.YELLOW);
         speedometer.addColoredRange(75, 100, Color.RED);
 
-        saveScoreScreen=findViewById(R.id.saveScoreBtn);
+        Button saveScoreScreen = findViewById(R.id.saveScoreBtn);
         saveScoreScreen.setOnClickListener(view -> goToSaveScoreScreen());
     }
 
