@@ -1,7 +1,5 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.adapters;
 
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.timepicker.TimeFormat;
+import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.database.PlayerScore;
 
 import java.text.SimpleDateFormat;
@@ -27,7 +25,7 @@ public class PlayerScoreRVAdapter extends ListAdapter<PlayerScore, PlayerScoreRV
     private OnItemClickListener listener;
 
     // creating a constructor class for our adapter class.
-    PlayerScoreRVAdapter() {
+    public PlayerScoreRVAdapter() {
         super(DIFF_CALLBACK);
     }
 
