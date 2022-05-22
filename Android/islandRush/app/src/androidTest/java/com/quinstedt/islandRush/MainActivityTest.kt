@@ -80,12 +80,12 @@ class MainActivityTest {
         wait
     }
 
-    @Test
+    /*@Test
     fun test_Navigation_From_MainActivity_To_LeaderBoard(){
         val activityTest = ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.button_Leaderboard)).perform(click())
         onView(withId(R.id.leaderboardMain)).check(matches(isDisplayed()))
-    }
+    }**/
 
     /** @LargeTest - the test is ignore and dont run
      *  @Test- runs the test
@@ -107,13 +107,4 @@ class MainActivityTest {
         onView(withText(toastMessage)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
         wait
     }
-
-
-
-
-
-
-
-
-
 }
