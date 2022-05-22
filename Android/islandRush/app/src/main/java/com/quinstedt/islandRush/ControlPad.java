@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,6 +28,7 @@ public class ControlPad extends AppCompatActivity {
     private int counter;
     private Boolean onReverse = false;
     private Boolean running = true;
+    private Long pauseTime;
     TextView directionIndicator;
 
     private final int DURATION = 2000;
@@ -77,10 +79,12 @@ public class ControlPad extends AppCompatActivity {
                      * remembers the button has been pressed
                      */
                     simpleChronometer.stop();
+                    pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
                     running = false;
                 }
                 else {
                     simpleChronometer.start();
+                    simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
                     running = true;
                 }
             }

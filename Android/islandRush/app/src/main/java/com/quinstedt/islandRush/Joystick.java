@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,6 +35,7 @@ public class Joystick extends AppCompatActivity {
     private  int speedMultiplier;
     private Chronometer simpleChronometer;
     private Boolean running = true;
+    private Long pauseTime;
     Boolean onReverse = false;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -65,13 +67,15 @@ public class Joystick extends AppCompatActivity {
             public void onClick(View view) {
                 if(running) {
                     /**
-                     * remembers the button has been pressed
+                     * remembers the button has been pressed and the chronometer output
                      */
                     simpleChronometer.stop();
+                    pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
                     running = false;
                 }
                 else {
                     simpleChronometer.start();
+                    simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
                     running = true;
                 }
             }
