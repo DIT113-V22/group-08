@@ -8,6 +8,33 @@
     android:background="@drawable/background1"
     tools:context=".Joystick">
 
+    <Button
+        android:id="@+id/pauseButton"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginTop="35dp"
+        android:alpha="0.8"
+        android:background="@drawable/black_circle_button"
+        android:onClick="pauseChronometer"
+        android:text=" II / I▶"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/speedometerControlPad" />
+
+    <Button
+        android:id="@+id/brakeJoystick2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="152dp"
+        android:layout_marginEnd="44dp"
+        android:alpha="0.8"
+        android:background="@drawable/black_circle_button"
+        android:text="brake"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/stopJoystick" />
+
     <ImageButton
         android:id="@+id/joystick_escapeHash"
         style="@style/Widget.AppCompat.Button.Borderless"

@@ -32,7 +32,8 @@ public class Joystick extends AppCompatActivity {
     private final double STOP = 0.0000000001; // use for the speedometer
     private final int SPEED = 10;
     private  int speedMultiplier;
-    Chronometer simpleChronometer;
+    private Chronometer simpleChronometer;
+    private Boolean running = true;
     Boolean onReverse = false;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -54,6 +55,27 @@ public class Joystick extends AppCompatActivity {
         simpleChronometer = findViewById(R.id.simpleChronometerJoystick); // initiate a chronometer
 
         simpleChronometer.start(); // start a chronometer
+
+
+        // Pause and Unpause timer
+        Button pause = findViewById(R.id.pauseButton); // pause the chronometer
+        pause.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if(running) {
+                    /**
+                     * remembers the button has been pressed
+                     */
+                    simpleChronometer.stop();
+                    running = false;
+                }
+                else {
+                    simpleChronometer.start();
+                    running = true;
+                }
+            }
+        });
 
         ImageButton escapeHash = findViewById(R.id.joystick_escapeHash);
         escapeHash.setOnClickListener((View view) -> goBack());

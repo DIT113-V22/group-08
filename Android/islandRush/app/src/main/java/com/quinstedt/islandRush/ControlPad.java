@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Chronometer;
@@ -25,6 +26,7 @@ public class ControlPad extends AppCompatActivity {
     private SpeedometerView speedometer;
     private int counter;
     private Boolean onReverse = false;
+    private Boolean running = true;
     TextView directionIndicator;
 
     private final int DURATION = 2000;
@@ -63,6 +65,27 @@ public class ControlPad extends AppCompatActivity {
         Chronometer simpleChronometer = findViewById(R.id.simpleChronometerControlPad);
 
         simpleChronometer.start();
+
+        // Pause and Unpause timer
+        Button pause = findViewById(R.id.pauseButtonControlPad); // pause the chronometer
+        pause.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if(running) {
+                    /**
+                     * remembers the button has been pressed
+                     */
+                    simpleChronometer.stop();
+                    running = false;
+                }
+                else {
+                    simpleChronometer.start();
+                    running = true;
+                }
+            }
+        });
+
         ImageButton escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
 
