@@ -1,8 +1,10 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.instructionScreens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.quinstedt.islandRush.R;
 
 public class controlsInstruction extends AppCompatActivity {
 

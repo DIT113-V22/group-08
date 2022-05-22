@@ -13,9 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.quinstedt.islandRush.instructionScreens.gettingStarted;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button enterRace, leaderboard;
+    Button enterRace, leaderboard ,howToPlay;
     EditText editText;
     BrokerConnection brokerConnection;
 
@@ -41,9 +43,17 @@ public class MainActivity extends AppCompatActivity {
         leaderboard = findViewById(R.id.button_Leaderboard);
         leaderboard.setOnClickListener(view -> openLeaderboard());
 
+        howToPlay = findViewById(R.id.howToPlayBtn);
+        howToPlay.setOnClickListener(view -> openInstructionScreen());
+
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.connectToMqttBroker();
 
+    }
+
+    private void openInstructionScreen() {
+        Intent tutorialIntent = new Intent(this, gettingStarted.class);
+        startActivity(tutorialIntent);
     }
 
     public void openLeaderboard() {
