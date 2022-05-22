@@ -40,7 +40,8 @@ public class BrokerConnection  {
             public static final String ODOMETER_SPEED = MAIN_TOPIC + "/Odometer/Speed";
         }
         public static class Race {
-            public static final String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
+            public static final String CONTROLLER_JOYSTICK = MAIN_TOPIC + "/Control/Joystick/Direction";
+            public static final String CONTROLLER_CONTROLPAD = MAIN_TOPIC + "/Control/ControlPad/Direction";
             public static final String SET_CAR_SPEED = MAIN_TOPIC + "/Control/Speed";
             public static final String FINISH = MAIN_TOPIC + "/Mood/Race/Finish";
         }

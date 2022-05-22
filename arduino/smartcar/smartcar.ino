@@ -42,7 +42,8 @@ const String ODOMETER_RIGHT_SPEED = MAIN_TOPIC + "/Odometer/RightSpeed";
 const String ODOMETOR_DISTANCE  = MAIN_TOPIC + "/Odometer/Distance";
 const String ODOMETOR_SPEED  = MAIN_TOPIC + "/Odometer/Speed";
 //Controller topics;
-const String CONTROLLER = MAIN_TOPIC + "/Control/Direction";
+const String JOYSTICK = MAIN_TOPIC + "/Control/Joystick/Direction";
+const String CONTROLPAD = MAIN_TOPIC + "/Control/ControlPad/Direction";
 const String SPEED = MAIN_TOPIC + "/Control/Speed";
 
 
@@ -63,12 +64,10 @@ DistanceCar car(arduinoRuntime, control, leftOdometer, rightOdometer);
 
 // Car movements
 int currentSpeed;
-const auto degreeLeft = -50; 
-const auto degreeRight = 50;
-const auto diagonalFirst = 20;
-const auto diagonalRight = 20;
-const auto diagonalLeft = -20;
-const auto diagonalDelay = 500;
+auto maxAngle = 40;
+
+const auto degreeLeft = -40; 
+const auto degreeRight = 40;
 
 void setup() {
   Serial.begin(9600);
@@ -99,64 +98,40 @@ void setup() {
   mqtt.subscribe(MAIN_TOPIC + "/Control/#", 1);
   mqtt.onMessage([](String topic, String message)
   {
-    if(topic == CONTROLLER){
+    if(topic == JOYSTICK){
+        car.setAngle(round(message.toFloat() * maxAngle));    
+    }else if (topic == SPEED){
+      // the speed is set between 0-100, increasing or decrising by 10 everytime
+         currentSpeed = message.toInt();
+        car.setSpeed(currentSpeed);
+    }else if(topic == CONTROLPAD){
           auto input = message.toInt();
         switch (input){
         case 1: // up 
             car.setSpeed(currentSpeed);
             car.setAngle(0);
             break;
-        case 2: // up-right  
-            car.setSpeed(currentSpeed);
-            car.setAngle(diagonalFirst);
-            delay(diagonalDelay);
-            car.setAngle(diagonalRight);
-            break;
-        case 3: //right 
+        case 2: //right 
             car.setSpeed(currentSpeed);
             car.setAngle(degreeRight);
             break;
-        case 4: // down-right 
-            car.setSpeed(-currentSpeed);
-            car.setAngle(diagonalFirst);
-            delay(diagonalDelay);
-            car.setAngle(diagonalRight);
-            break;
-        case 5: // down
-            car.setSpeed(-currentSpeed);
+        case 3: // down
+            car.setSpeed(currentSpeed);
             car.setAngle(0);
             break;
-        case 6: //   downleft
-            car.setSpeed(-currentSpeed);
-            car.setAngle(-diagonalFirst);
-            delay(diagonalDelay);
-            car.setAngle(diagonalLeft);
-            break;
-        case 7: //left
+        case 4: //left
             car.setSpeed(currentSpeed);
             car.setAngle(degreeLeft);
-            break;
-        case 8: // up left 
-            car.setSpeed(currentSpeed);
-            car.setAngle(-diagonalFirst);
-            delay(diagonalDelay);
-            car.setAngle(diagonalLeft);
             break;
         default: 
             car.setSpeed(0);
             car.setAngle(0);
-        }
-    } else if (topic == SPEED){
-      // the speed is set between 0-100, increasing or decrising by 10 everytime
-         currentSpeed = message.toInt();
-        car.setSpeed(currentSpeed);
-               
+        }             
     }else {
       Serial.println(topic + " " + message);
     }
   });
 }
-
 
 void loop() {
   if (mqtt.connected()) {

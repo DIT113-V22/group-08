@@ -36,6 +36,19 @@
         app:layout_constraintVertical_bias="0.866"
         app:srcCompat="@drawable/pad_image" />
 
+    <TextView
+        android:id="@+id/direction_indicator"
+        android:layout_width="45dp"
+        android:layout_height="31dp"
+        android:gravity="center"
+        android:textAppearance="?android:attr/text"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/down"
+        app:layout_constraintEnd_toStartOf="@+id/right"
+        app:layout_constraintStart_toEndOf="@+id/left"
+        app:layout_constraintTop_toBottomOf="@+id/up" />
+
     <Button
         android:id="@+id/up"
         android:layout_width="76dp"
@@ -43,7 +56,6 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="4dp"
         android:background="@color/cardview_shadow_end_color"
-        android:onClick="moveForward"
         app:layout_constraintStart_toStartOf="@+id/controlBackground"
         app:layout_constraintTop_toTopOf="@+id/controlBackground" />
 
@@ -54,7 +66,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:background="@color/cardview_shadow_end_color"
-        android:onClick="moveForwardLeft"
         app:layout_constraintStart_toStartOf="@+id/controlBackground"
         app:layout_constraintTop_toTopOf="@+id/controlBackground" />
 
@@ -65,7 +76,6 @@
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="8dp"
         android:background="@color/cardview_shadow_end_color"
-        android:onClick="moveBackward"
         app:layout_constraintBottom_toBottomOf="@+id/controlBackground"
         app:layout_constraintEnd_toEndOf="@+id/controlBackground" />
 
@@ -76,7 +86,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="60dp"
         android:background="@color/cardview_shadow_end_color"
-        android:onClick="moveForwardRight"
         app:layout_constraintBottom_toBottomOf="@+id/controlBackground"
         app:layout_constraintEnd_toEndOf="@+id/controlBackground" />
 
@@ -99,9 +108,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="268dp"
         android:textAppearance="?android:attr/text"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30sp"
-        app:drawableLeftCompat="@drawable/ic_baseline_speed_24"
+        app:drawableLeftCompat="@drawable/ic_baseline_speed_24_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.751"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,8 +178,8 @@
 
     <Chronometer
         android:id="@+id/simpleChronometerControlPad"
-        android:layout_width="141dp"
-        android:layout_height="72dp"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="256dp"
         android:textColor="@color/white"
@@ -182,13 +191,13 @@
         android:id="@+id/TOTALTIME_ControlPad"
         android:layout_width="150dp"
         android:layout_height="90dp"
-        android:layout_marginTop="440dp"
+        android:layout_marginTop="360dp"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
