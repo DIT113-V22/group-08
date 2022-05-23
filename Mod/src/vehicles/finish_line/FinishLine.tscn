@@ -8,6 +8,7 @@
 extents = Vector3( 1.90874, 0.215063, 0.486514 )
 
 [node name="TemplateCar" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.72607, 0.767214 )
 cosmetic_wheels = [ NodePath("LeftBack/wheel"), NodePath("LeftFront/wheel"), NodePath("RightBack/wheel"), NodePath("RightFront/wheel") ]
 
 [node name="CollisionShape3" type="CollisionShape" parent="." index="0"]
@@ -46,7 +47,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.01336
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8 )
 
 [node name="FrontTop" parent="AttachmentSlots" index="2"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0.5, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.34074, 0.5, 0 )
 
 [node name="Right" parent="AttachmentSlots" index="4"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 0 )
