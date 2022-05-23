@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        playerNameInput = GlobalData.getGlobalData().getPlayerData();
+        editText = findViewById(R.id.playerName);
+
         //Dynamic background
         ConstraintLayout layout = findViewById(R.id.mainLayout);
         AnimationDrawable animationBackground = (AnimationDrawable) layout.getBackground();
@@ -35,15 +36,6 @@ public class MainActivity extends AppCompatActivity {
         Button enterRace = findViewById(R.id.button_enterRace);
         enterRace.setOnClickListener(view -> openControlChoice());
 
-        editText = findViewById(R.id.playerName);
-        if(!playerNameInput.isEmpty()){
-            editText.setText(playerNameInput);
-        }
-
-        /**
-         * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
-         * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
-         */
 
         editText.setOnEditorActionListener((textView, actionId, keyEvent) -> {
             if(actionId == EditorInfo.IME_ACTION_SEND){
@@ -55,6 +47,17 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+        playerNameInput = GlobalData.getGlobalData().getPlayerData();
+        if(!playerNameInput.isEmpty()){
+            editText.setText(playerNameInput);
+        }
+
+
+        /**
+         * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
+         * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
+         */
+
 
         Button leaderboard = findViewById(R.id.button_Leaderboard);
         leaderboard.setOnClickListener(view -> openLeaderboard());

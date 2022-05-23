@@ -25,6 +25,8 @@ public class LeaderboardAnimation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard_animation);
 
+        viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
+
         raceMessage =  findViewById(R.id.raceMessage_anim);
         playerNameAnim = findViewById(R.id.player_name_anim);
         timeAnim = findViewById(R.id.timing_anim);
@@ -93,10 +95,10 @@ public class LeaderboardAnimation extends AppCompatActivity {
 
     //inserts the player Name and Time taken to the database
     private void insertDataToDatabase() {
-        String playerName= playerNameAnim.getText().toString();
+        String playerName= GlobalData.getGlobalData().getPlayerData();
         int time= GlobalData.getGlobalData().getTimeInSec();
         // Create PlayerScore Object
-        PlayerScore playerScore = new PlayerScore(playerName.toString(),time);
+        PlayerScore playerScore = new PlayerScore(playerName,time);
         // Add Data to Database
         viewmodal.insert(playerScore);
     }

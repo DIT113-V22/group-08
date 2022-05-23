@@ -180,6 +180,7 @@ public class BrokerConnection extends AppCompatActivity {
         }
     public void setSimpleChronometer(Chronometer simpleChronometer) {
             this.simpleChronometer = simpleChronometer;
-        }
+    }
+
 
 }
