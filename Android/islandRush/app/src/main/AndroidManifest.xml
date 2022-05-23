@@ -14,17 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IslandRush">
-        <activity
-            android:name=".instructionScreens.controlsInstruction"
-            android:exported="false" />
-        <activity
-            android:name=".instructionScreens.gettingStarted"
-            android:exported="false" />
+
         <activity
             android:name=".Scoreboard"
-            android:exported="false" />
-        <activity
-            android:name=".SaveScore"
             android:exported="false" />
         <activity
             android:name=".LeaderboardAnimation"

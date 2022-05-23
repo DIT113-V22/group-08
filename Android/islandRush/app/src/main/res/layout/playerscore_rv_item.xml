@@ -24,7 +24,7 @@
             android:fontFamily="cursive"
             android:padding="8dp"
             android:text="Name"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
             android:fontFamily="cursive"
             android:padding="8dp"
             android:text="Time"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/white"
             android:textSize="35sp" />
 
     </LinearLayout>

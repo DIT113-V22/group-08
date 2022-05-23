@@ -28,6 +28,7 @@ public class Scoreboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
 
+        // initializing controls on the activity
         resetBtn= findViewById(R.id.resetBtn);
         resetBtn.setOnClickListener(view -> deleteLeaderboard());
         backToHome=findViewById(R.id.homeBtn);
