@@ -35,16 +35,14 @@
 
     <TextView
         android:id="@+id/direction_indicator"
-        android:layout_width="51dp"
-        android:layout_height="38dp"
+        android:layout_width="50dp"
+        android:layout_height="39dp"
         android:gravity="center"
         android:textAppearance="?android:attr/text"
-        android:textSize="10sp"
+        android:textSize="8sp"
         android:textStyle="bold"
-        android:textColor="?android:attr/color"
         app:layout_constraintBottom_toTopOf="@+id/down"
         app:layout_constraintEnd_toStartOf="@+id/right"
-        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toEndOf="@+id/left"
         app:layout_constraintTop_toBottomOf="@+id/up" />
 
