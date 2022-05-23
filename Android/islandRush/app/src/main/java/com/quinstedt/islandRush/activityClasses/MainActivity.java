@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.quinstedt.islandRush.GlobalData;
 import com.quinstedt.islandRush.R;
+import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 import com.quinstedt.islandRush.Utils;
 
 public class MainActivity extends AppCompatActivity {
