@@ -83,8 +83,6 @@ public class Joystick extends AppCompatActivity {
                 simpleChronometer.start();
                 simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
                 currentSpeed = storedSpeed;
-                sendCarSpeed("Resume the game.");
-                driveControl(lastDirection, "Resume game.");
                 running = true;
             }
         });

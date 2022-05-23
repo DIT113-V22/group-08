@@ -14,6 +14,7 @@ public class GlobalData {
      public int timeInSec;
      public boolean isFinish;
 
+
      private GlobalData(){
          playerData = "";
          isFinish = false;

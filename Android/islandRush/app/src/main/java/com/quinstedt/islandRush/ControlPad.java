@@ -29,12 +29,10 @@ public class ControlPad extends AppCompatActivity {
     private int counter;
     private Boolean onReverse = false;
     private Boolean running = true;
-    private String lastDirection;
     private int currentSpeed;
     private Long pauseTime;
     TextView directionIndicator;
     TextView finish;
-    private int storedSpeed;
 
     private final int DURATION = 2000;
     private final int DELAY = 500;
@@ -70,7 +68,6 @@ public class ControlPad extends AppCompatActivity {
         /** Pause and Unpause timer */
         Button pause = findViewById(R.id.pauseButtonControlPad); // pause the chronometer
         pause.setOnClickListener(view -> {
-            storedSpeed = currentSpeed;
             if(running) {
                 /**
                  * remembers the button has been pressed and the chronometer output
@@ -82,9 +79,6 @@ public class ControlPad extends AppCompatActivity {
             } else {
                 simpleChronometer.start();
                 simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
-                currentSpeed = storedSpeed;
-                sendCarSpeed("Resume the game.");
-                driveControl(lastDirection, "Resume game.");
                 running = true;
             }
         });
@@ -93,9 +87,8 @@ public class ControlPad extends AppCompatActivity {
         reset.setOnClickListener(view -> {
             simpleChronometer.setBase(SystemClock.elapsedRealtime());
             currentSpeed = 0;
-            lastDirection = "5"; // Trigger the default case in the arduino file
+            driveControl("5", "Resume game.");// Trigger the default case in the arduino file
             // which sets the speed and the direction to 0 in the car.
-            driveControl(lastDirection, "Resume game.");
             simpleChronometer.start();
         });
 
@@ -375,7 +368,6 @@ public class ControlPad extends AppCompatActivity {
     public void driveControl(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
         mqttClient.publish(CONTROLLER_CONTROLPAD, message,QOS, null);
-        lastDirection = message;
     }
 
     public void driveSpeed(String message, String actionDescription) {
