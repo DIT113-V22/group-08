@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IslandRush">
         <activity
-            android:name=".LeaderboardAnimation"
+            android:name=".CreditsActivity"
             android:exported="false" />
         <activity
             android:name=".Leaderboard"

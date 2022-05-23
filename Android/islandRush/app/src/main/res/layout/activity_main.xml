@@ -85,5 +85,21 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/button_credits"
+        android:layout_width="226dp"
+        android:layout_height="39dp"
+        android:layout_below="@+id/button_enterRace"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/main_buttons"
+        android:text="Credits "
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

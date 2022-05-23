@@ -10,76 +10,76 @@ import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText editText;
-    String playerNameInput;
+
+    Button enterRace, leaderboard, openCredits;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        playerNameInput = GlobalData.getGlobalData().getPlayerData();
+
         //Dynamic background
         ConstraintLayout layout = findViewById(R.id.mainLayout);
         AnimationDrawable animationBackground = (AnimationDrawable) layout.getBackground();
         animationBackground.setEnterFadeDuration(2500);
         animationBackground.setExitFadeDuration(5000);
         animationBackground.start();
-
+       // viewPager2.findViewById(R.id.leaderboard1);
 
         // On Click goes to Controller choice
-        Button enterRace = findViewById(R.id.button_enterRace);
+        enterRace = findViewById(R.id.button_enterRace);
         enterRace.setOnClickListener(view -> openControlChoice());
-
         editText = findViewById(R.id.playerName);
-        if(!playerNameInput.isEmpty()){
-            editText.setText(playerNameInput);
-        }
+        editText.setOnEditorActionListener(editorActionListener);
 
-        /**
-         * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
-         * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
-         */
 
-        editText.setOnEditorActionListener((textView, actionId, keyEvent) -> {
-            if(actionId == EditorInfo.IME_ACTION_SEND){
-                String checkedEmoji = Utils.getEmoji(Utils.CHECKED);
-                String toastMessage = "Saved " + checkedEmoji;
-                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
-                playerNameInput = editText.getText().toString().trim();
-                GlobalData.getGlobalData().setPlayerData(playerNameInput);
-            }
-            return false;
-        });
-
-        Button leaderboard = findViewById(R.id.button_Leaderboard);
+        leaderboard = findViewById(R.id.button_Leaderboard);
         leaderboard.setOnClickListener(view -> openLeaderboard());
 
+        openCredits = findViewById(R.id.button_credits);
+        openCredits.setOnClickListener(view -> openCredits());
+
+    }
+
+    public void openCredits() {
+        Intent leadIntent = new Intent(this, CreditsActivity.class);
+        startActivity(leadIntent);
     }
 
     public void openLeaderboard() {
         Intent leadIntent = new Intent(this, Leaderboard.class);
+
         startActivity(leadIntent);
+
     }
+
+    /**
+     * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
+     * to a Send Button and this method creates a toastMessage after the Send button has been pressed in the keyboard.
+     */
+    private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+            if(actionId == EditorInfo.IME_ACTION_SEND){
+                String toastMessage = "Saved";
+                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
+
+            }
+           return false;
+        }
+    };
 
     /**
      * Opens ControlChoice when the EnterRace button has been pressed
      */
 
     public void openControlChoice() {
-        if(playerNameInput.isEmpty()){
-            String happyEmoji = Utils.getEmoji(Utils.HAPPY);
-            String toastMessage = "Enter a name " +happyEmoji;
-            Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
-        }else{
-            Intent raceIntent = new Intent(this, ControlChoice.class);
-            startActivity(raceIntent);
-        }
-
+        Intent raceIntent = new Intent(this, ControlChoice.class);
+        startActivity(raceIntent);
     }
-
 }
