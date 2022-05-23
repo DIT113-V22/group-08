@@ -1,13 +1,28 @@
 {
-    "label": "cat_car",
-    "vehicle": "Catcar",
-    "slots": {
-        "Front2": {
-            "class": "Camera",
-            "name": "Front Camera",
-            "props": {
-                "far": 10000
-            }
-        }
-    }
+   "from_scratch": true,
+   "label":"tropical_car",
+   "vehicle": "Tropicalcar",
+   "builtin": {
+      "Left BrushedMotor": {
+         "forward_pin": 12,
+         "backward_pin": 14,
+         "enable_pin": 13
+      },
+      "Right BrushedMotor": {
+         "forward_pin": 25,
+         "backward_pin": 26,
+         "enable_pin": 27
+      },
+      "Gyroscope": {
+         "pin": 205
+      },
+      "Left Odometer": {
+         "distance_pin": 35,
+         "direction_pin": 34
+      },
+      "Right Odometer": {
+         "distance_pin": 36,
+         "direction_pin": 39
+      }
+   }
 }

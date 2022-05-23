@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/vehicles/stupid_car/car_parts/SMCE-wheel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/vehicles/template_car/TemplateCar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/vehicles/tropical_car/car_assets/scene.glb" type="PackedScene" id=3]
+
+[sub_resource type="CylinderShape" id=4]
+radius = 0.568741
+height = 0.43463
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.927223, 1, 1.89963 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 1, 0.658677, 2.34856 )
+
+[node name="TemplateCar" instance=ExtResource( 2 )]
+cosmetic_wheels = [ NodePath("LeftBack/wheel"), NodePath("LeftFront/wheel"), NodePath("RightBack/wheel"), NodePath("RightFront/wheel") ]
+
+[node name="wheel" type="Spatial" parent="LeftBack" index="0"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.7, 0 )
+
+[node name="wheel" parent="LeftBack/wheel" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00168359, 0.502, 0 )
+
+[node name="LeftFront" parent="." index="1"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.934, 0, -0.676513 )
+
+[node name="wheel" type="Spatial" parent="LeftFront" index="0"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.7, 0 )
+
+[node name="wheel" parent="LeftFront/wheel" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00168359, 0.502, 0 )
+
+[node name="wheel" type="Spatial" parent="RightBack" index="0"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.7, 0 )
+
+[node name="wheel" parent="RightBack/wheel" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.00411332, 0.502, 0 )
+
+[node name="RightFront" parent="." index="3"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.934, 0, -0.676513 )
+
+[node name="wheel" type="Spatial" parent="RightFront" index="0"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.7, 0 )
+
+[node name="wheel" parent="RightFront/wheel" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.00411332, 0.502, 0 )
+
+[node name="AttachmentSlots" parent="." index="4"]
+visible = false
+
+[node name="Front Left Collision" type="CollisionShape" parent="." index="6"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.37001, -0.209248, -0.668084 )
+shape = SubResource( 4 )
+
+[node name="Front Right Collision" type="CollisionShape" parent="." index="7"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.37391, -0.233268, -0.668084 )
+shape = SubResource( 4 )
+
+[node name="Back Left Collision" type="CollisionShape" parent="." index="8"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.35994, -0.233268, 0.595306 )
+shape = SubResource( 4 )
+
+[node name="Back Right Collision" type="CollisionShape" parent="." index="9"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.38, -0.188743, 0.595306 )
+shape = SubResource( 4 )
+
+[node name="TropicalCar" parent="." index="10" instance=ExtResource( 3 )]
+transform = Transform( -1.1, 0, -1.66095e-07, 0, 1.1, 0, 1.66095e-07, 0, -1.1, 0, -1.07124, 1.32855 )
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670491, 0.0626937 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="." index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55523, 3.63001 )
+shape = SubResource( 6 )
