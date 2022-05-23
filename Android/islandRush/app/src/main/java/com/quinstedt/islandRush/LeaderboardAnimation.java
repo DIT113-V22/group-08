@@ -1,6 +1,7 @@
 package com.quinstedt.islandRush;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,17 +9,21 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.quinstedt.islandRush.database.PlayerScore;
+import com.quinstedt.islandRush.database.ViewModal;
 
 public class LeaderboardAnimation extends AppCompatActivity {
 
     TextView raceMessage, playerNameAnim, timeAnim, finnishMessageAnim;
     ImageView carImageAnim, mainImageAnim;
+    private ViewModal viewmodal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard_animation);
-
 
         raceMessage =  findViewById(R.id.raceMessage_anim);
         playerNameAnim = findViewById(R.id.player_name_anim);
@@ -36,6 +41,8 @@ public class LeaderboardAnimation extends AppCompatActivity {
         String crossedFingers = Utils.getEmoji(Utils.CROSSED_FINGERS);
         String finishMessage = "Good luck next time " + crossedFingers;
         finnishMessageAnim.setText(finishMessage);
+
+        insertDataToDatabase();
 
         Animation slideBackground= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_background);
         Animation textSlideOut=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_text);
@@ -82,4 +89,15 @@ public class LeaderboardAnimation extends AppCompatActivity {
             }
         });
 
-    }}
+    }
+
+    private void insertDataToDatabase() {
+        String playerName= playerNameAnim.getText().toString();
+        int time= GlobalData.getGlobalData().getTimeInSec();
+        // Create PlayerScore Object
+        PlayerScore playerScore = new PlayerScore(playerName.toString(),time);
+        // Add Data to Database
+        viewmodal.insert(playerScore);
+    }
+
+}

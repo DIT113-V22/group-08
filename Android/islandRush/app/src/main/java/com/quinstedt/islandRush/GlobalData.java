@@ -48,8 +48,8 @@ public class GlobalData {
         this.timeInSec = (int) timeInSec;
     }
 /** for the database stores the time of the race in miliseconds */
-    public int getTimeInSec(Long time){
-       long inSec = time /1000;
+    public int getTimeInSec(){
+       long inSec = this.timeInSec /1000;
        timeInSec = (int) inSec;
          return timeInSec = (int) inSec;
     }

@@ -42,7 +42,7 @@ public class ControlChoice extends AppCompatActivity {
      * Method for the escape Hash that launches MainActivity
      */
     private void goBack() {
-        Intent goToMain = new Intent(this, SaveScore.class);
+        Intent goToMain = new Intent(this, MainActivity.class);
         startActivity(goToMain);
     }
 

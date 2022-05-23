@@ -21,25 +21,31 @@
         android:layout_marginTop="82dp"
         tools:listitem="@layout/playerscore_rv_item" />
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="67dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="76dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="70dp"
         app:srcCompat="@drawable/score" />
-
 
     <ImageButton
         android:id="@+id/homeBtn"
         android:layout_width="61dp"
         android:layout_height="57dp"
+        android:layout_above="@+id/imageView5"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="349dp"
-        android:layout_marginBottom="669dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="347dp"
+        android:layout_marginBottom="94dp"
         android:background="@color/cardview_shadow_start_color"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
@@ -47,10 +53,14 @@
         android:id="@+id/resetBtn"
         android:layout_width="61dp"
         android:layout_height="59dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="3dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="346dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="668dp"
         android:background="@color/cardview_shadow_start_color"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
@@ -121,7 +131,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/nameTitle"
         android:layout_width="118dp"
         android:layout_height="42dp"
         android:layout_alignParentEnd="true"

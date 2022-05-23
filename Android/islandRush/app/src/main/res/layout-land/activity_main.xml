@@ -71,30 +71,13 @@
         android:layout_height="40dp"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/main_buttons"
         android:text="LeaderBoard "
         android:textColor="@color/white"
         android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/howToPlayBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.81"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/howToPlayBtn"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/button_enterRace"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="48dp"
-        android:background="@drawable/main_buttons"
-        android:text="HOW TO PLAY ?"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.81"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="263dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
