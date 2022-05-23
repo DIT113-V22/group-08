@@ -91,6 +91,7 @@ public class LeaderboardAnimation extends AppCompatActivity {
 
     }
 
+    //inserts the player Name and Time taken to the database
     private void insertDataToDatabase() {
         String playerName= playerNameAnim.getText().toString();
         int time= GlobalData.getGlobalData().getTimeInSec();
