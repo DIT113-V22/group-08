@@ -70,11 +70,7 @@ class ScoreboardTest {
         onView(withId(R.id.homeBtn)).perform(click())
         onView(withId(R.id.mainLayout)).check(matches(isDisplayed()))
     }
-    @Test
-    fun Test_leaderboard_recycleView(){
-        val activityTest = ActivityScenario.launch(Scoreboard::class.java)
-        onView(withId(R.id.scoreboard_recycleView)).check(matches(isDisplayed()))
-    }
+
 
 
 
