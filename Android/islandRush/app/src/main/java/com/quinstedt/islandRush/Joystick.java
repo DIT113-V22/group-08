@@ -42,6 +42,8 @@ public class Joystick extends AppCompatActivity {
     private Long pauseTime;
     Boolean onReverse = false;
     TextView finish;
+    private int currentSpeed;
+    private String lastDirection;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -65,24 +67,25 @@ public class Joystick extends AppCompatActivity {
 
 
         // Pause and Unpause timer
-        Button pause = findViewById(R.id.pauseButton); // pause the chronometer
-        pause.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                if(running) {
-                    /**
-                     * remembers the button has been pressed and the chronometer output
-                     */
-                    simpleChronometer.stop();
-                    pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
-                    running = false;
-                }
-                else {
-                    simpleChronometer.start();
-                    simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
-                    running = true;
-                }
+        Button pause = findViewById(R.id.pauseButtonJoystick); // pause the chronometer
+        pause.setOnClickListener(view -> {
+            int storedSpeed = currentSpeed;
+            if(running) {
+                /**
+                 * remembers the button has been pressed and the chronometer output
+                 */
+                simpleChronometer.stop();
+                pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+                stopCar();
+                running = false;
+            }
+            else {
+                simpleChronometer.start();
+                simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
+                currentSpeed = storedSpeed;
+                sendCarSpeed("Resume the game.");
+                driveControl(lastDirection, "Resume game.");
+                running = true;
             }
         });
 
@@ -93,7 +96,7 @@ public class Joystick extends AppCompatActivity {
         brake.setOnClickListener(view -> brake());
 
         Button stop = findViewById(R.id.stopJoystick);
-        stop.setOnClickListener(view -> stop());
+        stop.setOnClickListener(view -> stopCar());
 
         Button acceleration = findViewById(R.id.accelerateJoystick);
         acceleration.setOnClickListener(view -> acceleration());
@@ -135,19 +138,18 @@ public class Joystick extends AppCompatActivity {
                 }
                 setSpeedMultiplier(joystick.angle());
 
-                int speedometerSpeed;
+
                 /**
                  * the speedMultiplier is indicating if the previous speed before the realease of the
                  * joystick was forward (10) or in reverse (-10) and we update the speed to continue
                  * in that direction.
                  */
                 if (speedMultiplier == -SPEED) {
-                    speedometerSpeed = updateSpeed(true, "Moving in reverse");
+                     updateSpeedAfterDirectionChange(true, "Moving in reverse");
                 } else {
-                    speedometerSpeed = updateSpeed(false, "Moving Forward");
+                    updateSpeedAfterDirectionChange(false, "Moving Forward");
                 }
-                setupSpeedometer(speedometerSpeed,DURATION,DELAY);
-
+                setupSpeedometer(currentSpeed,DURATION,DELAY);
 
                 return true;
             }
@@ -182,26 +184,35 @@ public class Joystick extends AppCompatActivity {
     }
 
     /**
-     *
+     * Updates the speed sended to the broker
      * @param onReverse a boolean that tells us if the car is moving forward or in reverse
      * @param description the action description that will be printed while sending the information to the broker
      * @return
      */
-    int updateSpeed(boolean onReverse, String description){
+    public void updateSpeedAfterDirectionChange(boolean onReverse, String description){
 
         if(!onReverse && counter > 0){
             setupSpeedometer(0,800,1);
-            this.onReverse = onReverse;
-
-            setCarSpeed(getOutPutSpeed(counter), description);
+            this.onReverse = onReverse; // onReverse changes during the code, so we ignore the warning.
+            sendCarSpeed(description);
         }else {
             this.onReverse = onReverse;
             if(counter == 0){
                 acceleration();
             }
         }
-        setCarSpeed(getOutPutSpeed(counter), description);
-        return getOutPutSpeed(counter);
+        changeCurrentSpeed(counter);
+        sendCarSpeed(description);
+
+    }
+    /**
+     * @param description the description that will be printed when the speed is send
+     */
+    public void sendCarSpeed(String description) {
+        String velocityText = "Velocity: " + this.currentSpeed;
+        driveSpeed(Integer.toString(this.currentSpeed),description + velocityText);
+        String printSpeed = "Speed: ";
+        Log.i(printSpeed, velocityText);
     }
 
     /**
@@ -210,23 +221,23 @@ public class Joystick extends AppCompatActivity {
      */
     public void setFullSpeed() {
         counter = SPEED;
-        int outputSpeed = getOutPutSpeed(counter);
-        setCarSpeed(outputSpeed, "Setting velocity on full speed. ");
-        setupSpeedometer(outputSpeed,DURATION,DELAY);
+        changeCurrentSpeed(counter);
+        sendCarSpeed( "Setting velocity on full speed. ");
+        setupSpeedometer(currentSpeed,DURATION,DELAY);
 
     }
     public void brake() {
         if (counter == 1) {
-            stop();
+            stopCar();
         } else if (counter > 1){
             counter--;
-            int outputSpeed = counter * speedMultiplier;
+            changeCurrentSpeed(counter);
             if(onReverse){
-                setCarSpeed(-outputSpeed, "Using Reverse break. ");
+                sendCarSpeed("Using Reverse break. ");
             } else{
-                setCarSpeed(outputSpeed, "Using forward break. " );
+                sendCarSpeed( "Using forward break. " );
             }
-            setupSpeedometer(outputSpeed,DURATION,DELAY);
+            setupSpeedometer(currentSpeed,DURATION,DELAY);
 
         }
     }
@@ -235,19 +246,20 @@ public class Joystick extends AppCompatActivity {
         int MAX_COUNTER = 10;
         if (counter < MAX_COUNTER) {
             counter++;
-            int outputSpeed = counter * speedMultiplier;
+            changeCurrentSpeed(counter);
             if(onReverse){
-                setCarSpeed(-outputSpeed, "Using Reverse break. ");
+                sendCarSpeed( "Using Reverse break. ");
             } else{
-                setCarSpeed(outputSpeed, "Using forward break. " );
+                sendCarSpeed( "Using forward break. " );
             }
-            setupSpeedometer(outputSpeed,DURATION,DELAY);
+            setupSpeedometer(currentSpeed,DURATION,DELAY);
         }
     }
 
-    public void stop(){
+    public void stopCar (){
         counter = 0;
-        setCarSpeed(counter, "Stopping" );
+        changeCurrentSpeed(0);
+        sendCarSpeed( "Stopping" );
         setupSpeedometer(0,800,1);
     }
 
@@ -271,22 +283,20 @@ public class Joystick extends AppCompatActivity {
     }
 
     /**
-     * @param counter the speed counter
-     * @return return the speed that will be send to the broker
+     * Updates the currentSpeed of the car
      *
-     * The counter increases and decreases depending on the clicks in
-     * the acceleration button and the break button.
-     * It has a range between 0 to 10.
+     * @param counter the speed counter.The counter increases
+     *                and decreases depending on the clicks in
+     *                the acceleration button and the break button.
      */
-    public int getOutPutSpeed(int counter){
-        return counter * speedMultiplier;
+    public void changeCurrentSpeed(int counter){
+        currentSpeed = counter * speedMultiplier;
     }
 
     /**
-     * The joystick has a angle range between 0 - 360 this method is shifting
-     * the range. The new range is set to be between -180 and 180.
-     * @param joystickAngle
-     * @return
+     * @param joystickAngle - The joystick has a angle range between 0 - 360 this method is shifting
+     *      * the range.
+     * @return  The new range is set to be between -180 and 180.
      */
     public float convertAngle(float joystickAngle){
         return -((joystickAngle + 90) % 360 -180);
@@ -294,9 +304,8 @@ public class Joystick extends AppCompatActivity {
 
     /**
      * Source: https://github.com/DIT113-V22/group-03
-     * This method converts the joystick angle to match the angle in the arduino car.
+     * This method converts the joystick angle and returns a number between 0 and 1.0
      * @param joystickAngle the angle from the joystick
-     * @return
      */
     public float getOutputAngle(float joystickAngle){
         float convertedAngle= convertAngle(joystickAngle);
@@ -307,12 +316,12 @@ public class Joystick extends AppCompatActivity {
             direction = 1; // to the Right
         }
         float angle;
+        // direction set to the opposite angle if reversing
         if(convertedAngle <= -90 || convertedAngle >= 90){
             angle = -(convertedAngle - direction * 180);
         }else{
             angle = convertedAngle;
         }
-
         return angle/90;
     }
 
@@ -332,22 +341,13 @@ public class Joystick extends AppCompatActivity {
     public void driveControl(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
         mMqttClient.publish(CONTROLLER_JOYSTICK, message, QOS, null);
+        lastDirection = message;
     }
     public void driveSpeed(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
         mMqttClient.publish(SET_CAR_SPEED, message, QOS, null);
     }
 
-    /**
-     * @param speed the speed that will be send to the broker
-     * @param description the description that will be printed when the speed is send
-     */
-    public void setCarSpeed(int speed, String description ){
-        String velocityText = "Velocity: " + speed;
-        driveSpeed(Integer.toString(speed),description + velocityText);
-        String printSpeed = "Speed: ";
-        Log.i(printSpeed, velocityText);
-    }
 
     /**
      *
@@ -358,8 +358,12 @@ public class Joystick extends AppCompatActivity {
     public void setupSpeedometer(int speed, int duration, int delay) {
         if(speed == 0){
             speedometer.setSpeed(Math.abs(STOP), duration, delay);
+        }else if(speed > 0){
+            speedometer.setSpeed(speed, duration, delay);
         }else{
-            speedometer.setSpeed(Math.abs(speed), duration, delay);
+            int positive = speed * -1;
+            speedometer.setSpeed(positive, duration, delay);
         }
+
     }
 }
