@@ -138,7 +138,6 @@ public class BrokerConnection  {
                         DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
                         Date result = new Date(elapsedMillis);
                         t.setText(String.valueOf(simple.format(result)));
-
                     }else {
                         Log.i(Topics.Connection.TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
 

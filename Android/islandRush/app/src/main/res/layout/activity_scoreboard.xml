@@ -38,9 +38,9 @@
         android:layout_height="57dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="347dp"
+        android:layout_marginEnd="349dp"
         android:layout_marginBottom="669dp"
-        android:background="@color/black"
+        android:background="@color/cardview_shadow_start_color"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <ImageButton
@@ -50,8 +50,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="1dp"
-        android:background="@color/black"
+        android:layout_marginEnd="3dp"
+        android:background="@color/cardview_shadow_start_color"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
     <ImageView
@@ -97,9 +97,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginEnd="337dp"
-        android:layout_marginBottom="269dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="343dp"
+        android:layout_marginBottom="270dp"
         android:text=" 4"
         android:textColor="@color/black"
         android:textSize="50sp"
@@ -107,14 +107,14 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="63dp"
+        android:layout_width="56dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="15dp"
         android:layout_marginEnd="340dp"
-        android:layout_marginBottom="198dp"
+        android:layout_marginBottom="203dp"
         android:text=" 5"
         android:textColor="@color/black"
         android:textSize="50sp"

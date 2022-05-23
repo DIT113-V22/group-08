@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IslandRush">
         <activity
-            android:name=".controlsInstruction"
+            android:name=".instructionScreens.controlsInstruction"
             android:exported="false" />
         <activity
             android:name=".instructionScreens.gettingStarted"

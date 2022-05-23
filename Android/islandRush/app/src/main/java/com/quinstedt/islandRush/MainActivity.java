@@ -13,9 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    Button enterRace, leaderboard;
+    Button enterRace, leaderboard ;
     EditText editText;
     BrokerConnection brokerConnection;
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         brokerConnection.connectToMqttBroker();
 
     }
+
 
     public void openLeaderboard() {
         Intent leadIntent = new Intent(this, Scoreboard.class);
