@@ -1,4 +1,4 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.activityClasses;
 
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Connection.QOS;
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.CONTROLLER_CONTROLPAD;
@@ -19,6 +19,12 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.quinstedt.islandRush.BrokerConnection;
+import com.quinstedt.islandRush.MqttClient;
+import com.quinstedt.islandRush.R;
+import com.quinstedt.islandRush.SpeedometerView;
+import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 
 public class ControlPad extends AppCompatActivity {
 

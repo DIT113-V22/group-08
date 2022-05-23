@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dynamic_list"
-    tools:context=".MainActivity">
+    tools:context=".activityClasses.MainActivity">
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/main_logo"

@@ -1,4 +1,4 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.activityClasses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.adapters.PlayerScoreRVAdapter;
 import com.quinstedt.islandRush.database.PlayerScore;
 import com.quinstedt.islandRush.database.ViewModal;

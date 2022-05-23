@@ -1,4 +1,4 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.SplashScreens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.quinstedt.islandRush.activityClasses.MainActivity;
+import com.quinstedt.islandRush.R;
 
 public class IntroSplashAnimation extends AppCompatActivity {
     ImageView animationView;
@@ -27,7 +30,7 @@ public class IntroSplashAnimation extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 finish();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
 
             @Override

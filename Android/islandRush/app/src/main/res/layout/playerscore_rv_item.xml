@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:elevation="8dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="8dp"
+    android:id="@+id/scoreboard_recycleView">
 
     <LinearLayout
         android:id="@+id/idLLPlayerScore"

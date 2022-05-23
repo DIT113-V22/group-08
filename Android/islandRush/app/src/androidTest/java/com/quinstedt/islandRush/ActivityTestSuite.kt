@@ -3,6 +3,7 @@ package com.quinstedt.islandRush
 /** UNCOMMENT TO RUN ALL TEST CLASSES */
 
 /*
+import com.quinstedt.islandRush.ActivityClasses.*
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
@@ -13,10 +14,11 @@ import org.junit.runners.Suite
     ControlChoiceTest::class,
     ControlPadTest::class,
     JoystickTest::class,
-    LeaderboardTest::class
+    Scoreboard::class
 )
-
 */
+
+
 class ActivityTestSuite {
 
 }

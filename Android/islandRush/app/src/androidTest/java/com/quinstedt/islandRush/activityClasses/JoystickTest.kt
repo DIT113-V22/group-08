@@ -1,12 +1,14 @@
-package com.quinstedt.islandRush
+package com.quinstedt.islandRush.activityClasses
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import com.quinstedt.islandRush.OrientationChangeAction
+import com.quinstedt.islandRush.R
+import com.quinstedt.islandRush.Utils
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -22,6 +24,24 @@ class JoystickTest {
         val activityTest = ActivityScenario.launch(Joystick::class.java)
         onView(withId(R.id.joystickActivity)).check(matches(isDisplayed()))
         wait
+    }
+    /**
+     * The most common reason for this test to fail is the use of different ID between
+     * the portrait mode and the landscape mode. This makes the app to crash while changing orientation.
+     *
+     * Reminder: The ID are case sensitive
+     *
+     * Also, it is a good practice to make sure to treat the ID as you treat your attributes.
+     * Make sure they are self-explanatory and if different layouts have the same type of components make sure
+     * that you can differentiate them.
+     */
+
+    @Test
+    fun test_landscapeMode(){
+        val activityTest = ActivityScenario.launch(Joystick::class.java)
+        onView(isRoot()).perform(OrientationChangeAction.orientationLandscape());
+        Utils.delay(3000)
+        onView(withId(R.id.joystickActivity)).check(matches(isDisplayed()))
     }
     @Test
     fun test_isControlPadImageVisible(){

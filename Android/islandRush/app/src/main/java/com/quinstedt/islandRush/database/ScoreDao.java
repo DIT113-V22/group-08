@@ -9,7 +9,7 @@ import androidx.room.Update;
 import java.util.List;
 
 @androidx.room.Dao
-public interface Dao {
+public interface ScoreDao {
 
     @Insert
     void insert(PlayerScore playerScore);

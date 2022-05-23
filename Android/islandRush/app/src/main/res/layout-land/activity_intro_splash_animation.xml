@@ -5,7 +5,7 @@
     android:id="@+id/splashAnimation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroSplashAnimation">
+    tools:context=".SplashScreens.IntroSplashAnimation">
 
     <ImageView
         android:id="@+id/palmBackground"

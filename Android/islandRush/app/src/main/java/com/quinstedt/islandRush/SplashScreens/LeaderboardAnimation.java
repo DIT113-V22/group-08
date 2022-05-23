@@ -1,4 +1,4 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.SplashScreens;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -9,8 +9,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.quinstedt.islandRush.GlobalData;
+import com.quinstedt.islandRush.R;
+import com.quinstedt.islandRush.activityClasses.Scoreboard;
+import com.quinstedt.islandRush.Utils;
 import com.quinstedt.islandRush.database.PlayerScore;
 import com.quinstedt.islandRush.database.ViewModal;
 
@@ -82,7 +85,7 @@ public class LeaderboardAnimation extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 finish();
-                startActivity(new Intent(getApplicationContext(),Scoreboard.class));
+                startActivity(new Intent(getApplicationContext(), Scoreboard.class));
             }
 
             @Override

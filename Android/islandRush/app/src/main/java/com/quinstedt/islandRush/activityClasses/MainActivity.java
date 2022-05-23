@@ -1,4 +1,4 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.activityClasses;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -6,13 +6,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.quinstedt.islandRush.GlobalData;
+import com.quinstedt.islandRush.R;
+import com.quinstedt.islandRush.Utils;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;

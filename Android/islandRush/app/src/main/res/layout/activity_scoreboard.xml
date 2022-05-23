@@ -8,7 +8,7 @@
     android:background="@drawable/background1"
     android:orientation="vertical"
     android:theme="@style/Theme.IslandRush.NoActionBar"
-    tools:context=".MainActivity">
+    tools:context=".activityClasses.MainActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -160,14 +160,14 @@
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/idRvScoreboard"
-        app:layout_constraintEnd_toStartOf="@+id/timeTextView"
+        app:layout_constraintEnd_toStartOf="@+id/timeTile"
         app:layout_constraintHorizontal_bias="0.634"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scoreboardTitle"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/timeTextView"
+        android:id="@+id/timeTile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
