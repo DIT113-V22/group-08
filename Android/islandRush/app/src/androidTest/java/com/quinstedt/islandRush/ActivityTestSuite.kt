@@ -16,8 +16,7 @@ import org.junit.runners.Suite
     LeaderboardTest::class
 )
 
- */
-
+*/
 class ActivityTestSuite {
 
 }

@@ -6,12 +6,11 @@ import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.SET_CAR_SPEE
 
 
 import android.annotation.SuppressLint;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Button;
@@ -24,11 +23,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ControlPad extends AppCompatActivity {
 
     private BrokerConnection brokerConnection;
-    private MqttClient mMqttClient;
+    private MqttClient mqttClient;
     private SpeedometerView speedometer;
     private int counter;
     private Boolean onReverse = false;
     TextView directionIndicator;
+    TextView finish;
 
     private final int DURATION = 2000;
     private final int DELAY = 500;
@@ -47,27 +47,25 @@ public class ControlPad extends AppCompatActivity {
 
 
 
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_pad);
         counter = 1;
-
+        finish = findViewById(R.id.finish_controlPad);
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeed));
-        brokerConnection.setFinish(findViewById(R.id.finish_controlPad));
+        brokerConnection.setFinish(finish);
         brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerControlPad));
-        brokerConnection.setT(findViewById(R.id.TOTALTIME_ControlPad));
-        mMqttClient = brokerConnection.getmMqttClient();
-
+        mqttClient = brokerConnection.getMqttClient();
         brokerConnection.connectToMqttBroker();
-        mMqttClient = brokerConnection.getmMqttClient();
 
         /** Start timer */
         Chronometer simpleChronometer = findViewById(R.id.simpleChronometerControlPad);
-
         simpleChronometer.start();
+
         ImageButton escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
 
@@ -141,6 +139,32 @@ public class ControlPad extends AppCompatActivity {
         Button fullSpeed = findViewById(R.id.fullSpeedControlPad);
         fullSpeed.setOnClickListener(view -> setFullSpeed());
 
+        Intent animationScore = new Intent(this, LeaderboardAnimation.class);
+        finish.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(finish.getText().toString().equalsIgnoreCase("FINISH")){
+                    try {
+                        Thread.sleep(3000);
+                        startActivity(animationScore);
+                    }catch (Exception exception){
+                        exception.getStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         speedometer =  findViewById(R.id.speedometerControlPad);
         speedometer.setLabelConverter((progress, maxProgress) -> String.valueOf((int) Math.round(progress)));
 
@@ -159,20 +183,13 @@ public class ControlPad extends AppCompatActivity {
         speedometer.addColoredRange(50, 75, Color.YELLOW);
         speedometer.addColoredRange(75, 100, Color.RED);
 
-        Button saveScoreScreen = findViewById(R.id.saveScoreBtn);
-        saveScoreScreen.setOnClickListener(view -> goToSaveScoreScreen());
     }
 
     /**
      * Launches the ControlChoice after that the escape Hash has been clicked
      */
     private void goBack() {
-        Intent controlChoiceActivity = new Intent(this, MainActivity.class);
-        startActivity(controlChoiceActivity);
-    }
-
-    private void goToSaveScoreScreen() {
-        Intent controlChoiceActivity = new Intent(this, SaveScore.class);
+        Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }
 
@@ -184,12 +201,12 @@ public class ControlPad extends AppCompatActivity {
 
     public void driveControl(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(CONTROLLER_CONTROLPAD, message,QOS, null);
+        mqttClient.publish(CONTROLLER_CONTROLPAD, message,QOS, null);
     }
 
     public void driveSpeed(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(SET_CAR_SPEED, message,QOS, null);
+        mqttClient.publish(SET_CAR_SPEED, message,QOS, null);
     }
 
 
@@ -198,7 +215,6 @@ public class ControlPad extends AppCompatActivity {
         driveSpeed(Integer.toString(speed),description + velocityText);
         String printSpeed = "Speed: ";
         Log.i(printSpeed, velocityText);
-
 
     }
 

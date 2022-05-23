@@ -3,10 +3,13 @@ package com.quinstedt.islandRush;
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Connection.QOS;
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.CONTROLLER_JOYSTICK;
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.SET_CAR_SPEED;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,7 +17,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Chronometer;
 import android.widget.TextView;
+
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.joystickjhr.JoystickJhr;
 
 public class Joystick extends AppCompatActivity {
@@ -30,6 +36,8 @@ public class Joystick extends AppCompatActivity {
     private  int speedMultiplier;
     Chronometer simpleChronometer;
     Boolean onReverse = false;
+    TextView finish;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -38,20 +46,16 @@ public class Joystick extends AppCompatActivity {
         setContentView(R.layout.activity_joystick);
         speedMultiplier = SPEED;
 
+        finish = findViewById(R.id.finish_joystick);
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
-
+        brokerConnection.setFinish(finish);
         brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerJoystick));
-        brokerConnection.setT(findViewById(R.id.TOTALTIME_Joystick));
-        mMqttClient = brokerConnection.getmMqttClient();
-
+        mMqttClient = brokerConnection.getMqttClient();
         brokerConnection.connectToMqttBroker();
-        mMqttClient = brokerConnection.getmMqttClient();
-
 
         // Start
         simpleChronometer = findViewById(R.id.simpleChronometerJoystick); // initiate a chronometer
-
         simpleChronometer.start(); // start a chronometer
 
         ImageButton escapeHash = findViewById(R.id.joystick_escapeHash);
@@ -118,6 +122,32 @@ public class Joystick extends AppCompatActivity {
 
 
                 return true;
+            }
+        });
+
+        Intent animationScore = new Intent(this, LeaderboardAnimation.class);
+        finish.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(finish.getText().toString().equalsIgnoreCase("FINISH")){
+                    try {
+                        Thread.sleep(3000);
+                        startActivity(animationScore);
+                    }catch (Exception exception){
+                        exception.getStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
@@ -279,7 +309,6 @@ public class Joystick extends AppCompatActivity {
         brokerConnection.drive(message,actionDescription);
         mMqttClient.publish(SET_CAR_SPEED, message, QOS, null);
     }
-
 
     /**
      * @param speed the speed that will be send to the broker
