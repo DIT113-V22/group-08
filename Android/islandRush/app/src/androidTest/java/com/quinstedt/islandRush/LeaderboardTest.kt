@@ -19,7 +19,7 @@ import org.junit.runner.RunWith
 class LeaderboardTest {
 // To run all test classes sequentially  run ActivityTestSuite
 
-    val wait = Thread.sleep(3000)
+    val wait = Utils.delay(3000)
     /** NAVIGATION TESTS*/
     @Test
     fun test_Launching_LeaderboardActivity(){

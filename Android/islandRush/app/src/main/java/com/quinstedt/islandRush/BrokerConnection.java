@@ -1,16 +1,11 @@
 package com.quinstedt.islandRush;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Chronometer;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -22,7 +17,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BrokerConnection  {
+public class BrokerConnection{
 
     public static class Topics {
 
@@ -49,26 +44,22 @@ public class BrokerConnection  {
     }
 
     private boolean isConnected = false;
-    public MqttClient mMqttClient;
+    public MqttClient mqttClient;
 
     TextView actualSpeed;
     Context context;
     TextView finish;
     Chronometer simpleChronometer;
-    TextView t;
-
 
     public  BrokerConnection(Context context){
         this.context = context;
-        mMqttClient = new MqttClient(context, Topics.Connection.MQTT_SERVER,Topics.Connection.TAG);
-
+        mqttClient = new MqttClient(context, Topics.Connection.MQTT_SERVER,Topics.Connection.TAG);
         connectToMqttBroker();
     }
 
-
     public void connectToMqttBroker() {
         if (!isConnected) {
-            mMqttClient.connect(Topics.Connection.TAG, "", new IMqttActionListener() {
+            mqttClient.connect(Topics.Connection.TAG, "", new IMqttActionListener() {
                 /**
                  *  Add below the topic that the app subscribe to
                  *  and add the method for that topic in messageArrived(...)
@@ -79,9 +70,9 @@ public class BrokerConnection  {
                     final String successfulConnection = "Connected to MQTT broker";
                     Log.i(Topics.Connection.TAG, successfulConnection);
                     Toast.makeText(context, successfulConnection, Toast.LENGTH_SHORT).show();
-                    mMqttClient.subscribe(Topics.Sensor.ODOMETER_SPEED,Topics.Connection.QOS, null);
-                    mMqttClient.subscribe(Topics.Sensor.ODOMETER_DISTANCE, Topics.Connection.QOS, null);
-                    mMqttClient.subscribe(Topics.Race.FINISH,Topics.Connection.QOS,null);
+                    mqttClient.subscribe(Topics.Sensor.ODOMETER_SPEED,Topics.Connection.QOS, null);
+                    mqttClient.subscribe(Topics.Sensor.ODOMETER_DISTANCE, Topics.Connection.QOS, null);
+                    mqttClient.subscribe(Topics.Race.FINISH,Topics.Connection.QOS,null);
 
                 }
 
@@ -116,15 +107,17 @@ public class BrokerConnection  {
                         Log.i(Topics.Connection.TAG, "Car speed: " + messageMQTT);
 
                     }else if(topic.equals(Topics.Race.FINISH)){
-                            String finishMessage = "Finish";
-                            finish.setText(finishMessage);
-                            simpleChronometer.stop();
-                            long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
-                            DateFormat simple = new SimpleDateFormat("mm:ss.SSS");
-                            Date result = new Date(elapsedMillis);
-                            t.setText(String.valueOf(simple.format(result)));
+                        simpleChronometer.stop();
+                        String finishMessage = "Finish";
+                        finish.setText(finishMessage);
+                        long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+                        DateFormat simple = new SimpleDateFormat("mm:ss");
+                        Date result = new Date(elapsedMillis);
+                        String timeEmoji = Utils.getEmoji(Utils.TIME_EMOJI);
+                        GlobalData.getGlobalData().setRaceTime(timeEmoji + " " + String.valueOf(simple.format(result)));
+                        GlobalData.getGlobalData().setTimeInSec(elapsedMillis);
 
-                        }else {
+                    }else {
                         Log.i(Topics.Connection.TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
 
                     }
@@ -172,17 +165,14 @@ public class BrokerConnection  {
     public void setActualSpeed(TextView actualSpeed) {
         this.actualSpeed = actualSpeed;
     }
-    public MqttClient getmMqttClient() {
-        return mMqttClient;
+    public MqttClient getMqttClient() {
+        return mqttClient;
     }
     public void setFinish(TextView finish) {
             this.finish = finish;
         }
     public void setSimpleChronometer(Chronometer simpleChronometer) {
             this.simpleChronometer = simpleChronometer;
-        }
-    public void setT(TextView t) {
-            this.t = t;
         }
 
 }

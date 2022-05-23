@@ -17,7 +17,7 @@ class ControlPadTest {
 // To run all test classes sequentially  run ActivityTestSuite
 
     /** delay between the tests */
-    val wait = Thread.sleep(3000)
+    val wait =Utils.delay(3000)
 
     @Test
     fun test_isActivityInView(){

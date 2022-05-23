@@ -8,7 +8,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+
 import android.os.SystemClock;
+import android.text.Editable;
+import android.text.TextWatcher;
+
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,6 +41,8 @@ public class Joystick extends AppCompatActivity {
     private Boolean running = true;
     private Long pauseTime;
     Boolean onReverse = false;
+    TextView finish;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -45,17 +51,16 @@ public class Joystick extends AppCompatActivity {
         setContentView(R.layout.activity_joystick);
         speedMultiplier = SPEED;
 
+        finish = findViewById(R.id.finish_joystick);
         brokerConnection = new BrokerConnection(getApplicationContext());
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
-
+        brokerConnection.setFinish(finish);
         brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerJoystick));
-        brokerConnection.setT(findViewById(R.id.TOTALTIME_Joystick));
-        mMqttClient = brokerConnection.getmMqttClient();
+        mMqttClient = brokerConnection.getMqttClient();
         brokerConnection.connectToMqttBroker();
 
         // Start
         simpleChronometer = findViewById(R.id.simpleChronometerJoystick); // initiate a chronometer
-
         simpleChronometer.start(); // start a chronometer
 
 
@@ -145,6 +150,32 @@ public class Joystick extends AppCompatActivity {
 
 
                 return true;
+            }
+        });
+
+        Intent animationScore = new Intent(this, LeaderboardAnimation.class);
+        finish.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(finish.getText().toString().equalsIgnoreCase("FINISH")){
+                    try {
+                        Thread.sleep(3000);
+                        startActivity(animationScore);
+                    }catch (Exception exception){
+                        exception.getStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
