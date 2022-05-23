@@ -71,13 +71,14 @@
         android:layout_height="40dp"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
+        android:layout_marginBottom="104dp"
         android:background="@drawable/main_buttons"
         android:text="LeaderBoard "
         android:textColor="@color/white"
         android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.81"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="263dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
