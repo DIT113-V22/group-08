@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background1"
     android:id="@+id/joystickActivity"
-    tools:context=".Joystick">
+    tools:context=".activityClasses.Joystick">
 
     <ImageButton
         android:id="@+id/joystick_escapeHash"
@@ -164,6 +164,8 @@
         android:alpha="0.8"
         android:background="@drawable/black_circle_button"
         android:text=" II / I▶"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/color"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -177,6 +179,7 @@
         android:alpha="0.8"
         android:background="@drawable/black_circle_button"
         android:text="Reset"
+        android:textSize="20sp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pauseButtonJoystick"
