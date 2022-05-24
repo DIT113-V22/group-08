@@ -11,7 +11,7 @@ public class CreditsActivity extends AppCompatActivity {
 
     private TextView txt;
 
-    private final String authors = "Credits: \n\n Safa Youssef \n\n Sergey Balan \n\n Andreea Lavinia \n\n Fulger Nicole Andrea Quinstedt \n\n Faisal Sayed \n\n Danesh Mohammadi \n\n";
+    private final String authors = "Credits: \n\n Safa Youssef \n\n Sergey Balan \n\n Andreea Lavinia Fulger \n\n  Nicole Andrea Quinstedt \n\n Faisal Sayed \n\n Danesh Mohammadi \n\n";
 
 
     @Override
