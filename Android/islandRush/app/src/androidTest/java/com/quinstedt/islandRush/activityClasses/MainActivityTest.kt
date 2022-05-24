@@ -14,6 +14,7 @@ import com.quinstedt.islandRush.OrientationChangeAction.Companion.orientationLan
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MainActivityTest {
 // To run all test classes sequentially  run ActivityTestSuite
