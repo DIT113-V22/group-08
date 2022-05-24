@@ -67,8 +67,15 @@ class ControlPadTest {
         wait
     }
     @Test
-    fun test_speedButton_inView(){
+    fun test_Buttons_Visibility(){
         val activityTest = ActivityScenario.launch(ControlPad::class.java)
+        onView(withId(R.id.stopControlPad)).check(matches(isDisplayed()))
+        onView(withId(R.id.brakeControlPad)).check(matches(isDisplayed()))
+        onView(withId(R.id.accelerateControlPad)).check(matches(isDisplayed()))
+        onView(withId(R.id.fullSpeedControlPad)).check(matches(isDisplayed()))
+        onView(withId(R.id.resetButtonControlPad)).check(matches(isDisplayed()))
+        onView(withId(R.id.pauseButtonControlPad)).check(matches(isDisplayed()))
+        wait
     }
 
 

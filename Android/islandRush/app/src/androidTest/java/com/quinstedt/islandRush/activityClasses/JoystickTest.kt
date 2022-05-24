@@ -50,9 +50,14 @@ class JoystickTest {
         wait
     }
     @Test
-    fun test_isStopButtonVisible(){
+    fun test_ifButtons_areVisible(){
         val activityTest = ActivityScenario.launch(Joystick::class.java)
         onView(withId(R.id.stopJoystick)).check(matches(isDisplayed()))
+        onView(withId(R.id.brakeJoystick)).check(matches(isDisplayed()))
+        onView(withId(R.id.accelerateJoystick)).check(matches(isDisplayed()))
+        onView(withId(R.id.fullSpeedJoystick)).check(matches(isDisplayed()))
+        onView(withId(R.id.resetButtonJoystick)).check(matches(isDisplayed()))
+        onView(withId(R.id.pauseButtonJoystick)).check(matches(isDisplayed()))
         wait
     }
     @Test

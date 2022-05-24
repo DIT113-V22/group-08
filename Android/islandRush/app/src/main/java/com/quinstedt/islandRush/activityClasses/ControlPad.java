@@ -5,7 +5,6 @@ import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.CONTROLLER_C
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.SET_CAR_SPEED;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -168,7 +167,7 @@ public class ControlPad extends AppCompatActivity {
         Button brake = findViewById(R.id.brakeControlPad);
         brake.setOnClickListener(view -> brake());
 
-        Button stop = findViewById(R.id.stop);
+        Button stop = findViewById(R.id.stopControlPad);
         stop.setOnClickListener(view -> stopCar());
 
         Button acceleration = findViewById(R.id.accelerateControlPad);
