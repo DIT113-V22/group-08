@@ -28,6 +28,7 @@ public class LeaderboardAnimation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard_animation);
 
+        // initialize view model to act as an interface between the database and UI
         viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
 
         raceMessage =  findViewById(R.id.raceMessage_anim);
