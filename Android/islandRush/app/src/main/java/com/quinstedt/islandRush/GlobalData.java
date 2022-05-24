@@ -1,7 +1,8 @@
 package com.quinstedt.islandRush;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-public class GlobalData {
+public class GlobalData extends AppCompatActivity {
 
     /**
      * This class is a singleton class
@@ -12,13 +13,12 @@ public class GlobalData {
      public String playerData;
      public String time;
      public int timeInSec;
-     public boolean isFinish;
 
 
-     private GlobalData(){
+
+    private GlobalData(){
          playerData = "";
-         isFinish = false;
-     }
+    }
 
      public  static GlobalData getGlobalData(){
             if( globalData == null){
@@ -48,10 +48,12 @@ public class GlobalData {
         this.timeInSec = (int) timeInSec;
     }
 
-    public int getTimeInSec(Long time){
-       long inSec = time /1000;
+    public int getTimeInSec(){
+       long inSec = timeInSec /1000;
        timeInSec = (int) inSec;
          return timeInSec = (int) inSec;
     }
+
+
 
 }

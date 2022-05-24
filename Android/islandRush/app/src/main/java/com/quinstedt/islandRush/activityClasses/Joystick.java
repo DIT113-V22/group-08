@@ -82,12 +82,16 @@ public class Joystick extends AppCompatActivity {
                 simpleChronometer.stop();
                 pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
                 stopCar();
+                String red = "#F14C4C";
+                pause.setTextColor(Color.parseColor(red));
                 running = false;
             }
             else {
                 simpleChronometer.start();
                 simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
                 currentSpeed = storedSpeed;
+                String red = "#FFFFFFFF";
+                pause.setTextColor(Color.parseColor(red));
                 running = true;
             }
         });

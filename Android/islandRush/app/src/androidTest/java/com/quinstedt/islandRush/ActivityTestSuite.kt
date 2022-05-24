@@ -2,8 +2,9 @@ package com.quinstedt.islandRush
 
 /** UNCOMMENT TO RUN ALL TEST CLASSES */
 
-/*
-import com.quinstedt.islandRush.ActivityClasses.*
+
+
+import com.quinstedt.islandRush.activityClasses.*
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
@@ -16,7 +17,7 @@ import org.junit.runners.Suite
     JoystickTest::class,
     Scoreboard::class
 )
-*/
+
 
 
 class ActivityTestSuite {

@@ -104,5 +104,6 @@ public class LeaderboardAnimation extends AppCompatActivity {
         PlayerScore playerScore = new PlayerScore(playerName,time);
         // Add Data to Database
         viewmodal.insert(playerScore);
+
     }
 }

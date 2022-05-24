@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.quinstedt.islandRush.GlobalData;
 import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.adapters.PlayerScoreRVAdapter;
 import com.quinstedt.islandRush.database.PlayerScore;
@@ -23,6 +24,8 @@ public class Scoreboard extends AppCompatActivity {
     private RecyclerView RV;
     private ViewModal viewmodal;
     private ImageButton resetBtn,backToHome;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class Scoreboard extends AppCompatActivity {
                 adapter.submitList(playerScores);
             }
         });
+
     }
 
     private void goToHome() {
@@ -67,5 +71,6 @@ public class Scoreboard extends AppCompatActivity {
 
     private void deleteLeaderboard() {
         viewmodal.deleteAllScores();
+
     }
 }

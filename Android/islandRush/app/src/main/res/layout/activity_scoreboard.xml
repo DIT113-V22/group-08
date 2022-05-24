@@ -46,13 +46,12 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
         android:background="@color/cardview_shadow_start_color"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/scoreboardTitle"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <ImageButton
@@ -76,12 +75,11 @@
         android:layout_height="61dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/idRvScoreboard"
-        app:layout_constraintHorizontal_bias="0.6"
+        android:layout_marginTop="92dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229"
+        app:layout_constraintTop_toBottomOf="@+id/homeBtn"
         app:srcCompat="@drawable/first_medal" />
 
     <ImageView
@@ -90,12 +88,11 @@
         android:layout_height="63dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toStartOf="@+id/idRvScoreboard"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338"
+        app:layout_constraintTop_toBottomOf="@+id/medal1"
         app:srcCompat="@drawable/second_medal" />
 
     <ImageView
@@ -104,30 +101,28 @@
         android:layout_height="61dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/idRvScoreboard"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452"
+        app:layout_constraintTop_toBottomOf="@+id/medal2"
         app:srcCompat="@drawable/third_medal" />
 
     <TextView
         android:id="@+id/number4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="56dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
         android:text="@string/no_4"
         android:textColor="@color/black"
         android:textSize="50sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.564" />
+        app:layout_constraintTop_toBottomOf="@+id/medal3" />
 
     <TextView
         android:id="@+id/number5"
@@ -135,15 +130,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/no_5"
         android:textColor="@color/black"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintTop_toBottomOf="@+id/number4"
+        app:layout_constraintVertical_bias="0.069" />
 
     <TextView
         android:id="@+id/nameTitle"
