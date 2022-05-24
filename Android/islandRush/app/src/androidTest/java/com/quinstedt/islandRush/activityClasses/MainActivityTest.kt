@@ -124,6 +124,7 @@ class MainActivityTest {
         val playerName = "PlayerTest1"
         onView(withId(R.id.playerName)).perform(typeText(playerName))
         onView(withId(R.id.playerName)).perform(pressImeActionButton())
+        Utils.delay(2000)
         onView(withText(playerName)).check(matches(isDisplayed()))
         val checkedEmoji = Utils.getEmoji(Utils.CHECKED)
         val toastMessage = "Saved $checkedEmoji"
