@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/control_pad"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background1"
-    tools:context=".activityClasses.ControlPad">
+    android:id="@+id/control_pad"
+    tools:context=".ControlPad">
 
     <com.quinstedt.islandRush.SpeedometerView
         android:id="@+id/speedometerControlPad"
@@ -27,24 +27,11 @@
         android:layout_height="226dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805"
+        app:layout_constraintVertical_bias="0.832"
         app:srcCompat="@drawable/pad_image" />
-
-    <TextView
-        android:id="@+id/direction_indicator"
-        android:layout_width="50dp"
-        android:layout_height="39dp"
-        android:gravity="center"
-        android:textAppearance="?android:attr/text"
-        android:textSize="8sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/down"
-        app:layout_constraintEnd_toStartOf="@+id/right"
-        app:layout_constraintStart_toEndOf="@+id/left"
-        app:layout_constraintTop_toBottomOf="@+id/up" />
 
     <Button
         android:id="@+id/up"
@@ -85,6 +72,22 @@
         android:background="@color/cardview_shadow_end_color"
         app:layout_constraintBottom_toBottomOf="@+id/controlBackground"
         app:layout_constraintEnd_toEndOf="@+id/controlBackground" />
+
+
+
+    <TextView
+        android:id="@+id/direction_indicator"
+        android:layout_width="45dp"
+        android:layout_height="31dp"
+        android:gravity="center"
+        android:textAppearance="?android:attr/text"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/down"
+        app:layout_constraintEnd_toStartOf="@+id/right"
+        app:layout_constraintStart_toEndOf="@+id/left"
+        app:layout_constraintTop_toBottomOf="@+id/up" />
+
 
     <ImageButton
         android:id="@+id/controlPad_escapeHash"
@@ -137,20 +140,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.042" />
 
-    <TextView
-        android:id="@+id/actualSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
-        android:textAppearance="?android:attr/text"
-        android:textColor="#FBFAFA"
-        android:textSize="20sp"
-        app:drawableLeftCompat="@drawable/ic_baseline_speed_24_white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.603"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/stop"
         android:layout_width="70dp"
@@ -164,12 +153,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/actualSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="204dp"
+        android:textAppearance="?android:attr/text"
+        android:textColor="#FBFAFA"
+        android:textSize="30sp"
+        app:drawableLeftCompat="@drawable/ic_baseline_speed_24_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.603"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Chronometer
         android:id="@+id/simpleChronometerControlPad"
         android:layout_width="89dp"
         android:layout_height="38dp"
-        android:layout_marginStart="312dp"
+        android:layout_marginStart="284dp"
         android:layout_marginTop="204dp"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -180,15 +183,45 @@
         android:id="@+id/finish_controlPad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
-        android:text="FINISH"
+        android:layout_marginBottom="96dp"
         android:textAllCaps="true"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/pauseButtonControlPad"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="280dp"
+        android:alpha="0.8"
+        android:background="@drawable/black_circle_button"
+        android:text=" II / I▶"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+
+    <Button
+        android:id="@+id/resetButtonControlPad"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="96dp"
+        android:alpha="0.8"
+        android:background="@drawable/black_circle_button"
+        android:text="Reset"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pauseButtonControlPad"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

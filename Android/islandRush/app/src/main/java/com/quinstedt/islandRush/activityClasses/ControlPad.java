@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +34,9 @@ public class ControlPad extends AppCompatActivity {
     private SpeedometerView speedometer;
     private int counter;
     private Boolean onReverse = false;
+    private Boolean running = true;
+    private int currentSpeed;
+    private Long pauseTime;
     TextView directionIndicator;
     TextView finish;
 
@@ -41,20 +45,14 @@ public class ControlPad extends AppCompatActivity {
     private final int CHANGE_DIRECTION_DELAY = 100;
     private final String REVERSE_IS_ON = "REVERSE ON";
     private final String REVERSE_IS_OFF = "REVERSE OFF";
-    private final int SPEED = 10;
 
     private final int MAX_COUNTER = 10;
-    private final double STOP = 0.0000000001; // must be a number close to zero, because the speedometer doest allow the value 0
 
     private final String FORWARD = "1";
     private final String RIGHT = "2";
     private final String REVERSE = "3";
     private final String LEFT = "4";
 
-
-
-
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
@@ -72,6 +70,35 @@ public class ControlPad extends AppCompatActivity {
         Chronometer simpleChronometer = findViewById(R.id.simpleChronometerControlPad);
         simpleChronometer.start();
 
+
+        /** Pause and Unpause timer */
+        Button pause = findViewById(R.id.pauseButtonControlPad); // pause the chronometer
+        pause.setOnClickListener(view -> {
+            if(running) {
+                /**
+                 * remembers the button has been pressed and the chronometer output
+                 */
+                simpleChronometer.stop();
+                pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+                stopCar();
+                running = false;
+            } else {
+                simpleChronometer.start();
+                simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
+                running = true;
+            }
+        });
+
+        Button reset = findViewById(R.id.resetButtonControlPad);
+        reset.setOnClickListener(view -> {
+            simpleChronometer.setBase(SystemClock.elapsedRealtime());
+            currentSpeed = 0;
+            driveControl("5", "Resume game.");// Trigger the default case in the arduino file
+            // which sets the speed and the direction to 0 in the car.
+            simpleChronometer.start();
+        });
+
+
         ImageButton escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
 
@@ -79,7 +106,7 @@ public class ControlPad extends AppCompatActivity {
         forward.setOnClickListener(view -> moveForward());
 
         Button reverse = findViewById(R.id.down);
-        reverse.setOnClickListener(view -> moveBackward());
+        reverse.setOnClickListener(view -> moveInReverse());
 
         Button left = findViewById(R.id.left);
         /**
@@ -90,18 +117,18 @@ public class ControlPad extends AppCompatActivity {
          * same as for the right button below.
          */
         left.setOnTouchListener((view, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                moveForwardLeft();
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                int outputSpeed = counter * SPEED;
-                if(onReverse){
-                    driveControl(REVERSE, "Moving forward");
-                    setCarSpeed(-outputSpeed, "Continue backwards");
-                    speedometer.setSpeed(outputSpeed, DURATION, 100);
-                }else {
-                    driveControl(FORWARD, "Moving forward");
-                    setCarSpeed(outputSpeed, "Continue  forward");
-                    speedometer.setSpeed(outputSpeed, DURATION, 100);
+            if(running) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    moveLeft();
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (onReverse) {
+                        driveControl(REVERSE, "Moving forward");
+                        sendCarSpeed("Continue backwards");
+                    } else {
+                        driveControl(FORWARD, "Moving forward");
+                        sendCarSpeed("Continue  forward");
+                    }
+                    setupSpeedometer(currentSpeed, DURATION, 100);
                 }
             }
             return true;
@@ -113,18 +140,19 @@ public class ControlPad extends AppCompatActivity {
          * see the comment above for the left button.
          */
         right.setOnTouchListener((view, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-               moveForwardRight();
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                int outputSpeed = counter * SPEED;
-                if(onReverse){
-                    driveControl(REVERSE, "Moving forward");
-                    setCarSpeed(-counter * SPEED, "Continue backwards");
-                    speedometer.setSpeed(counter * SPEED, DURATION, 100);
-                }else {
-                    driveControl(FORWARD, "Moving forward");
-                    setCarSpeed(outputSpeed, "Continue  forward");
-                    speedometer.setSpeed(outputSpeed, DURATION, 100);
+            if(running) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    moveRight();
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (onReverse) {
+                        driveControl(REVERSE, "Moving forward");
+                        sendCarSpeed("Continue backwards");
+                        setupSpeedometer(currentSpeed, DURATION, DELAY);
+                    } else {
+                        driveControl(FORWARD, "Moving forward");
+                        sendCarSpeed("Continue  forward");
+                        speedometer.setSpeed(currentSpeed, DURATION, DELAY);
+                    }
                 }
             }
             return true;
@@ -137,7 +165,7 @@ public class ControlPad extends AppCompatActivity {
         brake.setOnClickListener(view -> brake());
 
         Button stop = findViewById(R.id.stop);
-        stop.setOnClickListener(view -> stop());
+        stop.setOnClickListener(view -> stopCar());
 
         Button acceleration = findViewById(R.id.accelerateControlPad);
         acceleration.setOnClickListener(view -> acceleration());
@@ -190,6 +218,144 @@ public class ControlPad extends AppCompatActivity {
         speedometer.addColoredRange(75, 100, Color.RED);
 
     }
+    /**
+     * Sets the car to full speed, depending on if in reverse is active to make sure
+     * that if we are on reverse the cars can continue in that direction.
+     * Also sets the speedometer UI to the max value
+     */
+    public void setFullSpeed() {
+        if(running) {
+            counter = MAX_COUNTER;
+            changeCurrentSpeed(counter);
+            sendCarSpeed("Setting velocity on full speed. ");
+            setupSpeedometer(currentSpeed, DURATION, DELAY);
+        }
+    }
+
+    /**
+     * This method decreases the speed of the car taking into account if onReverse is on or off
+     * and sets the speedometer UI to the new speed value
+     */
+    public void brake() {
+        if(running) {
+            if (counter == 1) {
+                stopCar();
+            } else if (counter > 1) {
+                counter--;
+                changeCurrentSpeed(counter);
+                sendCarSpeed("Using Reverse break. ");
+                setupSpeedometer(currentSpeed, DURATION, DELAY);
+            }
+        }
+    }
+
+    /**
+     * This method increases the speed of the car and sets the speedometor UI to the new value
+     * also taking into account the if onReverse is on or off.
+     */
+    public void acceleration() {
+        if(running) {
+            if (counter == 0 && !onReverse) {
+                setUpDirectionIndicator(REVERSE_IS_OFF);
+            }
+
+            if (counter < MAX_COUNTER) {
+                counter++;
+                changeCurrentSpeed(counter);
+                sendCarSpeed("Using reverse brea.");
+                setupSpeedometer(currentSpeed, DURATION, DELAY);
+            }
+        }
+    }
+
+    /**
+     * Sets the speed to zero, for the speedometer UI dont allow a value of 0
+     * for that reason the STOP constant is use.
+     */
+    public void stopCar(){
+        if(running) {
+            counter = 0;
+            changeCurrentSpeed(counter);
+            sendCarSpeed("Stopping");
+            setupSpeedometer(0, DURATION, DELAY);
+        }
+    }
+
+    /**
+     *  Sets the car to move forward, if onReverse is on before moving forward
+     *  and car keeps the speed that was before and changes only the direction of the car
+     *
+     *  sets the direction directionIndirection in the controlPad to show which mode is active.
+     *
+     *  the same for moveBackward()
+     */
+
+    public void moveForward() {
+        if(running) {
+            setUpDirectionIndicator(REVERSE_IS_OFF);
+            if (onReverse && counter > 0) {
+                setupSpeedometer(0, 800, CHANGE_DIRECTION_DELAY);
+                this.onReverse = false;
+
+                sendCarSpeed("Reverse speed");
+
+            } else if (onReverse) {
+                this.onReverse = false;
+                if (counter == 0) {
+                    acceleration();
+                }
+            }
+            changeCurrentSpeed(counter);
+            sendCarSpeed("Reverse speed");
+            driveControl(FORWARD, "Moving forward");
+            setupSpeedometer(currentSpeed, DURATION, 100);
+        }
+    }
+
+    public void moveLeft() {
+        if(running) {
+            driveControl(LEFT, "Moving to the left");
+        }
+    }
+
+    public void moveRight() {
+        if(running) {
+            driveControl(RIGHT, "Moving right");
+        }
+    }
+
+    /**
+     * See move Forward. The only difference is the direction
+     */
+    public void moveInReverse() {
+        if(running) {
+            setUpDirectionIndicator(REVERSE_IS_ON);
+
+            if (!onReverse && counter > 0) {
+                setupSpeedometer(0, 800, CHANGE_DIRECTION_DELAY);
+                this.onReverse = true;
+
+            } else {
+                this.onReverse = true;
+                if (counter == 0) {
+                    acceleration();
+                }
+            }
+            changeCurrentSpeed(counter);
+            sendCarSpeed("Reverse speed");
+            setupSpeedometer(currentSpeed, DURATION, 100);
+            driveControl(REVERSE, "Moving in reverse");
+        }
+    }
+
+    public void changeCurrentSpeed(int counter) {
+        int SPEED = 10;
+        if(onReverse){
+            this.currentSpeed = counter * ( -1 * SPEED);
+        }else{
+            this.currentSpeed = counter * SPEED;
+        }
+    }
 
     /**
      * Launches the ControlChoice after that the escape Hash has been clicked
@@ -216,143 +382,15 @@ public class ControlPad extends AppCompatActivity {
     }
 
 
-    public void setCarSpeed(int speed, String description ){
-        String velocityText = "Velocity: " + speed;
-        driveSpeed(Integer.toString(speed),description + velocityText);
+    public void sendCarSpeed(String description ){
+
+        String velocityText = "Velocity: " + currentSpeed;
+        driveSpeed(Integer.toString(currentSpeed),description + velocityText);
         String printSpeed = "Speed: ";
         Log.i(printSpeed, velocityText);
 
     }
 
-    /**
-     * Sets the car to full speed, depending on if in reverse is active to make sure
-     * that if we are on reverse the cars can continue in that direction.
-     * Also sets the speedometer UI to the max value
-     */
-    public void setFullSpeed() {
-        counter = MAX_COUNTER;
-        int outPutSpeed = counter * SPEED;
-        if(onReverse){
-            setCarSpeed(-outPutSpeed, "Setting velocity on full speed. ");
-        }else{
-            setCarSpeed(outPutSpeed, "Setting velocity on full speed. ");
-        }
-        speedometer.setSpeed(outPutSpeed, DURATION, DELAY);
-    }
-
-    /**
-     * This method decreases the speed of the car taking into account if onReverse is on or off
-     * and sets the speedometer UI to the new speed value
-     */
-    public void brake() {
-        if (counter == 1) {
-            stop();
-        } else if (counter > 1){
-            counter--;
-            int outputSpeed = counter * SPEED;
-
-            if(onReverse){
-                setCarSpeed(-outputSpeed, "Using Reverse break. ");
-            } else{
-                setCarSpeed(outputSpeed, "Using forward break. " );
-            }
-
-            speedometer.setSpeed(outputSpeed, DURATION, DELAY);
-        }
-    }
-
-    /**
-     * This method increases the speed of the car and sets the speedometor UI to the new value
-     * also taking into account the if onReverse is on or off.
-     */
-    public void acceleration() {
-        if (counter == 0 && !onReverse){
-            setUpDirectionIndicator(REVERSE_IS_OFF);
-        }
-
-        if (counter < MAX_COUNTER) {
-            counter++;
-            int outputSpeed = counter * SPEED;
-
-            if(onReverse){
-                setCarSpeed(-outputSpeed, "Using Reverse break. ");
-            } else{
-                setCarSpeed(outputSpeed, "Using forward break. " );
-            }
-            speedometer.setSpeed(outputSpeed, DURATION, DELAY);
-        }
-    }
-
-    /**
-     * Sets the speed to zero, for the speedometer UI dont allow a value of 0
-     * for that reason the STOP constant is use.
-     */
-    public void stop(){
-        counter = 0;
-        setCarSpeed(counter, "Stopping" );
-        speedometer.setSpeed(STOP, DURATION, DELAY);
-    }
-
-    /**
-     *  Sets the car to move forward, if onReverse is on before moving forward
-     *  and car keeps the speed that was before and changes only the direction of the car
-     *
-     *  sets the direction directionIndirection in the controlPad to show which mode is active.
-     *
-     *  the same for moveBackward()
-     */
-
-    public void moveForward() {
-        setUpDirectionIndicator(REVERSE_IS_OFF);
-        if(onReverse && counter > 0){
-            speedometer.setSpeed(STOP, 800, CHANGE_DIRECTION_DELAY);
-            this.onReverse = false;
-
-            setCarSpeed(counter *SPEED, "Reverse speed");
-
-        }else if(onReverse){
-            this.onReverse = false;
-            if(counter == 0){
-                acceleration();
-            }
-        }else {
-
-        }
-        setCarSpeed(counter * SPEED, "Reverse speed");
-
-        driveControl(FORWARD, "Moving forward");
-        speedometer.setSpeed(counter * SPEED, DURATION, 100);
-    }
-
-    public void moveForwardLeft() {
-        driveControl(LEFT, "Moving to the left");
-    }
-
-    public void moveForwardRight() {
-        driveControl(RIGHT, "Moving right");
-    }
-
-    /**
-     * See move Forward. The only difference is the direction
-     */
-    public void moveBackward() {
-        setUpDirectionIndicator(REVERSE_IS_ON);
-
-        if(!onReverse && counter > 0){
-            speedometer.setSpeed(STOP, 800, CHANGE_DIRECTION_DELAY);
-            this.onReverse = true;
-
-        }else {
-            this.onReverse = true;
-            if(counter == 0){
-                acceleration();
-            }
-        }
-        setCarSpeed(counter * -SPEED, "Reverse speed");
-
-        speedometer.setSpeed((counter * SPEED), DURATION, 100);
-        driveControl(REVERSE, "Moving in reverse");
-    }
 
     /**
      * Sets the text view in the controlPad to if onReverse is on or off
@@ -368,6 +406,19 @@ public class ControlPad extends AppCompatActivity {
             directionIndicator.setText(REVERSE_IS_ON);
             directionIndicator.setTextColor(Color.parseColor(green));
         }
+    }
+    public void setupSpeedometer(int speed, int duration, int delay) {
+        if(speed == 0){
+            // must be a number close to zero, because the speedometer doest allow the value 0
+            double STOP = 0.0000000001;
+            speedometer.setSpeed(Math.abs(STOP), duration, delay);
+        }else if(speed > 0){
+            speedometer.setSpeed(speed, duration, delay);
+        }else{
+            int positive = speed * -1;
+            speedometer.setSpeed(positive, duration, delay);
+        }
+
     }
 
 }
