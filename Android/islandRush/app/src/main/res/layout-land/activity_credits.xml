@@ -4,15 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreditsActivity">
+    android:background="@drawable/animation_background"
+    tools:context=".activityClasses.CreditsActivity">
 
     <TextView
         android:id="@+id/txtView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/animation_background"
         android:gravity="center"
         android:text="TextView"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="11dp"
         tools:layout_editor_absoluteY="13dp" />
 
