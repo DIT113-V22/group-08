@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background1"
     android:id="@+id/control_pad"
-    tools:context=".ControlPad">
+    tools:context=".activityClasses.ControlPad">
 
     <com.quinstedt.islandRush.SpeedometerView
         android:id="@+id/speedometerControlPad"
@@ -141,7 +141,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/stop"
+        android:id="@+id/stopControlPad"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginEnd="4dp"
@@ -187,23 +187,6 @@
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-  
-   <Button
-        android:id="@+id/saveScoreBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="293dp"
-        android:layout_marginTop="372dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="SaveScore Screen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/controlPad_camera"
-        app:layout_constraintVertical_bias="0.0" />
-
 
     <Button
         android:id="@+id/pauseButtonControlPad"
@@ -214,7 +197,9 @@
         android:alpha="0.8"
         android:background="@drawable/black_circle_button"
         android:text=" II / I▶"
+        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textAppearance="?android:attr/color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actualSpeed" />
 
@@ -227,6 +212,7 @@
         android:alpha="0.8"
         android:background="@drawable/black_circle_button"
         android:text="Reset"
+        android:textSize="20sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/pauseButtonControlPad"
         app:layout_constraintHorizontal_bias="0.0"

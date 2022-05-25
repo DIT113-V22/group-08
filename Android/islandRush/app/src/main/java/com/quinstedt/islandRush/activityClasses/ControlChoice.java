@@ -1,4 +1,4 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.activityClasses;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -6,10 +6,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Switch;
+
+import com.quinstedt.islandRush.R;
 
 public class ControlChoice extends AppCompatActivity {
 
@@ -42,7 +42,7 @@ public class ControlChoice extends AppCompatActivity {
      * Method for the escape Hash that launches MainActivity
      */
     private void goBack() {
-        Intent goToMain = new Intent(this, SaveScore.class);
+        Intent goToMain = new Intent(this, MainActivity.class);
         startActivity(goToMain);
     }
 

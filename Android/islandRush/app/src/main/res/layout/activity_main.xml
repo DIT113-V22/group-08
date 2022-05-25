@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dynamic_list"
-    tools:context=".MainActivity">
+    tools:context=".activityClasses.MainActivity">
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/main_logo"
@@ -53,7 +53,7 @@
 
     <Button
         android:id="@+id/button_enterRace"
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/playerName"
         android:layout_centerInParent="true"
@@ -72,33 +72,18 @@
 
     <Button
         android:id="@+id/button_Leaderboard"
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="136dp"
         android:background="@drawable/main_buttons"
         android:text="LeaderBoard "
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/howToPlayBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/howToPlayBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_enterRace"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="72dp"
-        android:background="@drawable/main_buttons"
-        android:text="HOW TO PLAY ?"
-        android:textColor="@color/white"
-        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent" />
 
 

@@ -1,11 +1,10 @@
-package com.quinstedt.islandRush;
+package com.quinstedt.islandRush.activityClasses;
 
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Connection.QOS;
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.CONTROLLER_CONTROLPAD;
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.SET_CAR_SPEED;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,6 +19,12 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.quinstedt.islandRush.BrokerConnection;
+import com.quinstedt.islandRush.MqttClient;
+import com.quinstedt.islandRush.R;
+import com.quinstedt.islandRush.SpeedometerView;
+import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 
 public class ControlPad extends AppCompatActivity {
 
@@ -75,10 +80,14 @@ public class ControlPad extends AppCompatActivity {
                 simpleChronometer.stop();
                 pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
                 stopCar();
+                String red = "#F14C4C";
+                pause.setTextColor(Color.parseColor(red));
                 running = false;
             } else {
                 simpleChronometer.start();
                 simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
+                String red = "#FFFFFFFF";
+                pause.setTextColor(Color.parseColor(red));
                 running = true;
             }
         });
@@ -158,7 +167,7 @@ public class ControlPad extends AppCompatActivity {
         Button brake = findViewById(R.id.brakeControlPad);
         brake.setOnClickListener(view -> brake());
 
-        Button stop = findViewById(R.id.stop);
+        Button stop = findViewById(R.id.stopControlPad);
         stop.setOnClickListener(view -> stopCar());
 
         Button acceleration = findViewById(R.id.accelerateControlPad);

@@ -4,13 +4,12 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Database;
 
 import java.util.List;
 
 public class PlayerScoreRepository {
 
-    private Dao dao;
+    private ScoreDao dao;
     private LiveData<List<PlayerScore>> allPlayerScores;
 
     public PlayerScoreRepository(Application application) {
@@ -46,9 +45,9 @@ public class PlayerScoreRepository {
 
     // we are creating a async task method to insert new player score.
     private static class InsertScoreAsyncTask extends AsyncTask< PlayerScore, Void, Void> {
-        private Dao dao;
+        private ScoreDao dao;
 
-        private InsertScoreAsyncTask(Dao dao) {
+        private InsertScoreAsyncTask(ScoreDao dao) {
             this.dao = dao;
         }
 
@@ -62,9 +61,9 @@ public class PlayerScoreRepository {
 
     // we are creating a async task method to update player scores.
     private static class UpdateScoreAsyncTask extends AsyncTask<PlayerScore, Void, Void> {
-        private Dao dao;
+        private ScoreDao dao;
 
-        private UpdateScoreAsyncTask(Dao dao) {
+        private UpdateScoreAsyncTask(ScoreDao dao) {
             this.dao = dao;
         }
 
@@ -79,9 +78,9 @@ public class PlayerScoreRepository {
 
     // we are creating a async task method to delete player scores.
     private static class DeleteScoreAsyncTask extends AsyncTask<PlayerScore, Void, Void> {
-        private Dao dao;
+        private ScoreDao dao;
 
-        private DeleteScoreAsyncTask(Dao dao) {
+        private DeleteScoreAsyncTask(ScoreDao dao) {
             this.dao = dao;
         }
 
@@ -96,8 +95,8 @@ public class PlayerScoreRepository {
 
     // we are creating a async task method to delete all player scores.
     private static class DeleteAllScoresAsyncTask extends AsyncTask<Void, Void, Void> {
-        private Dao dao;
-        private DeleteAllScoresAsyncTask(Dao dao) {
+        private ScoreDao dao;
+        private DeleteAllScoresAsyncTask(ScoreDao dao) {
             this.dao = dao;
         }
         @Override

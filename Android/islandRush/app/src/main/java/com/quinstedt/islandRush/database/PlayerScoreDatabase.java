@@ -18,7 +18,7 @@ public abstract class PlayerScoreDatabase extends RoomDatabase {
 
     private static PlayerScoreDatabase instance;
 
-    public abstract Dao Dao();
+    public abstract ScoreDao Dao();
 
     public static synchronized PlayerScoreDatabase getInstance(Context context) {
         if (instance == null) {
@@ -57,7 +57,7 @@ public abstract class PlayerScoreDatabase extends RoomDatabase {
     // we are creating an async task class to perform task in background.
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         PopulateDbAsyncTask(PlayerScoreDatabase instance) {
-            Dao dao = instance.Dao();
+            ScoreDao dao = instance.Dao();
         }
         @Override
         protected Void doInBackground(Void... voids) {

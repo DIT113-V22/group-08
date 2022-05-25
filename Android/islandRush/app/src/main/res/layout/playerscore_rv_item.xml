@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:elevation="8dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="8dp"
+    android:id="@+id/scoreboard_recycleView">
 
     <LinearLayout
         android:id="@+id/idLLPlayerScore"
@@ -19,23 +20,23 @@
         <TextView
             android:id="@+id/idTVPlayerName"
             android:layout_width="179dp"
-            android:layout_height="80dp"
+            android:layout_height="55dp"
             android:layout_marginBottom="30dp"
             android:fontFamily="cursive"
             android:padding="8dp"
             android:text="Name"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/idTVRaceDuration"
-            android:layout_width="205dp"
+            android:layout_width="179dp"
             android:layout_height="match_parent"
             android:fontFamily="cursive"
             android:padding="8dp"
             android:text="Time"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/white"
             android:textSize="35sp" />
 
     </LinearLayout>
