@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/controlChoice"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ControlChoice"
     android:background="@drawable/dynamic_list"
-    android:id="@+id/controlChoice">
+    tools:context=".activityClasses.ControlChoice">
 
     <TextView
         android:id="@+id/titleControlChoice"
@@ -59,10 +59,10 @@
         android:layout_width="45dp"
         android:layout_height="40dp"
         android:layout_marginTop="4dp"
+        android:contentDescription="@string/escapeHash"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        android:contentDescription="@string/escapeHash" />
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

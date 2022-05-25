@@ -14,14 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IslandRush">
+
         <activity
-            android:name=".CreditsActivity"
+            android:name=".activityClasses.Scoreboard"
             android:exported="false" />
         <activity
-            android:name=".Leaderboard"
+            android:name=".SplashScreens.LeaderboardAnimation"
             android:exported="false" />
         <activity
-            android:name=".IntroSplashAnimation"
+            android:name=".SplashScreens.IntroSplashAnimation"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,16 +31,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ControlPad"
+            android:name=".activityClasses.ControlPad"
             android:exported="false" />
         <activity
-            android:name=".ControlChoice"
+            android:name=".activityClasses.ControlChoice"
             android:exported="false" />
         <activity
-            android:name=".Joystick"
+            android:name=".activityClasses.Joystick"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activityClasses.MainActivity"
             android:exported="false" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
