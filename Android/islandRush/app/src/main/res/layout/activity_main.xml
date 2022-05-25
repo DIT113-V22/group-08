@@ -11,8 +11,7 @@
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/main_logo"
         android:layout_width="239dp"
-        android:layout_height="208dp"
-        android:layout_marginTop="104dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="80dp"
         android:src="@drawable/logo"
         app:civ_border_color="#2CD319"
@@ -22,7 +21,6 @@
         app:civ_shadow_radius="0dp"
         app:layout_constraintBottom_toTopOf="@+id/playerName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
