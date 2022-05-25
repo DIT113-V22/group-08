@@ -23,15 +23,10 @@ public class gettingStarted extends AppCompatActivity {
 
     }
 
-    private void goBack() {
-        Intent exitTutorial = new Intent(this, MainActivity.class);
-        startActivity(exitTutorial);
-    }
-
     /**
      * This method  is used to swipe to the next screen
      */
-    public boolean onTouchEventNext(MotionEvent touchEvent2){
+    public boolean onTouchEvent(MotionEvent touchEvent2){
         switch (touchEvent2.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent2.getX();
@@ -46,5 +41,12 @@ public class gettingStarted extends AppCompatActivity {
                 }
         }return  false;
     }
+
+    private void goBack() {
+        Intent exitTutorial = new Intent(this, MainActivity.class);
+        startActivity(exitTutorial);
+    }
+
+
 
 }

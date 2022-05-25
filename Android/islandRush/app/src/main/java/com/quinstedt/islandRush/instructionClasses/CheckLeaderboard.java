@@ -10,18 +10,18 @@ import android.widget.ImageButton;
 import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.activityClasses.MainActivity;
 
-public class controlsInstruction extends AppCompatActivity {
+public class CheckLeaderboard extends AppCompatActivity {
 
-    ImageButton exitBtn3;
+    ImageButton exitBtn4;
     float x1,x2,y1,y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_controls_instruction);
+        setContentView(R.layout.activity_check_leaderboard);
 
-        exitBtn3= findViewById(R.id.exitBtn3);
-        exitBtn3.setOnClickListener(view -> goBack());
+        exitBtn4= findViewById(R.id.exitBtn4);
+        exitBtn4.setOnClickListener(view -> goBack());
     }
 
     private void goBack() {
@@ -30,7 +30,7 @@ public class controlsInstruction extends AppCompatActivity {
     }
 
     /**
-     * This method  is used to swipe to the previous or the next screen
+     * This method  is used to swipe to the previous screen
      */
     public boolean onTouchEventPrevious(MotionEvent touchEvent2){
         switch (touchEvent2.getAction()){
@@ -44,10 +44,7 @@ public class controlsInstruction extends AppCompatActivity {
                 if(x1 < x2){
                     Intent previousScreen = new Intent(this,GameModes.class);
                     startActivity(previousScreen);
-                }else if(x1>x2){
-                    Intent nextScreen = new Intent(this, CheckLeaderboard.class);
-                    startActivity(nextScreen);}
-
+                }
         }return  false;
     }
 }

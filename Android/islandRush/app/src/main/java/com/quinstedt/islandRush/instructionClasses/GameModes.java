@@ -24,34 +24,10 @@ public class GameModes extends AppCompatActivity {
 
     }
 
-    private void goBack() {
-        Intent exitTutorial = new Intent(this, MainActivity.class);
-        startActivity(exitTutorial);
-    }
-
     /**
-     * This method  is used to swipe to the next screen
+     * This method  is used to swipe to the previous screen or the next screen
      */
-    public boolean onTouchEventNext(MotionEvent touchEvent2){
-        switch (touchEvent2.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                x1 = touchEvent2.getX();
-                y1 = touchEvent2.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = touchEvent2.getX();
-                y2 = touchEvent2.getY();
-                if(x1 > x2){
-                    Intent nextScreen = new Intent(this,controlsInstruction.class);
-                    startActivity(nextScreen);
-                }
-        }return  false;
-    }
-
-    /**
-     * This method  is used to swipe to the previous screen
-     */
-    public boolean onTouchEventPrevious(MotionEvent touchEvent2){
+    public boolean onTouchEvent(MotionEvent touchEvent2){
         switch (touchEvent2.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent2.getX();
@@ -63,8 +39,15 @@ public class GameModes extends AppCompatActivity {
                 if(x1 < x2){
                     Intent previousScreen = new Intent(this,gettingStarted.class);
                     startActivity(previousScreen);
-                }
-
+                }else if(x1>x2){
+                    Intent nextScreen = new Intent(this,controlsInstruction.class);
+                    startActivity(nextScreen);}
         }return  false;
     }
+
+    private void goBack() {
+        Intent exitTutorial = new Intent(this, MainActivity.class);
+        startActivity(exitTutorial);
+    }
+
 }
