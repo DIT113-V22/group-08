@@ -116,7 +116,6 @@ class MainActivityTest {
      *  To run this test uncomment @Test
      *  NOTE: to avoid problems with the CI make sure to comment @Test */
 
-
    @LargeTest
   //  @Test
     fun test_process_of_entering_a_playerName(){
