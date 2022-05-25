@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.quinstedt.islandRush.GlobalData;
 import com.quinstedt.islandRush.R;
-import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 import com.quinstedt.islandRush.Utils;
+import com.quinstedt.islandRush.instructionClasses.gettingStarted;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
@@ -64,8 +64,21 @@ public class MainActivity extends AppCompatActivity {
         Button leaderboard = findViewById(R.id.button_Leaderboard);
         leaderboard.setOnClickListener(view -> openLeaderboard());
 
+        Button howToPlayBtn = findViewById(R.id.howToPlayBtn);
+        howToPlayBtn.setOnClickListener(view -> openTutorial());
     }
 
+    /**
+     * Opens Instruction screen when the EnterRace button has been pressed
+     */
+    private void openTutorial() {
+        Intent tutorialIntent = new Intent(this, gettingStarted.class);
+        startActivity(tutorialIntent);
+    }
+
+    /**
+     * Opens Scoreboard when the Leaderboard button has been pressed
+     */
     public void openLeaderboard() {
         Intent leadIntent = new Intent(this, Scoreboard.class);
         startActivity(leadIntent);

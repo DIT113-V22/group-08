@@ -1,14 +1,14 @@
-package com.quinstedt.islandRush.instructionScreens;
+package com.quinstedt.islandRush.instructionClasses;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
-
-import com.quinstedt.islandRush.MainActivity;
 import com.quinstedt.islandRush.R;
+import com.quinstedt.islandRush.activityClasses.MainActivity;
 
 public class gettingStarted extends AppCompatActivity {
     ImageButton exitBtn;
@@ -18,7 +18,7 @@ public class gettingStarted extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getting_started);
-        exitBtn= findViewById(R.id.exitBtn2);
+        exitBtn= findViewById(R.id.exitBtn);
         exitBtn.setOnClickListener(view -> goBack());
 
     }
@@ -28,7 +28,10 @@ public class gettingStarted extends AppCompatActivity {
         startActivity(exitTutorial);
     }
 
-    public boolean onTouchEvent(MotionEvent touchEvent2){
+    /**
+     * This method  is used to swipe to the next screen
+     */
+    public boolean onTouchEventNext(MotionEvent touchEvent2){
         switch (touchEvent2.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent2.getX();
@@ -38,9 +41,10 @@ public class gettingStarted extends AppCompatActivity {
                 x2 = touchEvent2.getX();
                 y2 = touchEvent2.getY();
                 if(x1 > x2){
-                    Intent chooseMode = new Intent(this, gameModes.class);
-                    startActivity(chooseMode);
+                    Intent nextScreen = new Intent(this,GameModes.class);
+                    startActivity(nextScreen);
                 }
         }return  false;
     }
+
 }

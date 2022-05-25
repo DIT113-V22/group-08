@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dynamic_list"
-    tools:context=".instructionScreens.gameModes">
+    tools:context=".instructionClasses.gameModes">
 
     <TextView
         android:id="@+id/textView7"
@@ -67,7 +67,7 @@
         app:layout_constraintVertical_bias="0.744" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/swipeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

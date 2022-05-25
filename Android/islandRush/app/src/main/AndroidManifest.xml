@@ -42,6 +42,15 @@
         <activity
             android:name=".activityClasses.MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".instructionClasses.gettingStarted"
+            android:exported="false" />
+        <activity
+            android:name=".instructionClasses.GameModes"
+            android:exported="false" />
+        <activity
+            android:name=".instructionClasses.controlsInstruction"
+            android:exported="false" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
