@@ -6,6 +6,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -15,6 +17,7 @@ public class ControlChoice extends AppCompatActivity {
 
     Button controlPad, joystick;
     ImageButton escapeHash;
+    Animation scaleUp,scaleDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,9 @@ public class ControlChoice extends AppCompatActivity {
         animationBackground.setEnterFadeDuration(2500);
         animationBackground.setExitFadeDuration(5000);
         animationBackground.start();
+
+        scaleUp= AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        scaleDown= AnimationUtils.loadAnimation(this, R.anim.scale_down);
 
         escapeHash =  findViewById(R.id.controlChoice_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
@@ -43,6 +49,8 @@ public class ControlChoice extends AppCompatActivity {
      */
     private void goBack() {
         Intent goToMain = new Intent(this, MainActivity.class);
+        escapeHash.startAnimation(scaleUp);
+        escapeHash.startAnimation(scaleDown);
         startActivity(goToMain);
     }
 
@@ -51,6 +59,8 @@ public class ControlChoice extends AppCompatActivity {
      */
     public void openButtonControl() {
         Intent buttonControlIntent = new Intent(this, ControlPad.class);
+        controlPad.startAnimation(scaleUp);
+        controlPad.startAnimation(scaleDown);
         startActivity(buttonControlIntent);
     }
     /**
@@ -58,6 +68,8 @@ public class ControlChoice extends AppCompatActivity {
      */
     public void openJoystick() {
         Intent joystickIntent = new Intent(this, Joystick.class);
+        joystick.startAnimation(scaleUp);
+        joystick.startAnimation(scaleDown);
         startActivity(joystickIntent);
     }
 

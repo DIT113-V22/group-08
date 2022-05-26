@@ -6,6 +6,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,8 @@ import com.quinstedt.islandRush.instructionClasses.GettingStarted;
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
     String playerNameInput;
+    Animation scaleUp,scaleDown;
+    Button enterRace,leaderboard,howToPlayBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +37,11 @@ public class MainActivity extends AppCompatActivity {
         animationBackground.setExitFadeDuration(5000);
         animationBackground.start();
 
+        scaleUp= AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        scaleDown= AnimationUtils.loadAnimation(this, R.anim.scale_down);
 
         // On Click goes to Controller choice
-        Button enterRace = findViewById(R.id.button_enterRace);
+        enterRace = findViewById(R.id.button_enterRace);
         enterRace.setOnClickListener(view -> openControlChoice());
 
 
@@ -61,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
          */
 
 
-        Button leaderboard = findViewById(R.id.button_Leaderboard);
+        leaderboard = findViewById(R.id.button_Leaderboard);
         leaderboard.setOnClickListener(view -> openLeaderboard());
 
-        Button howToPlayBtn = findViewById(R.id.howToPlayBtn);
+        howToPlayBtn = findViewById(R.id.howToPlayBtn);
         howToPlayBtn.setOnClickListener(view -> openTutorial());
     }
 
@@ -73,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void openTutorial() {
         Intent tutorialIntent = new Intent(this, GettingStarted.class);
+        howToPlayBtn.startAnimation(scaleUp);
+        howToPlayBtn.startAnimation(scaleDown);
         startActivity(tutorialIntent);
     }
 
@@ -81,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void openLeaderboard() {
         Intent leadIntent = new Intent(this, Scoreboard.class);
+        leaderboard.startAnimation(scaleUp);
+        leaderboard.startAnimation(scaleDown);
         startActivity(leadIntent);
     }
 
@@ -89,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void openControlChoice() {
+        enterRace.startAnimation(scaleUp);
+        enterRace.startAnimation(scaleDown);
         if(playerNameInput.isEmpty()){
             String happyEmoji = Utils.getEmoji(Utils.HAPPY);
             String toastMessage = "Enter a name " +happyEmoji;
