@@ -25,20 +25,29 @@ The Android app will be developed in Android Studio which uses XML for the UI an
 ![image](https://user-images.githubusercontent.com/91395562/170117168-38bb8330-cdb9-4f63-9207-d5e69586391b.png)
 ![image](https://user-images.githubusercontent.com/91395562/170123349-4aa88ede-7eca-400d-8c26-636bdeda88f8.png)
 
-For more details and clarity, please visit our Wiki page on [System Architecture](https://github.com/DIT113-V22/group-08/wiki/System-Architecture).
+For more details and clarity,visit our Wiki page on [System Architecture](https://github.com/DIT113-V22/group-08/wiki/System-Architecture).
+
+### SmartCar Specifications
+* ESP32 Board
+* OV767X Camera
+* Brushed Motors
+* SENSORS
+  - Ultra-Sonic
+  - Directionless Odometer
 ***
 # Setup Guide
 ### Software Requirements
 * [Android Studio Bumblebee (2021.1.1)](https://developer.android.com/studio/archive)
-  - Required Plugin Version :  3.2-7.1 [(for more info)](https://developer.android.com/studio/releases/gradle-plugin)
+  - Required Gradle Plugin Version :  3.2-7.1 [(for more info)](https://developer.android.com/studio/releases/gradle-plugin)
 * [Mosquitto Broker](https://mosquitto.org/download/).
-* SMCE-gd v1.3.4 
-* Virtual Device
+* [SMCE-gd v1.3.4](https://github.com/ItJustWorksTM/smce-gd/releases/tag/v1.3.4) 
+* Virtual Device in Android Studio.
   - Recommended Emulator for App: Pixel 3 XL API 31
+  - Visit our Wiki Page on [Virtual Device](https://github.com/DIT113-V22/group-08/wiki/Virtual-Device) for Setup.
 
-For installation and further guidance,please visit our Wiki Page on [Setup Guides](https://github.com/DIT113-V22/group-08/wiki/Setup-Guides) and choose your Operating System.
+For installation and further guidance,visit our Wiki Page on [Setup Guides](https://github.com/DIT113-V22/group-08/wiki/Setup-Guides) and choose your Operating System.
 
-### Modding Instructions
+## Modding Instructions
 Our system offers two different mod environments for each of the game modes: Race Mode and Explorer Mode.
 
 To setup the environment and install SMCE-gd, visit our wiki page on [Modding Instructions](https://github.com/DIT113-V22/group-08/wiki/Modding-Instructions).
@@ -53,10 +62,31 @@ To setup the environment and install SMCE-gd, visit our wiki page on [Modding In
 * Step 1: Open Android Studio
 * Step 2: Navigate to "Open Project" and select the IslandRush (unzipped) folder.
 * Step 3: Once the project is opened,click on "Sync Project with Gradle Files"
-* Step 4: Create a virtual device to run our app. Visit our Wiki on Virtual Device for guidance.
+* Step 4: Create a virtual device to run our app. Visit our Wiki on [Virtual Device](https://github.com/DIT113-V22/group-08/wiki/Virtual-Device) for guidance.
+* Step 5: Once you are done setting up your virtual device,click on the green arrow-head button on the top-right corner to run the app.
+
+### Open SMCE GODOT Environment
+* Step 1: Assuming the SMCE app is installed, double click on it to start the app.
+* Step 2: Follow our [Modding Instructions](https://github.com/DIT113-V22/group-08/wiki/Modding-Instructions) wiki to change the default environment
+* Step 3: Click on the "+" sign on the top-left corner of the app to add the SmartCar and Finish Line Sketch from the unzipped project.
+
+### Get Mosquitto Broker running
+* Open Command-line terminal
+* Change Directory to "C:\Program Files\mosquitto"
+* Type "mosquitto -v" to start the broker
+
+### Typical Setup with broker running on background.
+![image](https://user-images.githubusercontent.com/91395562/170592178-e08fefa4-7b16-4a57-b60b-a99bc02a5b40.png)
+
 ***
 # Demo Video
-To get a tutorial of our system with its complete functionality,watch our Demo video on Youtube.
+Check out our Demo Video on Youtube "Insert Link" to discover and get a tutorial of what features IslandRush has to offer you!
+***
+### License
+MIT © group-08
+
+The source code for the repository is licensed under the MIT license, refer to LICENSE file in the repository.
+***
 
 
 
