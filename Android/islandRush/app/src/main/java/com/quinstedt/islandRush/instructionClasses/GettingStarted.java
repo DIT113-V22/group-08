@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.activityClasses.MainActivity;
 
-public class gettingStarted extends AppCompatActivity {
+public class GettingStarted extends AppCompatActivity {
     ImageButton exitBtn;
     float x1,x2,y1,y2;
 
@@ -46,7 +46,4 @@ public class gettingStarted extends AppCompatActivity {
         Intent exitTutorial = new Intent(this, MainActivity.class);
         startActivity(exitTutorial);
     }
-
-
-
 }

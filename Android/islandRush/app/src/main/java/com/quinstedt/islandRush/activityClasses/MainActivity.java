@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.quinstedt.islandRush.GlobalData;
 import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.Utils;
-import com.quinstedt.islandRush.instructionClasses.gettingStarted;
+import com.quinstedt.islandRush.instructionClasses.GettingStarted;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
      * Opens Instruction screen when the EnterRace button has been pressed
      */
     private void openTutorial() {
-        Intent tutorialIntent = new Intent(this, gettingStarted.class);
+        Intent tutorialIntent = new Intent(this, GettingStarted.class);
         startActivity(tutorialIntent);
     }
 

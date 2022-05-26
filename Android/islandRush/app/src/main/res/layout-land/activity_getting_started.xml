@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dynamic_list"
-    tools:context=".instructionClasses.gettingStarted">
+    tools:context=".instructionClasses.GettingStarted">
 
     <ImageButton
         android:id="@+id/exitBtn"
@@ -27,7 +27,7 @@
         android:id="@+id/welcomeTextView"
         android:layout_width="385dp"
         android:layout_height="73dp"
-        android:fontFamily="serif"
+        android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="10sp"
         android:text="Welcome To IslandRush Tutorial !"
         android:textAlignment="center"
@@ -42,34 +42,36 @@
 
     <TextView
         android:id="@+id/swipeTextView"
-        android:layout_width="121dp"
-        android:layout_height="42dp"
-        android:text=">>Swipe "
+        android:layout_width="139dp"
+        android:layout_height="48dp"
+        android:fontFamily="cursive"
+        android:text=">> Swipe "
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintHorizontal_bias="0.972"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.956" />
 
     <TextView
         android:id="@+id/instructTextView"
-        android:layout_width="248dp"
-        android:layout_height="87dp"
+        android:layout_width="274dp"
+        android:layout_height="85dp"
         android:layout_marginTop="176dp"
+        android:fontFamily="monospace"
         android:text="Click on &quot;ENTER RACE&quot; to start the Game."
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintVertical_bias="0.246" />
 
     <ImageView
         android:id="@+id/mainActivityImageView"
@@ -77,10 +79,10 @@
         android:layout_height="245dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeTextView"
-        app:layout_constraintVertical_bias="0.344"
+        app:layout_constraintVertical_bias="0.379"
         app:srcCompat="@drawable/main_menu_land" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

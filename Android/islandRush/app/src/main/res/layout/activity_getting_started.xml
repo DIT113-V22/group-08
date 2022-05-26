@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dynamic_list"
-    tools:context=".instructionClasses.gettingStarted">
+    tools:context=".instructionClasses.GettingStarted">
 
     <TextView
         android:id="@+id/welcomeTextView"
@@ -14,7 +14,7 @@
         android:layout_height="102dp"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="serif"
+        android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="10sp"
         android:text="Welcome To IslandRush Tutorial !"
         android:textAlignment="center"
@@ -25,17 +25,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/mainActivityImageView"
         android:layout_width="378dp"
         android:layout_height="408dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/instructTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.944"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/main_menu" />
 
@@ -44,14 +43,15 @@
         android:layout_width="384dp"
         android:layout_height="56dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="144dp"
+        android:fontFamily="monospace"
         android:text="Click on &quot;ENTER RACE&quot; to start the Game."
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -59,16 +59,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text=">>Swipe "
+        android:fontFamily="cursive"
+        android:text=">> Swipe "
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.962" />
+        app:layout_constraintVertical_bias="0.939" />
 
     <ImageButton
         android:id="@+id/exitBtn"

@@ -13,9 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="Choose Game Mode"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/design_default_color_error"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,44 +28,46 @@
 
     <TextView
         android:id="@+id/headingGameMode"
-        android:layout_width="697dp"
-        android:layout_height="34dp"
+        android:layout_width="659dp"
+        android:layout_height="46dp"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="casual"
         android:text="IslandRush offers it's user to play the Game in two different modes:"
         android:textColor="@color/white"
-        android:textSize="23sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/descGameMode1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameModeTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/gameModeTitle"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/descGameMode1"
-        android:layout_width="698dp"
-        android:layout_height="92dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="691dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="1. Race Mode: Players can compete against each-other to earn a spot on the leaderboard. The goal is to reach the finish line as fast as possible."
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/descGameMode"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/descGameMode"
-        android:layout_width="700dp"
-        android:layout_height="86dp"
-        android:layout_marginBottom="56dp"
+        android:layout_width="678dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="2. Explore Mode: This mode let's the user to explore and play around the whole Island."
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -72,15 +75,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="cursive"
         android:text="@string/swipe"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.953" />
+        app:layout_constraintVertical_bias="0.979" />
 
     <ImageButton
         android:id="@+id/exitBtn2"
@@ -91,7 +95,7 @@
         android:background="@android:drawable/divider_horizontal_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.936"
+        app:layout_constraintHorizontal_bias="0.969"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.042"

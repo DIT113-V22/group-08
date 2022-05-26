@@ -37,10 +37,10 @@ public class GameModes extends AppCompatActivity {
                 x2 = touchEvent2.getX();
                 y2 = touchEvent2.getY();
                 if(x1 < x2){
-                    Intent previousScreen = new Intent(this,gettingStarted.class);
+                    Intent previousScreen = new Intent(this, GettingStarted.class);
                     startActivity(previousScreen);
                 }else if(x1>x2){
-                    Intent nextScreen = new Intent(this,controlsInstruction.class);
+                    Intent nextScreen = new Intent(this, ControlsInstruction.class);
                     startActivity(nextScreen);}
         }return  false;
     }

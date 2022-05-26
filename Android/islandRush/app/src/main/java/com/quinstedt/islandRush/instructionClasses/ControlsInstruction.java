@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.activityClasses.MainActivity;
 
-public class controlsInstruction extends AppCompatActivity {
+public class ControlsInstruction extends AppCompatActivity {
 
     ImageButton exitBtn3;
     float x1,x2,y1,y2;
@@ -32,7 +32,7 @@ public class controlsInstruction extends AppCompatActivity {
     /**
      * This method  is used to swipe to the previous or the next screen
      */
-    public boolean onTouchEventPrevious(MotionEvent touchEvent2){
+    public boolean onTouchEvent(MotionEvent touchEvent2){
         switch (touchEvent2.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent2.getX();
