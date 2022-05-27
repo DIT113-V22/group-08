@@ -116,16 +116,14 @@ class MainActivityTest {
      *  To run this test uncomment @Test
      *  NOTE: to avoid problems with the CI make sure to comment @Test */
 
-
-   @LargeTest
-  //  @Test
+   //@LargeTest
+    // @Test
     fun test_process_of_entering_a_playerName(){
         val activityTest = ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.playerName)).perform(click())
         val playerName = "PlayerTest1"
         onView(withId(R.id.playerName)).perform(typeText(playerName))
         onView(withId(R.id.playerName)).perform(pressImeActionButton())
-        Utils.delay(2000)
         onView(withText(playerName)).check(matches(isDisplayed()))
         val checkedEmoji = Utils.getEmoji(Utils.CHECKED)
         val toastMessage = "Saved $checkedEmoji"

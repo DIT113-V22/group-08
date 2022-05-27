@@ -48,7 +48,6 @@ public class Joystick extends AppCompatActivity {
     Boolean onReverse = false;
     TextView finish;
     private int currentSpeed;
-    private String lastDirection;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -161,6 +160,20 @@ public class Joystick extends AppCompatActivity {
                 return true;
             }
         });
+
+        Button reset = findViewById(R.id.resetButtonJoystick);
+        reset.setOnClickListener(view -> {
+            simpleChronometer.setBase(SystemClock.elapsedRealtime());
+            this.currentSpeed = 0;
+            this.counter = 0;
+            stopCar();
+            running = true;
+            onReverse = false;
+            float zero = 0;
+            driveControl(Float.toString(zero), "Car angle direction");
+            simpleChronometer.start();
+        });
+
 
         Intent animationScore = new Intent(this, LeaderboardAnimation.class);
         finish.addTextChangedListener(new TextWatcher() {
@@ -336,6 +349,7 @@ public class Joystick extends AppCompatActivity {
      * Method used for the escapeHash to go back to ControlChoice activity
      */
     private void goBack() {
+        stopCar();
         Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }
@@ -348,7 +362,6 @@ public class Joystick extends AppCompatActivity {
     public void driveControl(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
         mMqttClient.publish(CONTROLLER_JOYSTICK, message, QOS, null);
-        lastDirection = message;
     }
     public void driveSpeed(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);

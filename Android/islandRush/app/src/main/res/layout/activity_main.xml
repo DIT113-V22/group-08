@@ -22,7 +22,6 @@
         app:civ_shadow_radius="0dp"
         app:layout_constraintBottom_toTopOf="@+id/playerName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
