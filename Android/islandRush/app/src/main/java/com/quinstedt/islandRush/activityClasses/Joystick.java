@@ -349,6 +349,7 @@ public class Joystick extends AppCompatActivity {
      * Method used for the escapeHash to go back to ControlChoice activity
      */
     private void goBack() {
+        stopCar();
         Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }

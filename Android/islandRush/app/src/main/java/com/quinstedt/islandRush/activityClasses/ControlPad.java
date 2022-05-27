@@ -367,6 +367,7 @@ public class ControlPad extends AppCompatActivity {
      * Launches the ControlChoice after that the escape Hash has been clicked
      */
     private void goBack() {
+        stopCar();
         Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }
