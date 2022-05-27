@@ -10,7 +10,10 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import com.quinstedt.islandRush.R;
+import com.quinstedt.islandRush.Utils;
 
 public class ControlChoice extends AppCompatActivity {
 
@@ -23,6 +26,10 @@ public class ControlChoice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_choice);
+
+        TextView mode = findViewById(R.id.modeText);
+        String islandEmoji = Utils.getEmoji(Utils.ISLAND);
+        mode.setText("Lets Explore the island ! " + islandEmoji);
 
         ConstraintLayout layout = findViewById(R.id.controlChoice);
         AnimationDrawable animationBackground = (AnimationDrawable) layout.getBackground();
@@ -44,8 +51,12 @@ public class ControlChoice extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean raceModeIsON) {
                 if(raceModeIsON){
                     isOnRaceMode = true;
+                    String race = Utils.getEmoji(Utils.RACE);
+                    mode.setText("Lets Race. "+ race + " Good Luck!");
                 }else{
                     isOnRaceMode = false;
+                    String islandEmoji = Utils.getEmoji(Utils.ISLAND);
+                    mode.setText("Lets Explore the island ! " + islandEmoji);
                 }
             }
         });
