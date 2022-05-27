@@ -29,7 +29,6 @@ import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 public class ControlPad extends AppCompatActivity {
 
     private BrokerConnection brokerConnection;
-    private MqttClient mqttClient;
     private SpeedometerView speedometer;
     private int counter;
     private Boolean onReverse = false;
@@ -62,7 +61,6 @@ public class ControlPad extends AppCompatActivity {
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeed));
         brokerConnection.setFinish(finish);
         brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerControlPad));
-        mqttClient = brokerConnection.getMqttClient();
         brokerConnection.connectToMqttBroker();
 
         /** Start timer */
@@ -96,7 +94,7 @@ public class ControlPad extends AppCompatActivity {
         reset.setOnClickListener(view -> {
             simpleChronometer.setBase(SystemClock.elapsedRealtime());
             currentSpeed = 0;
-            driveControl("5", "Resume game.");// Trigger the default case in the arduino file
+            sendMqttControlMessage("5", "Resume game.");// Trigger the default case in the arduino file
             // which sets the speed and the direction to 0 in the car.
             simpleChronometer.start();
         });
@@ -125,10 +123,10 @@ public class ControlPad extends AppCompatActivity {
                     moveLeft();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (onReverse) {
-                        driveControl(REVERSE, "Moving forward");
+                        sendMqttControlMessage(REVERSE, "Moving forward");
                         sendCarSpeed("Continue backwards");
                     } else {
-                        driveControl(FORWARD, "Moving forward");
+                        sendMqttControlMessage(FORWARD, "Moving forward");
                         sendCarSpeed("Continue  forward");
                     }
                     setupSpeedometer(currentSpeed, DURATION, 100);
@@ -148,11 +146,11 @@ public class ControlPad extends AppCompatActivity {
                     moveRight();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (onReverse) {
-                        driveControl(REVERSE, "Moving forward");
+                        sendMqttControlMessage(REVERSE, "Moving forward");
                         sendCarSpeed("Continue backwards");
                         setupSpeedometer(currentSpeed, DURATION, DELAY);
                     } else {
-                        driveControl(FORWARD, "Moving forward");
+                        sendMqttControlMessage(FORWARD, "Moving forward");
                         sendCarSpeed("Continue  forward");
                         speedometer.setSpeed(currentSpeed, DURATION, DELAY);
                     }
@@ -310,20 +308,20 @@ public class ControlPad extends AppCompatActivity {
             }
             changeCurrentSpeed(counter);
             sendCarSpeed("Reverse speed");
-            driveControl(FORWARD, "Moving forward");
+            sendMqttControlMessage(FORWARD, "Moving forward");
             setupSpeedometer(currentSpeed, DURATION, 100);
         }
     }
 
     public void moveLeft() {
         if(running) {
-            driveControl(LEFT, "Moving to the left");
+            sendMqttControlMessage(LEFT, "Moving to the left");
         }
     }
 
     public void moveRight() {
         if(running) {
-            driveControl(RIGHT, "Moving right");
+            sendMqttControlMessage(RIGHT, "Moving right");
         }
     }
 
@@ -347,7 +345,7 @@ public class ControlPad extends AppCompatActivity {
             changeCurrentSpeed(counter);
             sendCarSpeed("Reverse speed");
             setupSpeedometer(currentSpeed, DURATION, 100);
-            driveControl(REVERSE, "Moving in reverse");
+            sendMqttControlMessage(REVERSE, "Moving in reverse");
         }
     }
 
@@ -374,21 +372,21 @@ public class ControlPad extends AppCompatActivity {
      * @param actionDescription - the action description that will be printed
      */
 
-    public void driveControl(String message, String actionDescription) {
-        brokerConnection.drive(message,actionDescription);
-        mqttClient.publish(CONTROLLER_CONTROLPAD, message,QOS, null);
+    public void sendMqttControlMessage(String message, String actionDescription) {
+        brokerConnection.publishMqttMessage(message,actionDescription);
+        brokerConnection.mqttClient.publish(CONTROLLER_CONTROLPAD, message,QOS, null);
     }
 
-    public void driveSpeed(String message, String actionDescription) {
-        brokerConnection.drive(message,actionDescription);
-        mqttClient.publish(SET_CAR_SPEED, message,QOS, null);
+    public void sendMqttSpeedMessage(String message, String actionDescription) {
+        brokerConnection.publishMqttMessage(message,actionDescription);
+        brokerConnection.mqttClient.publish(SET_CAR_SPEED, message,QOS, null);
     }
 
 
     public void sendCarSpeed(String description ){
 
         String velocityText = "Velocity: " + currentSpeed;
-        driveSpeed(Integer.toString(currentSpeed),description + velocityText);
+        sendMqttSpeedMessage(Integer.toString(currentSpeed),description + velocityText);
         String printSpeed = "Speed: ";
         Log.i(printSpeed, velocityText);
 
