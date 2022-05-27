@@ -12,7 +12,6 @@
         android:id="@+id/welcomeTextView"
         android:layout_width="393dp"
         android:layout_height="102dp"
-        android:layout_marginTop="64dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="10sp"
@@ -21,21 +20,23 @@
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/mainActivityImageView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.117" />
 
     <ImageView
         android:id="@+id/mainActivityImageView"
         android:layout_width="378dp"
         android:layout_height="408dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/instructTextView"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.568"
         app:srcCompat="@drawable/main_menu" />
 
     <TextView
@@ -43,16 +44,18 @@
         android:layout_width="384dp"
         android:layout_height="56dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="144dp"
         android:fontFamily="monospace"
         android:text="Click on &quot;ENTER RACE&quot; to start the Game."
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.821" />
 
     <TextView
         android:id="@+id/swipeTextView"

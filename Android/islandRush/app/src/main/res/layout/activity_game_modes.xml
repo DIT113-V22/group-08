@@ -49,6 +49,7 @@
         android:layout_marginBottom="24dp"
         android:fontFamily="casual"
         android:text="1. Race Mode: Players can compete against each-other to earn a spot on the leaderboard. The goal is to reach the finish line as fast as possible."
+        android:textColor="#F1EBEB"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/descGameMode"
@@ -60,13 +61,15 @@
         android:id="@+id/descGameMode"
         android:layout_width="377dp"
         android:layout_height="116dp"
-        android:layout_marginBottom="296dp"
+        android:layout_marginBottom="224dp"
         android:fontFamily="casual"
         android:text="2. Explore Mode: This mode let's the user to explore and play around the whole Island."
+        android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

@@ -12,7 +12,6 @@
         android:id="@+id/main_logo"
         android:layout_width="239dp"
         android:layout_height="208dp"
-        android:layout_marginTop="104dp"
         android:layout_marginBottom="80dp"
         android:src="@drawable/logo"
         app:civ_border_color="#2CD319"
@@ -20,11 +19,12 @@
         app:civ_shadow="true"
         app:civ_shadow_color="#0E951C"
         app:civ_shadow_radius="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/playerName"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.256" />
 
     <EditText
         android:id="@+id/playerName"
@@ -32,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginStart="50sp"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="50sp"
         android:background="#19F3E9E9"
         android:drawableStart="@drawable/ic_person_vector"
@@ -46,10 +45,12 @@
         android:textColorHint="@color/white"
         android:textColorLink="#08BCD8"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_logo" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.527" />
 
     <Button
         android:id="@+id/button_enterRace"
@@ -57,17 +58,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/playerName"
         android:layout_centerInParent="true"
-        android:layout_marginTop="37dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="22dp"
         android:background="@drawable/main_buttons"
         android:text="  Enter Race  "
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_Leaderboard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerName" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.663" />
 
     <Button
         android:id="@+id/button_Leaderboard"
@@ -75,16 +76,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="22dp"
         android:background="@drawable/main_buttons"
         android:text="LeaderBoard "
-        android:textColor="@color/white"
 
+        android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/howToPlayBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751" />
 
     <Button
         android:id="@+id/howToPlayBtn"
@@ -92,16 +95,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="72dp"
         android:background="@drawable/main_buttons"
         android:text=" HOW TO PLAY ? "
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.815" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

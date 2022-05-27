@@ -51,13 +51,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTV2"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
 
     <TextView
         android:id="@+id/finalTV"
-        android:layout_width="394dp"
-        android:layout_height="197dp"
+        android:layout_width="375dp"
+        android:layout_height="139dp"
         android:fontFamily="cursive"
         android:text="Now you know how to play !\nGood Luck !!!"
         android:textAlignment="center"
@@ -66,10 +66,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTV2"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.877" />
 
     <ImageView
         android:id="@+id/exampleScoreboard"
@@ -80,7 +80,6 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.454"
         app:srcCompat="@drawable/leaderboard" />
 
     <TextView

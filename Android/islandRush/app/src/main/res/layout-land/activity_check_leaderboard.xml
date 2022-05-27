@@ -32,14 +32,15 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043" />
 
     <TextView
         android:id="@+id/introTV"
-        android:layout_width="390dp"
-        android:layout_height="136dp"
+        android:layout_width="365dp"
+        android:layout_height="121dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Did you earn a spot on the top 5 ? \n Are you curious ? \n\n  At the end of the race, you'll get a chance  to view the leaderboard."
         android:textAlignment="center"
@@ -48,15 +49,15 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintVertical_bias="0.244" />
 
     <TextView
         android:id="@+id/finalTV"
-        android:layout_width="394dp"
-        android:layout_height="197dp"
+        android:layout_width="354dp"
+        android:layout_height="189dp"
         android:fontFamily="cursive"
         android:text="Now you know how to play !!! \n\n Good Luck !!!"
         android:textAlignment="center"
@@ -65,21 +66,21 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTV2"
-        app:layout_constraintVertical_bias="0.453" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414" />
 
     <ImageView
         android:id="@+id/exampleScoreboard"
-        android:layout_width="390dp"
-        android:layout_height="195dp"
+        android:layout_width="427dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.972"
+        app:layout_constraintVertical_bias="0.981"
         app:srcCompat="@drawable/leaderboard" />
 
     <TextView
