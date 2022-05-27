@@ -93,9 +93,12 @@ public class ControlPad extends AppCompatActivity {
         Button reset = findViewById(R.id.resetButtonControlPad);
         reset.setOnClickListener(view -> {
             simpleChronometer.setBase(SystemClock.elapsedRealtime());
-            currentSpeed = 0;
-            sendMqttControlMessage("5", "Resume game.");// Trigger the default case in the arduino file
-            // which sets the speed and the direction to 0 in the car.
+            this.currentSpeed = 0;
+            this.counter = 0;
+            stopCar();
+            running = true;
+            onReverse = false;
+            driveControl("1", "Resume game.");
             simpleChronometer.start();
         });
 
@@ -362,6 +365,7 @@ public class ControlPad extends AppCompatActivity {
      * Launches the ControlChoice after that the escape Hash has been clicked
      */
     private void goBack() {
+        stopCar();
         Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }

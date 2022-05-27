@@ -49,7 +49,6 @@ public class Joystick extends AppCompatActivity {
     private int currentSpeed;
 
 
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -159,6 +158,20 @@ public class Joystick extends AppCompatActivity {
                 return true;
             }
         });
+
+        Button reset = findViewById(R.id.resetButtonJoystick);
+        reset.setOnClickListener(view -> {
+            simpleChronometer.setBase(SystemClock.elapsedRealtime());
+            this.currentSpeed = 0;
+            this.counter = 0;
+            stopCar();
+            running = true;
+            onReverse = false;
+            float zero = 0;
+            driveControl(Float.toString(zero), "Car angle direction");
+            simpleChronometer.start();
+        });
+
 
         Intent animationScore = new Intent(this, LeaderboardAnimation.class);
         finish.addTextChangedListener(new TextWatcher() {
@@ -334,6 +347,7 @@ public class Joystick extends AppCompatActivity {
      * Method used for the escapeHash to go back to ControlChoice activity
      */
     private void goBack() {
+        stopCar();
         Intent controlChoiceActivity = new Intent(this, ControlChoice.class);
         startActivity(controlChoiceActivity);
     }
@@ -343,6 +357,7 @@ public class Joystick extends AppCompatActivity {
      * @param message - the message that will be send to the broker
      * @param actionDescription - the action description that will be printed
      */
+
     public void sendMqttControlMessage(String message, String actionDescription) {
         brokerConnection.publishMqttMessage(message,actionDescription);
         brokerConnection.mqttClient.publish(CONTROLLER_JOYSTICK, message, QOS, null);
