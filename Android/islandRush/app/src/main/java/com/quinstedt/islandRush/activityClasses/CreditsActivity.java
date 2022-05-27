@@ -33,10 +33,7 @@ public class CreditsActivity extends AppCompatActivity {
         ImageButton escapeHash = findViewById(R.id.credits_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
 
-
-
     }
-
 
     private void goBack() {
         Intent goToMain = new Intent(this, MainActivity.class);
