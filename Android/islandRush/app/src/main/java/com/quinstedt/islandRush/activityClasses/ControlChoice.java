@@ -69,8 +69,6 @@ public class ControlChoice extends AppCompatActivity {
         if(isOnRaceMode){
             buttonControlIntent.putExtra("RaceMode", "Race Mode is on" );
         }
-        controlPad.startAnimation(scaleUp);
-        controlPad.startAnimation(scaleDown);
         startActivity(buttonControlIntent);
     }
     /**
@@ -81,8 +79,6 @@ public class ControlChoice extends AppCompatActivity {
         if(isOnRaceMode){
             joystickIntent.putExtra("RaceMode", "Race Mode is on");
         }
-        joystick.startAnimation(scaleUp);
-        joystick.startAnimation(scaleDown);
         startActivity(joystickIntent);
     }
 
