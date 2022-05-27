@@ -30,10 +30,11 @@
         android:id="@+id/txtView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textColor="@color/dark_black"
+        android:textSize="24sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="198dp"
         tools:layout_editor_absoluteY="0dp" />
