@@ -32,10 +32,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.597" />
 
     <Button
         android:id="@+id/button_control"
@@ -51,7 +51,7 @@
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.753" />
 
     <ImageButton
         android:id="@+id/controlChoice_escapeHash"
@@ -63,6 +63,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/raceMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:textSize="35sp"
+        android:text="Race Mode    "
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:thumb="@drawable/thumb"
+        app:layout_constraintBottom_toTopOf="@+id/button_joystick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleControlChoice"
+        app:layout_constraintVertical_bias="0.0"
+        app:track="@drawable/track" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

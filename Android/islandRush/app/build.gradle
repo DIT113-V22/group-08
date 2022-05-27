@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.quinstedt.islandRush"
-        minSdk 22
+        minSdk 23
         targetSdk 29
         versionCode 1
         versionName "1.0"
