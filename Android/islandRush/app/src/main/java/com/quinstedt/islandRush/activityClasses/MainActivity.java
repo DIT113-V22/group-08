@@ -20,10 +20,10 @@ import com.quinstedt.islandRush.instructionClasses.GettingStarted;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
-    private Button openCredits;
+
     String playerNameInput;
     Animation scaleUp,scaleDown;
-    Button enterRace,leaderboard,howToPlayBtn;
+    Button enterRace,leaderboard,howToPlayBtn,openCredits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void openCredits() {
         Intent leadIntent = new Intent(this, CreditsActivity.class);
+        openCredits.startAnimation(scaleUp);
+        openCredits.startAnimation(scaleDown);
         startActivity(leadIntent);
     }
 
