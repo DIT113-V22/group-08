@@ -1,5 +1,6 @@
 ![Arduino Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/arduino-build.yml/badge.svg)
 ![Android CI Status](https://github.com/DIT113-V22/group-08/actions/workflows/android-ci.yml/badge.svg)
+[![Build Island.zip Artifact](https://github.com/DIT113-V22/group-08/actions/workflows/Godot%20CI.yml/badge.svg)](https://github.com/DIT113-V22/group-08/actions/workflows/Godot%20CI.yml)
 # group-08
 
 # What is IslandRush?
