@@ -65,6 +65,8 @@ To setup the environment and install SMCE-gd, visit our wiki page on [Modding In
 * Step 4: Create a virtual device to run our app. Visit our Wiki on [Virtual Device](https://github.com/DIT113-V22/group-08/wiki/Virtual-Device) for guidance.
 * Step 5: Once you are done setting up your virtual device,click on the green arrow-head button on the top-right corner to run the app.
 
+Note: Remember to keep Auto-Rotate "turned on" in the virtual device to play the game in both Portrait and Landscape mode.
+
 ### Open SMCE GODOT Environment
 * Step 1: Assuming the SMCE app is installed, double click on it to start the app.
 * Step 2: Follow our [Modding Instructions](https://github.com/DIT113-V22/group-08/wiki/Modding-Instructions) wiki to change the default environment
