@@ -146,7 +146,7 @@ public class BrokerConnection extends AppCompatActivity {
      * @param message - the message that we send to the broker
      * @param actionDescription - the action description that will be printed
      */
-    public void drive(String message, String actionDescription) {
+    public void publishMqttMessage(String message, String actionDescription) {
         if (!isConnected) {
             final String notConnected = "Not connected (yet)";
             Log.e(Topics.Connection.TAG, notConnected);

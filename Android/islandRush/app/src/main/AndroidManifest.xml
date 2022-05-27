@@ -21,6 +21,9 @@
             android:name=".activityClasses.Scoreboard"
             android:exported="false" />
         <activity
+            android:name=".activityClasses.CreditsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreens.LeaderboardAnimation"
             android:exported="false" />
         <activity

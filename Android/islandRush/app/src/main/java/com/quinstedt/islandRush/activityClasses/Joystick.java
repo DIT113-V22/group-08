@@ -34,7 +34,6 @@ import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 public class Joystick extends AppCompatActivity {
 
     private int counter = 0;
-    private MqttClient mMqttClient;
     private BrokerConnection brokerConnection;
     private SpeedometerView speedometer;
     private final int DURATION = 2000;
@@ -48,7 +47,7 @@ public class Joystick extends AppCompatActivity {
     Boolean onReverse = false;
     TextView finish;
     private int currentSpeed;
-    private String lastDirection;
+
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -63,7 +62,6 @@ public class Joystick extends AppCompatActivity {
         brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
         brokerConnection.setFinish(finish);
         brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerJoystick));
-        mMqttClient = brokerConnection.getMqttClient();
         brokerConnection.connectToMqttBroker();
 
         // Start
@@ -139,9 +137,9 @@ public class Joystick extends AppCompatActivity {
                  */
                 if(angle == 1.0){
                     float zero = 0;
-                    driveControl(Float.toString(zero), "Car angle direction");
+                    sendMqttControlMessage(Float.toString(zero), "Car angle direction");
                 }else{
-                    driveControl(Float.toString(angle), "Car angle direction");
+                    sendMqttControlMessage(Float.toString(angle), "Car angle direction");
                 }
                 setSpeedMultiplier(joystick.angle());
 
@@ -217,7 +215,7 @@ public class Joystick extends AppCompatActivity {
      */
     public void sendCarSpeed(String description) {
         String velocityText = "Velocity: " + this.currentSpeed;
-        driveSpeed(Integer.toString(this.currentSpeed),description + velocityText);
+        sendMqttSpeedMessage(Integer.toString(this.currentSpeed),description + velocityText);
         String printSpeed = "Speed: ";
         Log.i(printSpeed, velocityText);
     }
@@ -345,14 +343,13 @@ public class Joystick extends AppCompatActivity {
      * @param message - the message that will be send to the broker
      * @param actionDescription - the action description that will be printed
      */
-    public void driveControl(String message, String actionDescription) {
-        brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(CONTROLLER_JOYSTICK, message, QOS, null);
-        lastDirection = message;
+    public void sendMqttControlMessage(String message, String actionDescription) {
+        brokerConnection.publishMqttMessage(message,actionDescription);
+        brokerConnection.mqttClient.publish(CONTROLLER_JOYSTICK, message, QOS, null);
     }
-    public void driveSpeed(String message, String actionDescription) {
-        brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(SET_CAR_SPEED, message, QOS, null);
+    public void sendMqttSpeedMessage(String message, String actionDescription) {
+        brokerConnection.publishMqttMessage(message,actionDescription);
+        brokerConnection.mqttClient.publish(SET_CAR_SPEED, message, QOS, null);
     }
 
 

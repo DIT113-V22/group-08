@@ -20,6 +20,7 @@ import com.quinstedt.islandRush.instructionClasses.GettingStarted;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
+    private Button openCredits;
     String playerNameInput;
     Animation scaleUp,scaleDown;
     Button enterRace,leaderboard,howToPlayBtn;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             editText.setText(playerNameInput);
         }
 
+        openCredits = findViewById(R.id.button_credits);
+        openCredits.setOnClickListener(view -> openCredits());
 
         /**
          * In the MainActivity XML "android:imeOptions="actionSend" changes the Enter Button in the softKeyboard
@@ -97,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Opens ControlChoice when the EnterRace button has been pressed
      */
+
+    public void openCredits() {
+        Intent leadIntent = new Intent(this, CreditsActivity.class);
+        startActivity(leadIntent);
+    }
 
     public void openControlChoice() {
         enterRace.startAnimation(scaleUp);
