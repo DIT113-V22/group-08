@@ -48,7 +48,6 @@ public class Joystick extends AppCompatActivity {
     Boolean onReverse = false;
     TextView finish;
     private int currentSpeed;
-    private String lastDirection;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -165,10 +164,13 @@ public class Joystick extends AppCompatActivity {
         Button reset = findViewById(R.id.resetButtonJoystick);
         reset.setOnClickListener(view -> {
             simpleChronometer.setBase(SystemClock.elapsedRealtime());
-            currentSpeed = 0;
-            setupSpeedometer(0, DURATION,DELAY);
-            driveControl("5", "Resume game.");// Trigger the default case in the arduino file
-            // which sets the speed and the direction to 0 in the car.
+            this.currentSpeed = 0;
+            this.counter = 0;
+            stopCar();
+            running = true;
+            onReverse = false;
+            float zero = 0;
+            driveControl(Float.toString(zero), "Car angle direction");
             simpleChronometer.start();
         });
 
@@ -359,7 +361,6 @@ public class Joystick extends AppCompatActivity {
     public void driveControl(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);
         mMqttClient.publish(CONTROLLER_JOYSTICK, message, QOS, null);
-        lastDirection = message;
     }
     public void driveSpeed(String message, String actionDescription) {
         brokerConnection.drive(message,actionDescription);

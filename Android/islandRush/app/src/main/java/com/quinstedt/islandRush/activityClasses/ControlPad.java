@@ -95,10 +95,12 @@ public class ControlPad extends AppCompatActivity {
         Button reset = findViewById(R.id.resetButtonControlPad);
         reset.setOnClickListener(view -> {
             simpleChronometer.setBase(SystemClock.elapsedRealtime());
-            currentSpeed = 0;
-            setupSpeedometer(0, DURATION,DELAY);
-            driveControl("5", "Resume game.");// Trigger the default case in the arduino file
-            // which sets the speed and the direction to 0 in the car.
+            this.currentSpeed = 0;
+            this.counter = 0;
+            stopCar();
+            running = true;
+            onReverse = false;
+            driveControl("1", "Resume game.");
             simpleChronometer.start();
         });
 
