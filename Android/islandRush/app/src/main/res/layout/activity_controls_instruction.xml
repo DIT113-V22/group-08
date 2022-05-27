@@ -13,16 +13,17 @@
         android:id="@+id/titleTV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Control Choice"
         android:textColor="@color/design_default_color_error"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/controlChoiceTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.566"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/exitBtn3"
@@ -88,8 +89,8 @@
 
     <ImageView
         android:id="@+id/controlLabels"
-        android:layout_width="399dp"
-        android:layout_height="549dp"
+        android:layout_width="393dp"
+        android:layout_height="522dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

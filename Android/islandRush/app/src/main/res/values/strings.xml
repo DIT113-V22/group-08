@@ -27,5 +27,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="swipe"><![CDATA[<< Swipe >>]]></string>
     <string name="swipe2"><![CDATA[<< Swipe]]></string>
+    <string name="click_on_quot_enter_race_quot_to_start_the_game">Click on \"ENTER RACE\" \n to start the Game. \n Remember to insert a player name first. </string>
 
 </resources>

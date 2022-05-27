@@ -12,6 +12,7 @@
         android:id="@+id/exitBtn4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:background="@android:drawable/divider_horizontal_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,61 +26,62 @@
         android:id="@+id/titleTV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="casual"
         android:text="Checking Leaderboard"
         android:textColor="@color/design_default_color_error"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/introTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/introTV"
         android:layout_width="386dp"
         android:layout_height="131dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Did you earn a spot on the top 5 ? \n Are you curious ? \n\n  At the end of the race, you'll get a chance  to view the leaderboard."
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/exampleScoreboard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTV2" />
 
     <TextView
         android:id="@+id/finalTV"
-        android:layout_width="375dp"
-        android:layout_height="139dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="cursive"
         android:text="Now you know how to play !\nGood Luck !!!"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTV2"
-        app:layout_constraintVertical_bias="0.877" />
+        app:layout_constraintTop_toBottomOf="@+id/exampleScoreboard" />
 
     <ImageView
         android:id="@+id/exampleScoreboard"
-        android:layout_width="372dp"
-        android:layout_height="346dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="303sp"
+        android:layout_height="293sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/finalTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/introTV"
         app:srcCompat="@drawable/leaderboard" />
 
     <TextView
@@ -87,7 +89,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="346dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="cursive"
         android:text="@string/swipe2"
         android:textColor="@color/white"
@@ -95,9 +99,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintTop_toBottomOf="@+id/finalTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

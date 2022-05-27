@@ -11,8 +11,9 @@
     <TextView
         android:id="@+id/welcomeTextView"
         android:layout_width="393dp"
-        android:layout_height="102dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="10sp"
         android:text="Welcome To IslandRush Tutorial !"
@@ -20,48 +21,52 @@
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/mainActivityImageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/mainActivityImageView"
         android:layout_width="378dp"
         android:layout_height="408dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/instructTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView"
         app:srcCompat="@drawable/main_menu" />
 
     <TextView
         android:id="@+id/instructTextView"
-        android:layout_width="384dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="2dp"
+        android:layout_marginBottom="44dp"
         android:fontFamily="monospace"
-        android:text="Click on &quot;ENTER RACE&quot; to start the Game."
+        android:text="@string/click_on_quot_enter_race_quot_to_start_the_game"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.821" />
+        app:layout_constraintTop_toBottomOf="@+id/mainActivityImageView"
+        app:layout_constraintVertical_bias="0.315" />
 
     <TextView
         android:id="@+id/swipeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="cursive"
         android:text=">> Swipe "
         android:textColor="@color/white"
@@ -71,8 +76,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintTop_toBottomOf="@+id/instructTextView"
+        app:layout_constraintVertical_bias="0.88" />
 
     <ImageButton
         android:id="@+id/exitBtn"
