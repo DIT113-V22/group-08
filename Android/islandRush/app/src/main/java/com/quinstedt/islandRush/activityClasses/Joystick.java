@@ -168,7 +168,7 @@ public class Joystick extends AppCompatActivity {
             running = true;
             onReverse = false;
             float zero = 0;
-            driveControl(Float.toString(zero), "Car angle direction");
+            sendMqttControlMessage(Float.toString(zero), "Car angle direction");
             simpleChronometer.start();
         });
 

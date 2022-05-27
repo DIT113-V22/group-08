@@ -98,7 +98,7 @@ public class ControlPad extends AppCompatActivity {
             stopCar();
             running = true;
             onReverse = false;
-            driveControl("1", "Resume game.");
+            sendMqttControlMessage("1", "Resume game.");
             simpleChronometer.start();
         });
 

@@ -32,7 +32,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="IslandRush offers it's user to play the Game in two different modes:"
+        android:text="IslandRush can be played in two different modes:"
         android:textColor="@color/white"
         android:textSize="23sp"
         android:textStyle="bold"
