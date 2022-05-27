@@ -7,7 +7,7 @@
 # Project Description
 IslandRush is an Android app that grants the user to drive a car in the SMCE client using a virtual controller on a phone.The SMCE environment has been modded to represent an Island with race-tracks.It is a racing game that allows a user to compete against oneself and other users.
 The game supports features to accomodate the feeling of a real-life racing experience such as multi-directional Joystick and Speed Controllers.The best scores are measured by the least time taken to reach the finish line and saved in a leaderboard.
-Additionally,the app also offers its user to explore the Island and play in our customized explorer mode.
+Additionally,the app also offers its user to explore the Island and play in our customized explorer mode.The game can be played in both portrait and landscape mode.
 ***
 # Project Purpose
 Games are a kind of mind-workout exercises disguised as fun.[Scientific studies](https://www.sciencealert.com/gamers-have-more-grey-matter-and-better-brain-connectivity-study-suggests) have shown that playing video games regularly may increase gray matter in our brains. Grey matter is a region associated with the central nervous system that enables humans to control movement, memory, and emotions. Moreover, a [past research](https://www.independent.co.uk/games/video-games-children-learning-intelligence-social-skills-study-a6920961.html) involving children have shown that games may improve the childrens social and intellectual skills.
@@ -80,7 +80,7 @@ To setup the environment and install SMCE-gd, visit our wiki page on [Modding In
 
 ***
 # Demo Video
-Check out our Demo Video on Youtube "Insert Link" to discover and get a tutorial of what features IslandRush has to offer you!
+Check out our Demo Video on Youtube "Insert Link" to discover and get a tutorial of what features IslandRush has to offer!
 ***
 ### License
 MIT © group-08
