@@ -1,5 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://objects/clouds/clouds.glb" type="PackedScene" id=1]
+[ext_resource path="res://objects/clouds/clouds.gd" type="Script" id=2]
 
 [node name="clouds" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="pCylinder1" parent="Sketchfab_model/0133a0759748441faa7874abfb45712cfbx/Object_2/RootNode/AviaoCompleto" index="1"]
+transform = Transform( 0.0990986, -4.68326, -2.64108e-18, 0.0844186, 5.49766, -2.24984e-18, 3.46945e-18, 0, 0.130181, 4.1383, -0.502412, -0.0920516 )
