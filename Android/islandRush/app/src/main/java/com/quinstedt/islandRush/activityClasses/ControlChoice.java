@@ -67,8 +67,6 @@ public class ControlChoice extends AppCompatActivity {
      */
     private void goBack() {
         Intent goToMain = new Intent(this, MainActivity.class);
-        escapeHash.startAnimation(scaleUp);
-        escapeHash.startAnimation(scaleDown);
         startActivity(goToMain);
     }
 
