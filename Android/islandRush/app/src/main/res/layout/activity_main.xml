@@ -12,7 +12,8 @@
         android:id="@+id/main_logo"
         android:layout_width="239dp"
         android:layout_height="208dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="50dp"
         android:src="@drawable/logo"
         app:civ_border_color="#2CD319"
         app:civ_border_width="5dp"
@@ -29,10 +30,12 @@
     <EditText
         android:id="@+id/playerName"
         android:layout_width="326dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="50sp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="50sp"
+        android:layout_marginBottom="32dp"
         android:background="#19F3E9E9"
         android:drawableStart="@drawable/ic_person_vector"
         android:hint="@string/Enter_players_name"
@@ -46,6 +49,7 @@
         android:textColorLink="#08BCD8"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_enterRace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/playerName"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/main_buttons"
         android:text="  Enter Race  "
         android:textColor="@color/white"
@@ -69,6 +74,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintTop_toBottomOf="@+id/playerName"
+        app:layout_constraintVertical_bias="0.845" />
 
     <Button
         android:id="@+id/button_Leaderboard"
@@ -76,15 +83,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/main_buttons"
         android:text="LeaderBoard "
 
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_credits"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_enterRace" />
+          app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.751" />
@@ -105,5 +116,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.815" />
 
+    <Button
+        android:id="@+id/button_credits"
+        android:layout_width="243dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_enterRace"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/main_buttons"
+        android:text="Credits "
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Leaderboard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
