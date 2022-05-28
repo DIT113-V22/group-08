@@ -29,7 +29,7 @@ For more details and clarity,visit our Wiki page on [System Architecture](https:
 
 ### SmartCar Specifications
 * ESP32 Board
-* OV767X Camera
+* OV767X Camera (currently unused)
 * Brushed Motors
 * SENSORS
   - Ultra-Sonic
