@@ -34,7 +34,6 @@ import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 public class Joystick extends AppCompatActivity {
 
     private int counter = 0;
-    private MqttClient mMqttClient;
     private BrokerConnection brokerConnection;
     private SpeedometerView speedometer;
     private final int DURATION = 2000;
@@ -48,6 +47,9 @@ public class Joystick extends AppCompatActivity {
     Boolean onReverse = false;
     TextView finish;
     private int currentSpeed;
+    private Button pause;
+    private Button reset;
+
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -59,41 +61,63 @@ public class Joystick extends AppCompatActivity {
 
         finish = findViewById(R.id.finish_joystick);
         brokerConnection = new BrokerConnection(getApplicationContext());
-        brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
         brokerConnection.setFinish(finish);
         brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerJoystick));
-        mMqttClient = brokerConnection.getMqttClient();
-        brokerConnection.connectToMqttBroker();
+        pause = findViewById(R.id.pauseButtonJoystick);// pause the chronometer
+        reset = findViewById(R.id.resetButtonJoystick);
 
         // Start
         simpleChronometer = findViewById(R.id.simpleChronometerJoystick); // initiate a chronometer
         simpleChronometer.start(); // start a chronometer
 
+        if (getIntent().hasExtra("RaceMode")) {
 
-        // Pause and Unpause timer
-        Button pause = findViewById(R.id.pauseButtonJoystick); // pause the chronometer
-        pause.setOnClickListener(view -> {
-            int storedSpeed = currentSpeed;
-            if(running) {
-                /**
-                 * remembers the button has been pressed and the chronometer output
-                 */
-                simpleChronometer.stop();
-                pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+            /** Start timer */
+            simpleChronometer.start();
+
+
+            /** Pause and Unpause timer */
+            pause.setOnClickListener(view -> {
+                if (running) {
+                    /**
+                     * remembers the button has been pressed and the chronometer output
+                     */
+                    simpleChronometer.stop();
+                    pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+                    stopCar();
+                    String red = "#F14C4C";
+                    pause.setTextColor(Color.parseColor(red));
+                    running = false;
+                } else {
+                    simpleChronometer.start();
+                    simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
+                    String red = "#FFFFFFFF";
+                    pause.setTextColor(Color.parseColor(red));
+                    running = true;
+                }
+            });
+
+            reset.setOnClickListener(view -> {
+                simpleChronometer.setBase(SystemClock.elapsedRealtime());
+                this.currentSpeed = 0;
+                this.counter = 0;
                 stopCar();
-                String red = "#F14C4C";
-                pause.setTextColor(Color.parseColor(red));
-                running = false;
-            }
-            else {
-                simpleChronometer.start();
-                simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
-                currentSpeed = storedSpeed;
-                String red = "#FFFFFFFF";
-                pause.setTextColor(Color.parseColor(red));
                 running = true;
-            }
-        });
+                onReverse = false;
+                sendMqttControlMessage("1", "Resume game.");
+                simpleChronometer.start();
+            });
+
+            brokerConnection.setFinish(finish);
+            brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerControlPad));
+
+        } else {
+            pause.setVisibility(View.GONE);
+            reset.setVisibility(View.GONE);
+            simpleChronometer.setVisibility(View.GONE);
+        }
+        brokerConnection.setActualSpeed(findViewById(R.id.actualSpeedJoystick));
+        brokerConnection.connectToMqttBroker();
 
         ImageButton escapeHash = findViewById(R.id.joystick_escapeHash);
         escapeHash.setOnClickListener((View view) -> goBack());
@@ -138,9 +162,9 @@ public class Joystick extends AppCompatActivity {
                  */
                 if(angle == 1.0){
                     float zero = 0;
-                    driveControl(Float.toString(zero), "Car angle direction");
+                    sendMqttControlMessage(Float.toString(zero), "Car angle direction");
                 }else{
-                    driveControl(Float.toString(angle), "Car angle direction");
+                    sendMqttControlMessage(Float.toString(angle), "Car angle direction");
                 }
                 setSpeedMultiplier(joystick.angle());
 
@@ -170,7 +194,7 @@ public class Joystick extends AppCompatActivity {
             running = true;
             onReverse = false;
             float zero = 0;
-            driveControl(Float.toString(zero), "Car angle direction");
+            sendMqttControlMessage(Float.toString(zero), "Car angle direction");
             simpleChronometer.start();
         });
 
@@ -230,7 +254,7 @@ public class Joystick extends AppCompatActivity {
      */
     public void sendCarSpeed(String description) {
         String velocityText = "Velocity: " + this.currentSpeed;
-        driveSpeed(Integer.toString(this.currentSpeed),description + velocityText);
+        sendMqttSpeedMessage(Integer.toString(this.currentSpeed),description + velocityText);
         String printSpeed = "Speed: ";
         Log.i(printSpeed, velocityText);
     }
@@ -359,13 +383,13 @@ public class Joystick extends AppCompatActivity {
      * @param message - the message that will be send to the broker
      * @param actionDescription - the action description that will be printed
      */
-    public void driveControl(String message, String actionDescription) {
-        brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(CONTROLLER_JOYSTICK, message, QOS, null);
+    public void sendMqttControlMessage(String message, String actionDescription) {
+        brokerConnection.publishMqttMessage(message,actionDescription);
+        brokerConnection.mqttClient.publish(CONTROLLER_JOYSTICK, message, QOS, null);
     }
-    public void driveSpeed(String message, String actionDescription) {
-        brokerConnection.drive(message,actionDescription);
-        mMqttClient.publish(SET_CAR_SPEED, message, QOS, null);
+    public void sendMqttSpeedMessage(String message, String actionDescription) {
+        brokerConnection.publishMqttMessage(message,actionDescription);
+        brokerConnection.mqttClient.publish(SET_CAR_SPEED, message, QOS, null);
     }
 
 
