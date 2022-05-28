@@ -2,6 +2,8 @@ package com.quinstedt.islandRush.activityClasses;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ public class Scoreboard extends AppCompatActivity {
     private RecyclerView RV;
     private ViewModal viewmodal;
     private ImageButton resetBtn,backToHome;
+    Animation scaleUp,scaleDown;
 
 
 
@@ -42,6 +45,10 @@ public class Scoreboard extends AppCompatActivity {
         // setting layout manager to our adapter class.
         RV.setLayoutManager(new LinearLayoutManager(this));
         RV.setHasFixedSize(true);
+
+        scaleUp= AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        scaleDown= AnimationUtils.loadAnimation(this, R.anim.scale_down);
+
 
         // initializing adapter for recycler view.
         final PlayerScoreRVAdapter adapter = new PlayerScoreRVAdapter();
@@ -66,11 +73,14 @@ public class Scoreboard extends AppCompatActivity {
 
     private void goToHome() {
         Intent goToMainIntent=new Intent(this, MainActivity.class);
+        backToHome.startAnimation(scaleUp);
+        backToHome.startAnimation(scaleDown);
         startActivity(goToMainIntent);
     }
 
     private void deleteLeaderboard() {
+        resetBtn.startAnimation(scaleUp);
+        resetBtn.startAnimation(scaleDown);
         viewmodal.deleteAllScores();
-
     }
 }

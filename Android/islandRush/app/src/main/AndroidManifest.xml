@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IslandRush">
-
+        <activity
+            android:name=".instructionClasses.CheckLeaderboard"
+            android:exported="false" />
         <activity
             android:name=".activityClasses.Scoreboard"
             android:exported="false" />
@@ -44,6 +46,15 @@
             android:exported="false" />
         <activity
             android:name=".activityClasses.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".instructionClasses.GettingStarted"
+            android:exported="false" />
+        <activity
+            android:name=".instructionClasses.GameModes"
+            android:exported="false" />
+        <activity
+            android:name=".instructionClasses.ControlsInstruction"
             android:exported="false" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />

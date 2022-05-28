@@ -5,7 +5,6 @@ import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.CONTROLLER_C
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.SET_CAR_SPEED;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -56,7 +55,6 @@ public class ControlPad extends AppCompatActivity {
     Button reset;
     Chronometer simpleChronometer;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -221,7 +219,7 @@ public class ControlPad extends AppCompatActivity {
             }
         });
 
-        speedometer = findViewById(R.id.speedometerControlPad);
+        speedometer =  findViewById(R.id.speedometerControlPad);
         speedometer.setLabelConverter((progress, maxProgress) -> String.valueOf((int) Math.round(progress)));
 
         /**
@@ -240,7 +238,6 @@ public class ControlPad extends AppCompatActivity {
         speedometer.addColoredRange(75, 100, Color.RED);
 
     }
-
     /**
      * Sets the car to full speed, depending on if in reverse is active to make sure
      * that if we are on reverse the cars can continue in that direction.
@@ -305,16 +302,16 @@ public class ControlPad extends AppCompatActivity {
     }
 
     /**
-     * Sets the car to move forward, if onReverse is on before moving forward
-     * and car keeps the speed that was before and changes only the direction of the car
-     * <p>
-     * sets the direction directionIndirection in the controlPad to show which mode is active.
-     * <p>
-     * the same for moveBackward()
+     *  Sets the car to move forward, if onReverse is on before moving forward
+     *  and car keeps the speed that was before and changes only the direction of the car
+     *
+     *  sets the direction directionIndirection in the controlPad to show which mode is active.
+     *
+     *  the same for moveBackward()
      */
 
     public void moveForward() {
-        if (running) {
+        if(running) {
             setUpDirectionIndicator(REVERSE_IS_OFF);
             if (onReverse && counter > 0) {
                 setupSpeedometer(0, 800, CHANGE_DIRECTION_DELAY);
@@ -371,6 +368,10 @@ public class ControlPad extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method updates the car speed depending on if the car is moving in reverse or forward.
+     * @param counter
+     */
     public void changeCurrentSpeed(int counter) {
         int SPEED = 10;
         if (onReverse) {
@@ -390,7 +391,7 @@ public class ControlPad extends AppCompatActivity {
     }
 
     /**
-     * One drive method for the movement of the car and one for the speed
+     * Both this method are forwarding the publish method from brokerConnection, each of them has it own topic to publish
      * See BrokerConnection.
      *
      * @param message           - the message that we send to the broker
@@ -407,7 +408,10 @@ public class ControlPad extends AppCompatActivity {
         brokerConnection.mqttClient.publish(SET_CAR_SPEED, message, QOS, null);
     }
 
-
+    /**
+     * Method that makes sure that the speed is printed and sends the MQTT message.
+     * @param description
+     */
     public void sendCarSpeed(String description) {
 
         String velocityText = "Velocity: " + currentSpeed;
@@ -435,6 +439,9 @@ public class ControlPad extends AppCompatActivity {
         }
     }
 
+    /**
+     * makes sure that the value in the speedometer is always a positive value.
+     */
     public void setupSpeedometer(int speed, int duration, int delay) {
         if (speed == 0) {
             // must be a number close to zero, because the speedometer doest allow the value 0

@@ -34,6 +34,7 @@ import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 public class Joystick extends AppCompatActivity {
 
     private int counter = 0;
+    private MqttClient mMqttClient;
     private BrokerConnection brokerConnection;
     private SpeedometerView speedometer;
     private final int DURATION = 2000;
