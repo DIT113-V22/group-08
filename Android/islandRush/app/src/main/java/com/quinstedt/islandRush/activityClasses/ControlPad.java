@@ -5,6 +5,7 @@ import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.CONTROLLER_C
 import static com.quinstedt.islandRush.BrokerConnection.Topics.Race.SET_CAR_SPEED;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Chronometer;
@@ -50,58 +52,74 @@ public class ControlPad extends AppCompatActivity {
     private final String RIGHT = "2";
     private final String REVERSE = "3";
     private final String LEFT = "4";
+    Button pause;
+    Button reset;
+    Chronometer simpleChronometer;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
-    public void onCreate(Bundle savedInstanceState ) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_pad);
-        counter = 1;
+
+
         finish = findViewById(R.id.finish_controlPad);
         brokerConnection = new BrokerConnection(getApplicationContext());
-        brokerConnection.setActualSpeed(findViewById(R.id.actualSpeed));
-        brokerConnection.setFinish(finish);
-        brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerControlPad));
-        brokerConnection.connectToMqttBroker();
+        pause = findViewById(R.id.pauseButtonControlPad); // pause the chronometer
+        reset = findViewById(R.id.resetButtonControlPad);
+        simpleChronometer = findViewById(R.id.simpleChronometerControlPad);
 
-        /** Start timer */
-        Chronometer simpleChronometer = findViewById(R.id.simpleChronometerControlPad);
-        simpleChronometer.start();
+        if (getIntent().hasExtra("RaceMode")) {
 
-
-        /** Pause and Unpause timer */
-        Button pause = findViewById(R.id.pauseButtonControlPad); // pause the chronometer
-        pause.setOnClickListener(view -> {
-            if(running) {
-                /**
-                 * remembers the button has been pressed and the chronometer output
-                 */
-                simpleChronometer.stop();
-                pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
-                stopCar();
-                String red = "#F14C4C";
-                pause.setTextColor(Color.parseColor(red));
-                running = false;
-            } else {
-                simpleChronometer.start();
-                simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
-                String red = "#FFFFFFFF";
-                pause.setTextColor(Color.parseColor(red));
-                running = true;
-            }
-        });
-
-        Button reset = findViewById(R.id.resetButtonControlPad);
-        reset.setOnClickListener(view -> {
-            simpleChronometer.setBase(SystemClock.elapsedRealtime());
-            this.currentSpeed = 0;
-            this.counter = 0;
-            stopCar();
-            running = true;
-            onReverse = false;
-            sendMqttControlMessage("1", "Resume game.");
+            /** Start timer */
             simpleChronometer.start();
-        });
 
+
+            /** Pause and Unpause timer */
+            pause.setOnClickListener(view -> {
+                if (running) {
+                    /**
+                     * remembers the button has been pressed and the chronometer output
+                     */
+                    simpleChronometer.stop();
+                    pauseTime = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+                    stopCar();
+                    String red = "#F14C4C";
+                    pause.setTextColor(Color.parseColor(red));
+                    running = false;
+                } else {
+                    simpleChronometer.start();
+                    simpleChronometer.setBase(SystemClock.elapsedRealtime() - pauseTime);
+                    String red = "#FFFFFFFF";
+                    pause.setTextColor(Color.parseColor(red));
+                    running = true;
+                }
+            });
+
+            reset.setOnClickListener(view -> {
+                simpleChronometer.setBase(SystemClock.elapsedRealtime());
+                this.currentSpeed = 0;
+                this.counter = 0;
+                stopCar();
+                running = true;
+                onReverse = false;
+                sendMqttControlMessage("1", "Resume game.");
+                simpleChronometer.start();
+            });
+
+            brokerConnection.setFinish(finish);
+            brokerConnection.setSimpleChronometer(findViewById(R.id.simpleChronometerControlPad));
+
+        } else {
+            pause.setVisibility(View.GONE);
+            reset.setVisibility(View.GONE);
+            simpleChronometer.setVisibility(View.GONE);
+        }
+
+
+        counter = 1;
+        brokerConnection.setActualSpeed(findViewById(R.id.actualSpeed));
+        brokerConnection.connectToMqttBroker();
 
         ImageButton escapeHash = findViewById(R.id.controlPad_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
@@ -121,7 +139,7 @@ public class ControlPad extends AppCompatActivity {
          * same as for the right button below.
          */
         left.setOnTouchListener((view, event) -> {
-            if(running) {
+            if (running) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     moveLeft();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -144,7 +162,7 @@ public class ControlPad extends AppCompatActivity {
          * see the comment above for the left button.
          */
         right.setOnTouchListener((view, event) -> {
-            if(running) {
+            if (running) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     moveRight();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -187,11 +205,11 @@ public class ControlPad extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(finish.getText().toString().equalsIgnoreCase("FINISH")){
+                if (finish.getText().toString().equalsIgnoreCase("FINISH")) {
                     try {
                         Thread.sleep(3000);
                         startActivity(animationScore);
-                    }catch (Exception exception){
+                    } catch (Exception exception) {
                         exception.getStackTrace();
                     }
                 }
@@ -203,7 +221,7 @@ public class ControlPad extends AppCompatActivity {
             }
         });
 
-        speedometer =  findViewById(R.id.speedometerControlPad);
+        speedometer = findViewById(R.id.speedometerControlPad);
         speedometer.setLabelConverter((progress, maxProgress) -> String.valueOf((int) Math.round(progress)));
 
         /**
@@ -222,13 +240,14 @@ public class ControlPad extends AppCompatActivity {
         speedometer.addColoredRange(75, 100, Color.RED);
 
     }
+
     /**
      * Sets the car to full speed, depending on if in reverse is active to make sure
      * that if we are on reverse the cars can continue in that direction.
      * Also sets the speedometer UI to the max value
      */
     public void setFullSpeed() {
-        if(running) {
+        if (running) {
             counter = MAX_COUNTER;
             changeCurrentSpeed(counter);
             sendCarSpeed("Setting velocity on full speed. ");
@@ -241,7 +260,7 @@ public class ControlPad extends AppCompatActivity {
      * and sets the speedometer UI to the new speed value
      */
     public void brake() {
-        if(running) {
+        if (running) {
             if (counter == 1) {
                 stopCar();
             } else if (counter > 1) {
@@ -258,7 +277,7 @@ public class ControlPad extends AppCompatActivity {
      * also taking into account the if onReverse is on or off.
      */
     public void acceleration() {
-        if(running) {
+        if (running) {
             if (counter == 0 && !onReverse) {
                 setUpDirectionIndicator(REVERSE_IS_OFF);
             }
@@ -276,8 +295,8 @@ public class ControlPad extends AppCompatActivity {
      * Sets the speed to zero, for the speedometer UI dont allow a value of 0
      * for that reason the STOP constant is use.
      */
-    public void stopCar(){
-        if(running) {
+    public void stopCar() {
+        if (running) {
             counter = 0;
             changeCurrentSpeed(counter);
             sendCarSpeed("Stopping");
@@ -286,16 +305,16 @@ public class ControlPad extends AppCompatActivity {
     }
 
     /**
-     *  Sets the car to move forward, if onReverse is on before moving forward
-     *  and car keeps the speed that was before and changes only the direction of the car
-     *
-     *  sets the direction directionIndirection in the controlPad to show which mode is active.
-     *
-     *  the same for moveBackward()
+     * Sets the car to move forward, if onReverse is on before moving forward
+     * and car keeps the speed that was before and changes only the direction of the car
+     * <p>
+     * sets the direction directionIndirection in the controlPad to show which mode is active.
+     * <p>
+     * the same for moveBackward()
      */
 
     public void moveForward() {
-        if(running) {
+        if (running) {
             setUpDirectionIndicator(REVERSE_IS_OFF);
             if (onReverse && counter > 0) {
                 setupSpeedometer(0, 800, CHANGE_DIRECTION_DELAY);
@@ -317,13 +336,13 @@ public class ControlPad extends AppCompatActivity {
     }
 
     public void moveLeft() {
-        if(running) {
+        if (running) {
             sendMqttControlMessage(LEFT, "Moving to the left");
         }
     }
 
     public void moveRight() {
-        if(running) {
+        if (running) {
             sendMqttControlMessage(RIGHT, "Moving right");
         }
     }
@@ -332,7 +351,7 @@ public class ControlPad extends AppCompatActivity {
      * See move Forward. The only difference is the direction
      */
     public void moveInReverse() {
-        if(running) {
+        if (running) {
             setUpDirectionIndicator(REVERSE_IS_ON);
 
             if (!onReverse && counter > 0) {
@@ -354,9 +373,9 @@ public class ControlPad extends AppCompatActivity {
 
     public void changeCurrentSpeed(int counter) {
         int SPEED = 10;
-        if(onReverse){
-            this.currentSpeed = counter * ( -1 * SPEED);
-        }else{
+        if (onReverse) {
+            this.currentSpeed = counter * (-1 * SPEED);
+        } else {
             this.currentSpeed = counter * SPEED;
         }
     }
@@ -370,27 +389,29 @@ public class ControlPad extends AppCompatActivity {
         startActivity(controlChoiceActivity);
     }
 
-    /** One drive method for the movement of the car and one for the speed
+    /**
+     * One drive method for the movement of the car and one for the speed
      * See BrokerConnection.
-     * @param message - the message that we send to the broker
+     *
+     * @param message           - the message that we send to the broker
      * @param actionDescription - the action description that will be printed
      */
 
     public void sendMqttControlMessage(String message, String actionDescription) {
-        brokerConnection.publishMqttMessage(message,actionDescription);
-        brokerConnection.mqttClient.publish(CONTROLLER_CONTROLPAD, message,QOS, null);
+        brokerConnection.publishMqttMessage(message, actionDescription);
+        brokerConnection.mqttClient.publish(CONTROLLER_CONTROLPAD, message, QOS, null);
     }
 
     public void sendMqttSpeedMessage(String message, String actionDescription) {
-        brokerConnection.publishMqttMessage(message,actionDescription);
-        brokerConnection.mqttClient.publish(SET_CAR_SPEED, message,QOS, null);
+        brokerConnection.publishMqttMessage(message, actionDescription);
+        brokerConnection.mqttClient.publish(SET_CAR_SPEED, message, QOS, null);
     }
 
 
-    public void sendCarSpeed(String description ){
+    public void sendCarSpeed(String description) {
 
         String velocityText = "Velocity: " + currentSpeed;
-        sendMqttSpeedMessage(Integer.toString(currentSpeed),description + velocityText);
+        sendMqttSpeedMessage(Integer.toString(currentSpeed), description + velocityText);
         String printSpeed = "Speed: ";
         Log.i(printSpeed, velocityText);
 
@@ -399,31 +420,34 @@ public class ControlPad extends AppCompatActivity {
 
     /**
      * Sets the text view in the controlPad to if onReverse is on or off
+     *
      * @param direction shows if onReverse is active or not
      */
-    public void setUpDirectionIndicator(String direction){
-        if(direction.equals(REVERSE_IS_OFF)){
+    public void setUpDirectionIndicator(String direction) {
+        if (direction.equals(REVERSE_IS_OFF)) {
             String red = "#F14C4C";
             directionIndicator.setText(REVERSE_IS_OFF);
             directionIndicator.setTextColor(Color.parseColor(red));
         } else {
-            String green  = "#24D510";
+            String green = "#24D510";
             directionIndicator.setText(REVERSE_IS_ON);
             directionIndicator.setTextColor(Color.parseColor(green));
         }
     }
+
     public void setupSpeedometer(int speed, int duration, int delay) {
-        if(speed == 0){
+        if (speed == 0) {
             // must be a number close to zero, because the speedometer doest allow the value 0
             double STOP = 0.0000000001;
             speedometer.setSpeed(Math.abs(STOP), duration, delay);
-        }else if(speed > 0){
+        } else if (speed > 0) {
             speedometer.setSpeed(speed, duration, delay);
-        }else{
+        } else {
             int positive = speed * -1;
             speedometer.setSpeed(positive, duration, delay);
         }
 
     }
-
 }
+
+
