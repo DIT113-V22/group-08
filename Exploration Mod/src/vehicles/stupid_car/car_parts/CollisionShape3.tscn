@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.90874, 0.215063, 0.486514 )
+
+[node name="CollisionShape3" type="CollisionShape"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0801109, 1.70623 )
+shape = SubResource( 3 )
