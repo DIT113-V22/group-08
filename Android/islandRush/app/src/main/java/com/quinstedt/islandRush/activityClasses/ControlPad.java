@@ -172,7 +172,7 @@ public class ControlPad extends AppCompatActivity {
                     } else {
                         sendMqttControlMessage(FORWARD, "Moving forward");
                         sendCarSpeed("Continue  forward");
-                        speedometer.setSpeed(currentSpeed, DURATION, DELAY);
+                        setupSpeedometer(currentSpeed, DURATION, DELAY);
                     }
                 }
             }
