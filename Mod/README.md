@@ -1,64 +1,23 @@
-||COPYRIGHT|| - ||Patent pending|| - ||CREATOR: Andreea Fulger|| - ||UNIVERSITY OF GOTHENBURG||
+For this to work well you need to make sure you have our special customized release of the SMCE-Godot. Go [here](https://github.com/DIT113-V22/smce-gd-group-08/actions/runs/2400632985#artifacts) and choose the right option for your system. If unsure check the [setup instructions](https://github.com/DIT113-V22/group-08/wiki/Setup-Guides).
+Now you're good to go
 
-Hello! 
+Download the _Island.pck_ file from our releases page and paste it into the _mods_ folder in your SMCE user data folder. This can be found at:
+* %APPDATA%\Godot\app_userdata\SMCE\mods (PC)
+* ~/Library/Application Support/Godot/app_userdata/SMCE/mods (MAC)
 
-Welcome to the first step of adding a customized map to the "IslandRush" project. 
+If you have other files present in the folder you don't need to remove them, just be careful not to overwrite anything important.
 
-With this file you can follow the "straightforward" steps, or the "detailed steps" to install your brand new map. 
+Get folders _smartcar_ and _finish_line_ from the Arduino module and paste them as they are in the main location where Arduino folders are created on your computer. Replace _smartcar_ folder if prompted as this version contains vehicle configuration as well.
 
-   _ _ _ _ _ _ _ _ 
- |    		 |
- | STRAIGHTFORWARD |
- |_ _ _ _ _ _ _ _ _| 
- 
-1. Find your SMCE folder. Click on the mods folder
-2. Drag the "Island.zip" file and drop it in the mods folder.
-3. Run your SMCE Godot 
-4. Start your profile and press on the top left corener ("=") 
-5. Select a new world called "isle/Isle". 
-6. Paste all the sketch folders into your user's directory as they are
-7. Done!
+Start the emulator and select the Isle/Isle environment from the dropdown menu in the top left corner. Add the two vehicles by clicking the + sign located under the drop down menu you clicked before. Assign the two sketches, compile them and press _Start_. 
+You can save the profile and have the environment as the default choice.
 
-  _ _ _ _ _ _ _ _ 
- |    		|
- | DETAILED STEPS |
- |_ _ _ _ _ _ _ _ | 
+For the _Exploration Mode_ similarly start the emulator with a new profile and select the Exploration/Exploration environment from the dropdown menu in the top left corner. Add vehicles by clicking the + sign located under the drop down menu you clicked before. Assign the sketches, compile them and press _Start_. 
+You can save the profile as well and have the environment as a second choice.
 
-If you follow these insanely easy steps you will be able to drive on a beautiful new map 
-produced by no other than Andreea Fulger. 
+Enjoy!
 
-1. In this folder you recieved you should see a file called "Island.zip". It might have a different name
-but dont worry, the folder should only contain: A readMe file, a picture and the ".zip" file. 
-Whatever name it has, it should end with ".zip". 
-
-2. I want you to locate your SMCE folder. It is super easy! Go to your search bar on your computer
-and search one of the following, depending on your computer: 
-
-Windows: %APPDATA%\Godot\app_userdata\SMCE
-macOS: ~/Library/Application Support/Godot/SMCE
-Linux: ~/.local/share/godot/SMCE
-
-You found it? Good! 
-
-3. Now there should be a folder called "mods" there. Go ahead and open it! 
-
-4. Is it empty? Dont worry! This is completely normal. It happens to everyone! 
-Now I want you to drag the "Island.zip" file and put in the mods folder. 
-
-5. YOU DID IT! Go ahead and run your SMCE Godot program. 
-
-6. Start one of your profiles. 
-
-7. In the very top left corner there is a "=" symbol. Go ahead and click on it. 
-
-8. There should be a curtain selection button next to "World:". Right now the selected world is
-"playground/Playground". Go ahead and press on it to see your world options! 
-
-9. There should be an option called "isle/Isle". Click on it!  
-
-10. When you clicked on it, a new map should appear and you are ready to test it out! 
-
-Good job! 
-
-
-||COPYRIGHT|| - ||Patent pending|| - ||CREATOR: Andreea Fulger|| - ||UNIVERSITY OF GOTHENBURG||
+Assets Credits: 
+* [Nelib!](https://sketchfab.com/Nelib) _Wuhu Island_ 3D model 
+* [porgy](https://sketchfab.com/porgy) _Pusheen_ 3d model with textures
+* [Lillya](https://sketchfab.com/Lillya) _Bubble Monkey_ 3d model with materials
