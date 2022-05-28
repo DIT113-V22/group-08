@@ -212,6 +212,7 @@ public class Joystick extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(finish.getText().toString().equalsIgnoreCase("FINISH")){
+                    stopCar();
                     Utils.delay(1000);
                     startActivity(animationScore);
                 }
