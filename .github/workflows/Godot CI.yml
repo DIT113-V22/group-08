@@ -5,7 +5,7 @@ on: [push, pull_request]
 env: 
   GODOT_VERSION: 3.4.4 
   DIR: Mod # directory where the first Godot project is
-  DIR2: Exploration Mod # directory where the second Godot project is
+  DIR2: Exploration_Mod # directory where the second Godot project is
 
 jobs:
   export-linux:
