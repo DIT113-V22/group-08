@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.animation.Animation;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -72,9 +71,9 @@ public class ControlChoice extends AppCompatActivity {
      * Method for the escape Hash that launches MainActivity
      */
     private void goBack() {
-        Intent goToMain = new Intent(this, MainActivity.class);
         escapeHash.startAnimation(scaleUp);
         escapeHash.startAnimation(scaleDown);
+        Intent goToMain = new Intent(this, MainActivity.class);
         startActivity(goToMain);
     }
 
