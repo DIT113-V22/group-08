@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -37,6 +38,9 @@ public class ControlChoice extends AppCompatActivity {
         animationBackground.setExitFadeDuration(5000);
         animationBackground.start();
 
+        scaleUp= AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        scaleDown= AnimationUtils.loadAnimation(this, R.anim.scale_down);
+
         escapeHash =  findViewById(R.id.controlChoice_escapeHash);
         escapeHash.setOnClickListener(view -> goBack());
 
@@ -66,6 +70,8 @@ public class ControlChoice extends AppCompatActivity {
      * Method for the escape Hash that launches MainActivity
      */
     private void goBack() {
+        escapeHash.startAnimation(scaleUp);
+        escapeHash.startAnimation(scaleDown);
         Intent goToMain = new Intent(this, MainActivity.class);
         startActivity(goToMain);
     }
@@ -78,6 +84,8 @@ public class ControlChoice extends AppCompatActivity {
         if(isOnRaceMode){
             buttonControlIntent.putExtra("RaceMode", "Race Mode is on" );
         }
+        controlPad.startAnimation(scaleUp);
+        controlPad.startAnimation(scaleDown);
         startActivity(buttonControlIntent);
     }
     /**
@@ -88,6 +96,8 @@ public class ControlChoice extends AppCompatActivity {
         if(isOnRaceMode){
             joystickIntent.putExtra("RaceMode", "Race Mode is on");
         }
+        joystick.startAnimation(scaleUp);
+        joystick.startAnimation(scaleDown);
         startActivity(joystickIntent);
     }
 
