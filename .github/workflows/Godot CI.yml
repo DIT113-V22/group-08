@@ -1,6 +1,6 @@
-name: Build Island.zip Artifact
+name: Build Island.pck Artifact
 
-on: [push, pull_request, workflow_dispatch] 
+on: [push, pull_request] 
        
 env: 
   GODOT_VERSION: 3.4.4 
@@ -23,7 +23,7 @@ jobs:
           cd $DIR
           godot --export-pack "Linux/X11" --no-window ../build/mods/Island.pck
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with: 
           name: Island
           path: build/mods
