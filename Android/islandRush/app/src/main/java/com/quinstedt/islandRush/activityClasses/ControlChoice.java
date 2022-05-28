@@ -23,7 +23,7 @@ public class ControlChoice extends AppCompatActivity {
     ImageButton escapeHash;
     Animation scaleUp,scaleDown;
     Boolean isOnRaceMode = false;
-    Animation scaleUp,scaleDown;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

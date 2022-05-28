@@ -13,6 +13,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Chronometer;
@@ -29,7 +30,6 @@ import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
 public class ControlPad extends AppCompatActivity {
 
     private BrokerConnection brokerConnection;
-    private MqttClient mqttClient;
     private SpeedometerView speedometer;
     private int counter;
     private Boolean onReverse = false;
@@ -55,7 +55,6 @@ public class ControlPad extends AppCompatActivity {
     Button reset;
     Chronometer simpleChronometer;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -369,6 +368,10 @@ public class ControlPad extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method updates the car speed depending on if the car is moving in reverse or forward.
+     * @param counter
+     */
     public void changeCurrentSpeed(int counter) {
         int SPEED = 10;
         if (onReverse) {
@@ -388,7 +391,7 @@ public class ControlPad extends AppCompatActivity {
     }
 
     /**
-     * One drive method for the movement of the car and one for the speed
+     * Both this method are forwarding the publish method from brokerConnection, each of them has it own topic to publish
      * See BrokerConnection.
      *
      * @param message           - the message that we send to the broker
@@ -405,7 +408,10 @@ public class ControlPad extends AppCompatActivity {
         brokerConnection.mqttClient.publish(SET_CAR_SPEED, message, QOS, null);
     }
 
-
+    /**
+     * Method that makes sure that the speed is printed and sends the MQTT message.
+     * @param description
+     */
     public void sendCarSpeed(String description) {
 
         String velocityText = "Velocity: " + currentSpeed;
@@ -433,6 +439,9 @@ public class ControlPad extends AppCompatActivity {
         }
     }
 
+    /**
+     * makes sure that the value in the speedometer is always a positive value.
+     */
     public void setupSpeedometer(int speed, int duration, int delay) {
         if (speed == 0) {
             // must be a number close to zero, because the speedometer doest allow the value 0
