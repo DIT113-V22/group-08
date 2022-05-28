@@ -1,7 +1,7 @@
 For this to work well you need to make sure you have our special customized release of the SMCE-Godot. Go [here](https://github.com/DIT113-V22/smce-gd-group-08/actions/runs/2400632985#artifacts) and choose the right option for your system. If unsure check the [setup instructions](https://github.com/DIT113-V22/group-08/wiki/Setup-Guides).
 Now you're good to go
 
-Download the _Island.pck_ file from our releases page and paste it into the _mods_ folder in your SMCE user data folder. This can be found at:
+Download the _Island.pck_ file from our [releases](https://github.com/DIT113-V22/group-08/releases) page and paste it into the _mods_ folder in your SMCE user data folder. This can be found at:
 * %APPDATA%\Godot\app_userdata\SMCE\mods (PC)
 * ~/Library/Application Support/Godot/app_userdata/SMCE/mods (MAC)
 
