@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.quinstedt.islandRush.R;
+import com.quinstedt.islandRush.SplashScreens.BeforeRaceStart;
 import com.quinstedt.islandRush.Utils;
 
 public class ControlChoice extends AppCompatActivity {
@@ -81,25 +82,32 @@ public class ControlChoice extends AppCompatActivity {
      * Launches ControlPad when ButtonPad button is click
      */
     public void openButtonControl() {
-        Intent buttonControlIntent = new Intent(this, ControlPad.class);
-        if(isOnRaceMode){
-            buttonControlIntent.putExtra("RaceMode", "Race Mode is on" );
-        }
         controlPad.startAnimation(scaleUp);
         controlPad.startAnimation(scaleDown);
-        startActivity(buttonControlIntent);
+        if(isOnRaceMode){
+            Intent beforeStart = new Intent(this, BeforeRaceStart.class);
+            beforeStart.putExtra("ControlPad", "ControlPad");
+            startActivity(beforeStart);
+        }else{
+            Intent controlPad = new Intent(this, ControlPad.class);
+            startActivity(controlPad);
+        }
     }
     /**
      * Launches Joystick Activity when joystick button is click
      */
     public void openJoystick() {
-        Intent joystickIntent = new Intent(this, Joystick.class);
-        if(isOnRaceMode){
-            joystickIntent.putExtra("RaceMode", "Race Mode is on");
-        }
         joystick.startAnimation(scaleUp);
         joystick.startAnimation(scaleDown);
-        startActivity(joystickIntent);
+        if(isOnRaceMode){
+            Intent beforeStart = new Intent(this, BeforeRaceStart.class);
+            beforeStart.putExtra("RaceMode", "Joystick");
+            startActivity(beforeStart);
+        }else{
+            Intent joystickIntent = new Intent(this, Joystick.class);
+            startActivity(joystickIntent);
+        }
+
     }
 
 }

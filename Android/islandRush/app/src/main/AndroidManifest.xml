@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IslandRush">
         <activity
+            android:name=".SplashScreens.BeforeRaceStart"
+            android:exported="false" />
+        <activity
             android:name=".instructionClasses.CheckLeaderboard"
             android:exported="false" />
         <activity

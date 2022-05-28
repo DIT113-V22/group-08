@@ -77,7 +77,7 @@ void loop() {
     static auto previousTransmission = 0UL;
     if ((currentTime - previousTransmission >= oneSecond) && (detected == false)) {
 // if the US sensor detects an object publish topic to mqtt 
-      if (carDetected() && currentTime > 60000) {
+      if (carDetected() && currentTime > 30000) {
         mqtt.publish(MAIN_TOPIC, String(millis()));
 // car is detected so I stop checking the surroundings
         detected = true;
