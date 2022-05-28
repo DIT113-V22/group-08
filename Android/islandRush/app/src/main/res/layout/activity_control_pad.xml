@@ -212,10 +212,10 @@
         android:alpha="0.8"
         android:background="@drawable/black_circle_button"
         android:text="Reset"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/pauseButtonControlPad"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.016"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/simpleChronometerControlPad" />
 
