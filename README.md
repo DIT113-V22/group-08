@@ -47,10 +47,6 @@ For more details and clarity,visit our Wiki page on [System Architecture](https:
 
 For installation and further guidance,visit our Wiki Page on [Setup Guides](https://github.com/DIT113-V22/group-08/wiki/Setup-Guides) and choose your Operating System.
 
-## Modding Instructions
-Our system offers two different mod environments for each of the game modes: Race Mode and Explorer Mode.
-
-To setup the environment and install SMCE-gd, visit our wiki page on [Modding Instructions](https://github.com/DIT113-V22/group-08/wiki/Modding-Instructions).
 ***
 # Getting Started
 ### Installation
