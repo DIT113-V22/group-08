@@ -4,7 +4,8 @@ on: [push, pull_request]
        
 env: 
   GODOT_VERSION: 3.4.4 
-  DIR: Mod # directory where the Godot project is
+  DIR: Mod # directory where the first Godot project is
+  DIR2: Exploration Mod # directory where the second Godot project is
 
 jobs:
   export-linux:
@@ -17,13 +18,22 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
-      - name: Resolve Dependencies
+      - name: Export first package
         run: |
           mkdir -v -p build/mods
           cd $DIR
           godot --export-pack "Linux/X11" --no-window ../build/mods/Island.pck
-      - name: Upload Artifact
+      - name: Upload first Artifact
         uses: actions/upload-artifact@v2
         with: 
           name: Island
+          path: build/mods
+      - name: Export second package
+        run: |
+          cd $DIR2
+          godot --export-pack "Linux/X11" --no-window ../build/mods/Exploration.pck
+      - name: Upload second Artifact
+        uses: actions/upload-artifact@v2
+        with: 
+          name: Exploration
           path: build/mods
