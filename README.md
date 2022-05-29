@@ -79,7 +79,7 @@ Note: Remember to keep Auto-Rotate "turned on" in the virtual device to play the
 
 ***
 # Demo Video
-Check out our Demo Video on Youtube "Insert Link" to discover and get a tutorial of what features IslandRush has to offer!
+Check out our "[Demo Video](https://youtu.be/bcX4QcTOgmg)" to discover and get a taste of what IslandRush has to offer!
 
 Feel free to check out our Wiki Page on [User Manual](https://github.com/DIT113-V22/group-08/wiki/User-Manual) and [IslandRush Sitemap](https://github.com/DIT113-V22/group-08/wiki/IslandRush-Sitemap) for further guidance.
 ***
