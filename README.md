@@ -2,7 +2,7 @@
 ![Android CI Status](https://github.com/DIT113-V22/group-08/actions/workflows/android-ci.yml/badge.svg)
 # group-08
 #     IslandRush
-![image](https://user-images.githubusercontent.com/91395562/170861601-f80e94f5-4d06-4b17-9295-689fb2818471.png)
+![banner](https://user-images.githubusercontent.com/36161357/170886247-985108f7-9103-4294-9711-9f383b0ed6b8.png)
 ***
 # Project Description
 IslandRush is an Android app that grants the user to drive a car in the SMCE client using a virtual controller on a phone.The SMCE environment has been modded to represent an Island with race-tracks.It is a racing game that allows a user to compete against oneself and other users.
