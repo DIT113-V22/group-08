@@ -53,7 +53,7 @@ For installation and further guidance,visit our Wiki Page on [Setup Guides](http
 
 * Step 1: Navigate to our Repository using https://github.com/DIT113-V22/group-08
 * Step 2: Navigate to [Releases](https://github.com/DIT113-V22/group-08/releases) and download IslandRush as a zip file and unzip it. 
-* Step 3: While you are on [Releases] page, you can also download mods for our Race and Explore mode.
+* Step 3: While you are on [Releases](https://github.com/DIT113-V22/group-08/releases) page, you can also download mods for our Race and Explore mode.
 
 ### Opening IslandRush in Android Studio:
 * Step 1: Open Android Studio
