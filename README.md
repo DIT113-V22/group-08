@@ -1,8 +1,8 @@
 ![Arduino Build Status](https://github.com/DIT113-V22/group-08/actions/workflows/arduino-build.yml/badge.svg)
 ![Android CI Status](https://github.com/DIT113-V22/group-08/actions/workflows/android-ci.yml/badge.svg)
 # group-08
-# IslandRush
-![image](https://user-images.githubusercontent.com/91395562/170551330-714bd214-7bca-4af2-96e9-03a87e2accba.png)
+#     IslandRush
+![image](https://user-images.githubusercontent.com/91395562/170861601-f80e94f5-4d06-4b17-9295-689fb2818471.png)
 ***
 # Project Description
 IslandRush is an Android app that grants the user to drive a car in the SMCE client using a virtual controller on a phone.The SMCE environment has been modded to represent an Island with race-tracks.It is a racing game that allows a user to compete against oneself and other users.
@@ -17,7 +17,7 @@ It is also important to point out that video games have only two outcomes -eithe
 IslandRush aims to let users grow to become more social,intellectual and persistent and also have fun at the same time.
 ***
 # How does it work ?
-The Android app will be developed in Android Studio which uses XML for the UI and Kotlin or Java for the back-end code. The car-behavior will be programmed in C++ using Arduino and the SmartCar API. We will use GODOT to mod the environment in SMCE emulator to visualize the race and explorer mode of the game. A database will be set-up to store player data using the help of SQLite and Room Library. Github will be used to plan, manage documentations and update code during the development process.
+The Android app will be developed in Android Studio which uses XML for the UI and Kotlin or Java for the back-end code. The car-behavior will be programmed in C++ using Arduino and the SmartCar API. We will use GODOT to mod the environment in SMCE emulator to visualize the race and explorer mode of the game. A database will be set-up to store player data using the help of SQLite and Room Library. Github will be used to plan, manage documentations and update code during the development process. We also plan to have some UI testing using Expresso and ensure quality in our software product.
 ***
 # System Architecture
 ### MQTT Communication Between Components
@@ -42,7 +42,7 @@ For more details and clarity,visit our Wiki page on [System Architecture](https:
 * [Mosquitto Broker](https://mosquitto.org/download/).
 * [SMCE-gd v1.3.4](https://github.com/ItJustWorksTM/smce-gd/releases/tag/v1.3.4) 
 * Virtual Device in Android Studio.
-  - Recommended Emulator for App: Pixel 3 XL API 31
+  - Recommended Emulator for App: Nexus 6 API 30
   - Visit our Wiki Page on [Virtual Device](https://github.com/DIT113-V22/group-08/wiki/Virtual-Device) for Setup.
 
 For installation and further guidance,visit our Wiki Page on [Setup Guides](https://github.com/DIT113-V22/group-08/wiki/Setup-Guides) and choose your Operating System.
@@ -52,7 +52,8 @@ For installation and further guidance,visit our Wiki Page on [Setup Guides](http
 ### Installation
 
 * Step 1: Navigate to our Repository using https://github.com/DIT113-V22/group-08
-* Step 2: Download IslandRush as a zip file and unzip it
+* Step 2: Navigate to [Releases](https://github.com/DIT113-V22/group-08/releases) and download IslandRush as a zip file and unzip it. 
+* Step 3: While you are on [Releases] page, you can also download mods for our Race and Explore mode.
 
 ### Opening IslandRush in Android Studio:
 * Step 1: Open Android Studio
@@ -64,7 +65,7 @@ For installation and further guidance,visit our Wiki Page on [Setup Guides](http
 Note: Remember to keep Auto-Rotate "turned on" in the virtual device to play the game in both Portrait and Landscape mode.
 
 ### Open SMCE GODOT Environment
-* Step 1: Assuming the SMCE app is installed, double click on it to start the app.
+* Step 1: Assuming the SMCE app is installed, double click on it to start the app. 
 * Step 2: Follow our [Modding Instructions](https://github.com/DIT113-V22/group-08/wiki/Modding-Instructions) wiki to change the default environment
 * Step 3: Click on the "+" sign on the top-left corner of the app to add the SmartCar and Finish Line Sketch from the unzipped project.
 
@@ -79,6 +80,8 @@ Note: Remember to keep Auto-Rotate "turned on" in the virtual device to play the
 ***
 # Demo Video
 Check out our Demo Video on Youtube "Insert Link" to discover and get a tutorial of what features IslandRush has to offer!
+
+Feel free to check out our Wiki Page on [User Manual](https://github.com/DIT113-V22/group-08/wiki/User-Manual) and [IslandRush Sitemap](https://github.com/DIT113-V22/group-08/wiki/IslandRush-Sitemap) for further guidance.
 ***
 ### License
 MIT © group-08
