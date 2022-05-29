@@ -26,6 +26,7 @@ import com.quinstedt.islandRush.MqttClient;
 import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.SpeedometerView;
 import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
+import com.quinstedt.islandRush.Utils;
 
 public class ControlPad extends AppCompatActivity {
 
@@ -171,7 +172,7 @@ public class ControlPad extends AppCompatActivity {
                     } else {
                         sendMqttControlMessage(FORWARD, "Moving forward");
                         sendCarSpeed("Continue  forward");
-                        speedometer.setSpeed(currentSpeed, DURATION, DELAY);
+                        setupSpeedometer(currentSpeed, DURATION, DELAY);
                     }
                 }
             }
@@ -204,12 +205,9 @@ public class ControlPad extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (finish.getText().toString().equalsIgnoreCase("FINISH")) {
-                    try {
-                        Thread.sleep(3000);
-                        startActivity(animationScore);
-                    } catch (Exception exception) {
-                        exception.getStackTrace();
-                    }
+                    stopCar();
+                    Utils.delay(1000);
+                    startActivity(animationScore);
                 }
             }
 

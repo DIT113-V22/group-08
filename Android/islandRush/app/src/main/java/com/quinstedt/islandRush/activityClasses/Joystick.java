@@ -30,6 +30,7 @@ import com.quinstedt.islandRush.MqttClient;
 import com.quinstedt.islandRush.R;
 import com.quinstedt.islandRush.SpeedometerView;
 import com.quinstedt.islandRush.SplashScreens.LeaderboardAnimation;
+import com.quinstedt.islandRush.Utils;
 
 public class Joystick extends AppCompatActivity {
 
@@ -211,12 +212,9 @@ public class Joystick extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(finish.getText().toString().equalsIgnoreCase("FINISH")){
-                    try {
-                        Thread.sleep(3000);
-                        startActivity(animationScore);
-                    }catch (Exception exception){
-                        exception.getStackTrace();
-                    }
+                    stopCar();
+                    Utils.delay(1000);
+                    startActivity(animationScore);
                 }
             }
 

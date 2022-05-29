@@ -95,6 +95,7 @@ public class LeaderboardAnimation extends AppCompatActivity {
             }
         });
 
+
     }
 
     // Inserts the player Name and Time taken to the database
