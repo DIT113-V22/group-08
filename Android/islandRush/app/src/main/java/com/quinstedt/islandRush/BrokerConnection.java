@@ -7,6 +7,10 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.quinstedt.islandRush.database.ViewModal;
+
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
@@ -17,7 +21,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BrokerConnection{
+public class BrokerConnection extends AppCompatActivity {
 
     public static class Topics {
 
@@ -45,6 +49,9 @@ public class BrokerConnection{
 
     private boolean isConnected = false;
     public MqttClient mqttClient;
+
+
+
 
     TextView actualSpeed;
     Context context;
@@ -139,7 +146,7 @@ public class BrokerConnection{
      * @param message - the message that we send to the broker
      * @param actionDescription - the action description that will be printed
      */
-    public void drive(String message, String actionDescription) {
+    public void publishMqttMessage(String message, String actionDescription) {
         if (!isConnected) {
             final String notConnected = "Not connected (yet)";
             Log.e(Topics.Connection.TAG, notConnected);
@@ -173,6 +180,7 @@ public class BrokerConnection{
         }
     public void setSimpleChronometer(Chronometer simpleChronometer) {
             this.simpleChronometer = simpleChronometer;
-        }
+    }
+
 
 }

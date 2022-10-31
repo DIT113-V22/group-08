@@ -25,6 +25,9 @@ public class Utils {
     public static final int CROSSED_FINGERS =0x1F91E;
     public static final int APPLAUSE = 0x1F44F;
     public static final int TIME_EMOJI = 0x23F3;
+    public static final int ISLAND = 0x1F3DD;
+    public static final int RACE = 	0x1F3C1;
+
 
     public static String getEmoji(int unicode){
         return new String(Character.toChars(unicode));

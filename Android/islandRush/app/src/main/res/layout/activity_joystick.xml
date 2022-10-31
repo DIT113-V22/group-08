@@ -2,11 +2,46 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/joystickActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background1"
-    tools:context=".Joystick">
+    android:id="@+id/joystickActivity"
+    tools:context=".activityClasses.Joystick">
+
+    <Button
+        android:id="@+id/pauseButtonJoystick"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="108dp"
+        android:alpha="0.8"
+        android:background="@drawable/black_circle_button"
+        android:text=" II / I▶"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/fullSpeedJoystick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actualSpeedJoystick"
+        app:layout_constraintVertical_bias="0.009" />
+
+
+    <Button
+        android:id="@+id/resetButtonJoystick"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.8"
+        android:background="@drawable/black_circle_button"
+        android:text="Reset"
+        android:textAppearance="?android:attr/color"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/joystick"
+        app:layout_constraintEnd_toStartOf="@+id/pauseButtonJoystick"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/simpleChronometerJoystick"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/joystick_escapeHash"
@@ -26,10 +61,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="292dp"
         android:textAppearance="?android:attr/text"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:drawableLeftCompat="@drawable/ic_baseline_speed_24"
+        app:drawableLeftCompat="@drawable/ic_baseline_speed_24_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.764"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,14 +172,14 @@
         android:id="@+id/finish_joystick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="384dp"
+        android:layout_marginTop="392dp"
         android:textAllCaps="true"
         android:textAppearance="?android:attr/text"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

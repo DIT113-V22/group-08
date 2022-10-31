@@ -5,19 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/animation_background"
-    tools:context=".CreditsActivity">
+    tools:context=".activityClasses.CreditsActivity">
+
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/main_logo"
+        android:layout_width="308dp"
+        android:layout_height="431dp"
+        android:alpha="0.5"
+        android:src="@drawable/logo"
+        app:civ_border_color="#2CD319"
+        app:civ_border_width="5dp"
+        app:civ_shadow="true"
+        app:civ_shadow_color="#0E951C"
+        app:civ_shadow_radius="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413" />
 
     <TextView
         android:id="@+id/txtView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
+        android:lineSpacingExtra="2sp"
         android:text="TextView"
-        android:textSize="25sp"
         android:textColor="@color/black"
+        android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="13dp" />
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="122dp" />
+
+    <ImageButton
+        android:id="@+id/credits_escapeHash"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

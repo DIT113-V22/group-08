@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dynamic_list"
-    tools:context=".MainActivity">
+    tools:context=".activityClasses.MainActivity">
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/main_logo"
         android:layout_width="239dp"
-        android:layout_height="208dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="9dp"
         android:src="@drawable/logo"
         app:civ_border_color="#2CD319"
         app:civ_border_width="5dp"
@@ -22,16 +24,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/playerName"
-        android:layout_width="300dp"
+        android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
-        android:layout_marginStart="50sp"
-        android:layout_marginEnd="50sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
         android:background="#19F3E9E9"
         android:drawableStart="@drawable/ic_person_vector"
         android:hint="@string/Enter_players_name"
@@ -46,60 +49,76 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/button_enterRace"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896" />
+        app:layout_constraintTop_toBottomOf="@+id/main_logo" />
 
     <Button
         android:id="@+id/button_enterRace"
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/playerName"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/main_buttons"
         android:text="  Enter Race  "
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/button_Leaderboard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981" />
+        app:layout_constraintTop_toBottomOf="@+id/playerName" />
 
     <Button
         android:id="@+id/button_Leaderboard"
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="124dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/main_buttons"
-        android:text="LeaderBoard "
+        android:text="  LeaderBoard  "
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/howToPlayBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_enterRace" />
+
+    <Button
+        android:id="@+id/howToPlayBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_enterRace"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/main_buttons"
+        android:text=" HOW TO PLAY ? "
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_credits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Leaderboard" />
 
     <Button
         android:id="@+id/button_credits"
-        android:layout_width="243dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/button_enterRace"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/main_buttons"
-        android:text="Credits "
+        android:text="  Credits  "
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/howToPlayBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
